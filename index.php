@@ -1,10 +1,12 @@
 <?php
-    include_once('autoload.php');
+    include_once('core/autoload.php');
     include_once('database/database_connection.inc.php');
 
     $query = $conn->query("SELECT * FROM users");
     $query->execute();
     $res = $query->fetchAll();
+
+    $dum = new dummy();
 ?>
 
 <!DOCTYPE html>
