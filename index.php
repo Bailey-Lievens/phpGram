@@ -1,5 +1,5 @@
 <?php
-    include_once('database/database_connection.php');
+    include_once('database/database_connection.inc.php');
 
     $query = $conn->query("SELECT * FROM users");
     $query->execute();
