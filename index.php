@@ -5,8 +5,6 @@
     $query = $conn->query("SELECT * FROM users");
     $query->execute();
     $res = $query->fetchAll();
-
-    $dum = new dummy();
 ?>
 
 <!DOCTYPE html>
