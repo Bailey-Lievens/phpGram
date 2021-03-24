@@ -1,3 +1,8 @@
+<?php
+    include_once('registration.inc.php');
+    include_once('database/database_connection.inc.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +17,6 @@
     <h1>Sick login page coming soon</h1>
 
     <button><a href="index.php">Fake login :)</a></button>
-    <a href="#">Register an account</a>
 
     <br>
     <br>
