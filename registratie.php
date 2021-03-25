@@ -31,13 +31,8 @@
     <?php endif;?>
 
     <div>
-        <label for="firstName">Voornaam</label>
-        <input type="text" id="firstName" name="firstName">
-    </div>
-
-    <div>
-        <label for="lastName">Familienaam</label>
-        <input type="text" id="lastName" name="lastName">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
     </div>
 
     <div>
@@ -48,11 +43,6 @@
     <div>
         <label for="password">Wachtwoord</label>
         <input type="password" id="password" name="password">
-    </div>
-
-    <div>
-        <label for="passwordConfirmation">Bevestig je wachtwoord</label>
-	    <input type="password" id="passwordConfirmation" name="passwordConfirmation">
     </div>
 
     <div class="submitBtn">

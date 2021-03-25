@@ -33,12 +33,12 @@
     <?php endif;?>
 
     <div>
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
     </div>
 
     <div>
-        <label for="password">Paswoord</label>
+        <label for="password">Password</label>
         <input type="password" id="password" name="password">
     </div>
 
@@ -46,7 +46,7 @@
 	    <input type="submit" id="submitBtn" value="Aanmelden">	
     </div>
     <div class="registratieLink">
-        <a href="registratie.php">Nog geen account? Registreer hier.</a>
+        <a href="registratie.php">No account yet? Create one now.</a>
     </div>
 
 </form>
