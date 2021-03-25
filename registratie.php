@@ -32,9 +32,9 @@
         <img src="images/woordlogo.png" alt="logo">
     </div>
 
-    <h2>Maak een nieuw account</h2>
-
     <form method="post" class="clearfix">
+
+    <h2>Create a new account</h2>
 
     <?php if(isset($error)):?>
         <div class="error" style="color: white;">
@@ -52,16 +52,16 @@
     </div>
 
     <div>
-        <label for="password">Wachtwoord</label>
+        <label for="password">Password</label>
         <input type="password" id="password" name="password">
     </div>
 
     <div class="submitBtn">
-	    <input type="submit" id="submitBtn" value="Bevestig">	
+	    <input type="submit" id="submitBtn" value="Sign up">	
     </div>
 
     <div class="loginLink">
-        <a href="login.php">Heb je al een account? Log hier in.</a>
+        <a href="login.php">Already created an account? Log in here.</a>
     </div>
 
 </form>

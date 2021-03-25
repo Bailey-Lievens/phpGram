@@ -1,7 +1,7 @@
 <?php
     include_once('core/autoload.php');
-    include_once('database/database_connection.inc.php');
 
+    $conn = Database::getConnection();
     $query = $conn->query("SELECT * FROM users");
     $query->execute();
     $res = $query->fetchAll();

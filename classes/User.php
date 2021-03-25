@@ -7,7 +7,7 @@
         private $email;
 
         public function setUsername($username){
-            $this->username = real_escape_string($username);
+            $this->username = $username;
         }
 
         public function getUsername(){
@@ -20,7 +20,7 @@
                 'cost' => 12,
             ];
 
-            $password = password_hash(real_escape_string($password), PASSWORD_BCRYPT, $options);
+            $password = password_hash($password, PASSWORD_BCRYPT, $options);
 
             $this->password = $password;
         }
@@ -30,7 +30,7 @@
         }
 
         public function setEmail($email){
-            $this->email = real_escape_string($email);
+            $this->email = $email;
         }
 
         public function getEmail(){
@@ -38,8 +38,7 @@
         }
 
         public function saveDetails(){
-            include_once('database/database_connection.inc.php');
-
+            $conn = database::getConnection();
             $query = $conn->prepare("INSERT INTO users (username, password, email) VALUES (:username, :password, :email)");
             
             $query->bindValue(":username", $this->username);
@@ -47,6 +46,21 @@
             $query->bindValue(":email", $this->email);            
 
             $query->execute();
+        }
+
+        private function emailExists($email){ //checks if a record exists with the given email
+            $conn = database::getConnection();
+            $query = $conn->prepare("SELECT id FROM users WHERE email = :email");
+
+            $query->bindValue(":email", $email);            
+            $query->execute();
+            $result = $query->fetch();
+
+            if(!$result){
+                return False;
+            } else {
+                return True;
+            }
         }
     }
 ?>
