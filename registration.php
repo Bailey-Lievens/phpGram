@@ -12,8 +12,7 @@
             $user->saveDetails();
             
         } catch (\Throwable $e) {
-            $errorMessage = $e->getMessage();
-            echo ($errorMessage);
+            $error = $e->getMessage();
         }
     }
 ?>
