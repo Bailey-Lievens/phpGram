@@ -73,7 +73,7 @@ input[type="text"], input[type="password"] { /*Color was whack so i made a tempo
     background-color: rgb(134, 41, 255);
     color: rgba(239,52,84,1);
 }
-.registratieLink a:hover, .loginLink a:hover{
+.registrationLink a:hover, .loginLink a:hover{
     opacity: 0.7;
 }
 .error{
