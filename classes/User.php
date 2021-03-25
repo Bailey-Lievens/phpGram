@@ -7,7 +7,7 @@
         private $email;
 
         public function setUsername($username){
-            $this->username = $username;
+            $this->username = real_escape_string($username);
         }
 
         public function getUsername(){
@@ -20,7 +20,7 @@
                 'cost' => 12,
             ];
 
-            $password = password_hash($password, PASSWORD_BCRYPT, $options);
+            $password = password_hash(real_escape_string($password), PASSWORD_BCRYPT, $options);
 
             $this->password = $password;
         }
@@ -30,7 +30,7 @@
         }
 
         public function setEmail($email){
-            $this->email = $email;
+            $this->email = real_escape_string($email);
         }
 
         public function getEmail(){

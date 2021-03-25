@@ -52,6 +52,11 @@ form div{
     border-radius: 10px;
     box-shadow: 7px 7px 25px -6px;
 }
+
+input[type="text"], input[type="password"] { /*Color was whack so i made a temporary fix :)*/
+    color: white;
+}
+
 #submitBtn{
     margin: 40px 0;
     padding: 10px 20px;
