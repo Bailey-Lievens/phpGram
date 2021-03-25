@@ -16,6 +16,12 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/general.css"> 
+     <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/navigatie.css" />
+
+   
+
+
 </head>
 <body>
     <header>

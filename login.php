@@ -2,15 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="css/registratieLogin.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
+    </style> 
 
-    <link rel="stylesheet" href="css/normalize.css"> 
+    <title>Document</title>
 </head>
 <body>
-    <h1>Sick login page coming soon</h1>
+    
+<section class="flex">
 
-    <button><a href="index.php">Fake login :)</a></button>
+<div id="logo-container">
+    <img src="images/woordlogo.png" alt="logo">
+</div>
+
+<form action="" method="post">
+
+    <h2>Meld je aan</h2>
+
+    <?php if(isset($error)):?>
+        <div class="error" style="color: white;">
+        <?php echo $error;?></div>
+    <?php endif;?>
+
+    <div>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email">
+    </div>
+
+    <div>
+        <label for="password">Paswoord</label>
+        <input type="password" id="password" name="password">
+    </div>
+
+    <div class="submitBtn">
+	    <input type="submit" id="submitBtn" value="Aanmelden">	
+    </div>
+    <div class="registratieLink">
+        <a href="registratie.php">Nog geen account? Registreer hier.</a>
+    </div>
+
+</form>
+
+</section>
+
 </body>
 </html>
