@@ -1,4 +1,15 @@
 <?php
+    include_once('core/autoload.php');
+
+    if(!empty($_POST)){    
+        $user = new User();
+
+        $user->setUsername($_POST["username"]);
+        $user->setPassword($_POST["password"]);
+        $user->setEmail($_POST["email"]);
+
+        $user->saveDetails();
+    }
 ?>
 
 
@@ -21,9 +32,9 @@
         <img src="images/woordlogo.png" alt="logo">
     </div>
 
-    <form action="" method="post" class="clearfix">
-
     <h2>Maak een nieuw account</h2>
+
+    <form method="post" class="clearfix">
 
     <?php if(isset($error)):?>
         <div class="error" style="color: white;">
