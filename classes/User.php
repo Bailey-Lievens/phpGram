@@ -20,11 +20,7 @@
                 'cost' => 12,
             ];
 
-            echo ($password);
-
             $password = password_hash($password, PASSWORD_BCRYPT, $options);
-
-            echo($password);
 
             $this->password = $password;
         }
