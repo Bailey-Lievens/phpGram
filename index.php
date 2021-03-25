@@ -1,4 +1,5 @@
 <?php
+    include_once('core/autoload.php');
     include_once('database/database_connection.inc.php');
 
     $query = $conn->query("SELECT * FROM users");
