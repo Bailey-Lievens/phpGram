@@ -1,10 +1,16 @@
 <?php
     include_once('core/autoload.php');
+    
+    session_start();
 
     $conn = Database::getConnection();
     $query = $conn->query("SELECT * FROM users");
     $query->execute();
     $res = $query->fetchAll();
+
+    if(!$_SESSION["loggedin"]) {
+        header("Location: login.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +34,7 @@
             <a href="index.php">Home</a>
             <a href="#">Discover</a> <!--Maybe show all posts from everyone?--> 
             <a href="profilePage.php">My profile</a>
-            <a href="login.php">Logout</a>
+            <a href="logout.php">Logout</a>
         </nav>
     </header>    
 

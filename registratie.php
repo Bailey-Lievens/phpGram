@@ -1,14 +1,20 @@
 <?php
     include_once('core/autoload.php');
 
-    if(!empty($_POST)){    
-        $user = new User();
+    if(!empty($_POST)){
+        try {
+            $user = new User();
 
-        $user->setUsername($_POST["username"]);
-        $user->setPassword($_POST["password"]);
-        $user->setEmail($_POST["email"]);
+            $user->setUsername($_POST["username"]);
+            $user->setPassword($_POST["password"]);
+            $user->setEmail($_POST["email"]);
 
-        $user->saveDetails();
+            $user->saveDetails();
+            
+        } catch (\Throwable $e) {
+            $errorMessage = $e->getMessage();
+            echo ($errorMessage);
+        }
     }
 ?>
 
