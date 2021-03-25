@@ -41,7 +41,7 @@ form div{
     margin: 0px auto;
     width: 90%;
 }
-#firstName, #lastName, #email, #password, #passwordConfirmation{
+#username, #email, #password, #passwordConfirmation{
     border: none;
     padding: 10px 0px 10px 10px;
     display: inline-block;
