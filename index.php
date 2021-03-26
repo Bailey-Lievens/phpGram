@@ -28,7 +28,7 @@
 </head>
 <body>
     <header>
-    <?php include ("navigation.inc.php"); ?>
+        <?php include ("navigation.inc.php"); ?> <!-- test comment-->
     </header>    
 
     <h1>Best team</h1>
