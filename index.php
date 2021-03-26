@@ -1,6 +1,4 @@
-<?php
-    include_once('core/autoload.php');
-?>
+<?php include_once('core/autoload.php');?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +12,10 @@
     <link rel="stylesheet" href="css/general.css"> 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/navigatie.css" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
+    </style> 
 
 </head>
 <body>

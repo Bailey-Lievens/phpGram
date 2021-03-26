@@ -1,0 +1,30 @@
+nav a{
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+nav a:hover{
+    padding-bottom: 0.2em;
+    border-bottom: 2px solid white;
+}
+
+@media (max-width: 600px){
+    nav a{
+        display: none;
+    }
+    .menu{
+        background-color: white;
+        width: 40px;
+        height: 5px;
+        margin-bottom: 0.5em;
+    }
+    #menuButton{
+        display: inline;
+    }
+    .menu:nth-child(odd){
+        position:relative;
+        left: -8px;
+    }
+}

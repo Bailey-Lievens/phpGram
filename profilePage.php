@@ -1,6 +1,4 @@
-<?php
-    include_once('isloggedin.inc.php');
-    ?>
+<?php include_once('isloggedin.inc.php');?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
