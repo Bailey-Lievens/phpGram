@@ -1,0 +1,55 @@
+<?php
+    include_once('isloggedin.inc.php');
+    ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My profile</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/profilePage.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
+    </style> 
+</head>
+<body>
+
+    <div id="account_header">
+            <img src="images/Bailey.jpg" alt="Profile picture" id="profile_picture">
+        <div>
+            <h1 id="username_header">Bailey Lievens</h1>
+            <a id="edit_profile" href="#">⚙️ Edit profile</a>
+        </div>
+    </div>
+
+    <section id="biography">
+        <h2>Biography</h2>
+        <p>~ Pretentious living being 🕶 <br>
+            ~ @bailey.lievens 🖌<br>
+            ~ aspiring dilf 🧔</p>
+    </section>
+
+    <section id="tabs">
+        <div id="tabBar">
+            <a class="tabName" onclick="openTab('postsTab')">Posts</a>
+            <a class="tabName" onclick="openTab('followersTab')">Followers</a>
+            <a class="tabName" onclick="openTab('followingTab')">Following</a>
+        </div>
+
+        <div id="postsTab" class="tab">
+            <p>Show some sick ass posts biatch</p>
+        </div>
+        
+        <div id="followersTab" class="tab" style="display:none">
+            <p>Show off that clout</p>
+        </div>
+        
+        <div id="followingTab" class="tab" style="display:none">
+            <p>Show your love.</p>
+        </div>
+    </section>  
+
+    <script src="js/tabs.js"></script>
+</body>
+</html>
