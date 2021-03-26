@@ -32,9 +32,9 @@
 
     <section id="tabs">
         <div id="tabBar">
-            <a class="tabName" onclick="openTab('postsTab')">Posts</a>
-            <a class="tabName" onclick="openTab('followersTab')">Followers</a>
-            <a class="tabName" onclick="openTab('followingTab')">Following</a>
+            <a class="tabName active" onclick="openTab(event, 'postsTab')">Posts</a>
+            <a class="tabName" onclick="openTab(event, 'followersTab')">Followers</a>
+            <a class="tabName" onclick="openTab(event, 'followingTab')">Following</a>
         </div>
 
         <div id="postsTab" class="tab">
