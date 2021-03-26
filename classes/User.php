@@ -56,8 +56,8 @@
             return $this->email;
         }
 
-        public function saveDetails(){
-            $conn = database::getConnection();
+        public function save(){
+            $conn = Database::getConnection();
             $query = $conn->prepare("INSERT INTO users (username, password, email) VALUES (:username, :password, :email)");
             
             $query->bindValue(":username", $this->username);

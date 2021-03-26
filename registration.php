@@ -9,7 +9,7 @@
             $user->setPassword($_POST["password"]);
             $user->setEmail($_POST["email"]);
 
-            $user->saveDetails();
+            $user->save();
             
         } catch (\Throwable $e) {
             $error = $e->getMessage();
