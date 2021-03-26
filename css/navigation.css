@@ -1,0 +1,42 @@
+
+    #klik {
+        display: none;
+    }
+
+@media (max-width: 700px) {
+    img {
+        width: 20%;
+    }
+
+    #klik {
+        display: block;
+    }
+
+    nav a {
+        display: none;
+        text-decoration: none;
+        color: white;
+        padding-bottom: 0.5em;
+    }
+    
+    nav a:hover {
+        border-bottom: 1px solid white;
+    }
+}
+
+@media (min-width: 700px) {
+    img {
+        width: 15%;
+    }
+    nav a{
+        display: inline;
+        text-decoration: none;
+        padding-bottom: 0.5em;
+        padding-left: 0.3em;
+        padding-right: 0.3em;
+        margin-right: 1em;
+        color: white;
+    }
+    
+}
+

@@ -2,6 +2,10 @@
     margin: 0;
 }
 
+#profile {
+    border-bottom: 1px solid white;
+}
+
 h1 {
     
     font-family: 'Ubuntu', sans-serif;

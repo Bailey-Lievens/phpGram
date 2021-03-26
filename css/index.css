@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 body{
     font-family: sans-serif;
 }
@@ -15,3 +16,12 @@ header{
 nav a{
     margin-left: 1em;
 }
+=======
+body {
+    background: linear-gradient(90deg, rgb(134, 41, 255) 0%, rgba(239,52,84,1) 100%);
+}
+
+#home {
+    border-bottom: 1px solid white;
+}
+>>>>>>> Stashed changes
