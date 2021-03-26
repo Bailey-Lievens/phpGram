@@ -10,7 +10,7 @@
 
     if(!$_SESSION["loggedin"]) {
         header("Location: login.php");
-    }
+    } //Test comment
 ?>
 
 <!DOCTYPE html>
