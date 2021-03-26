@@ -1,30 +1,17 @@
-<<<<<<< Updated upstream
-<?php
-?>
-
-=======
 <?php 
     include_once('isloggedin.inc.php');
     ?>
->>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< Updated upstream
-    <link rel="stylesheet" type="text/css" href="css/profiel.css" />
-    <link rel="stylesheet" type="text/css" href="css/navigatie.css" />
-    <script src="jquery-3.4.1.min.js"></script>
-    <title>Document</title>
-=======
     <title>My profile</title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/general.css"/>
     <link rel="stylesheet" type="text/css" href="css/profilePage.css"/>
     <link rel="stylesheet" type="text/css" href="css/navigation.css">
->>>>>>> Stashed changes
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
     </style>
