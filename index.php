@@ -7,10 +7,7 @@
     $query = $conn->query("SELECT * FROM users");
     $query->execute();
     $res = $query->fetchAll();
-
-    if(!$_SESSION["loggedin"]) {
-        header("Location: login.php");
-    }
+    include_once('isloggedin.inc.php');
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +25,7 @@
 </head>
 <body>
     <header>
-        <?php include ("navigation.inc.php"); ?> <!-- test comment-->
+        <?php include ("navigation.inc.php"); ?>
     </header>    
 
     <h1>Best team</h1>
