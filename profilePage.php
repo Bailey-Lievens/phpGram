@@ -15,15 +15,6 @@
     </style> 
 </head>
 <body>
-    <header>
-        <?php include ("navigation.inc.php"); ?>
-    </header>
-    
-<section class="flex">
-
-
-
-</section>
-
+    <?php include_once("navigation.inc.php")?>
 </body>
 </html>
