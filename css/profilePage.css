@@ -4,12 +4,15 @@
 
 body {
     background: linear-gradient(90deg, rgb(134, 41, 255) 0%, rgba(239,52,84,1) 100%);
-    padding: 2em;
+
+    padding-top: 2em;
 }
 
 #account_header{
     display: flex;
     flex-direction: row;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 #profile_picture{
     min-width: 100px;
@@ -43,6 +46,7 @@ body {
     background-color:  rgba(255, 255, 255, 0.24);
     margin: 2.5em;
     padding: 1em 2em 1em 2em;
+    margin-bottom: -1em;
 
     position: relative;
 
@@ -88,4 +92,27 @@ body {
     background-color:rgba(255, 255, 255, 0.24);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+#postsTab{
+    padding: 2em;
+    padding-left: 0em;
+    padding-right: 0em;
+   
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#postsTab img{
+    flex: 1 0 25%;
+    width: 100px;
+    margin: 10px;
+}
+
+#followersTab ul{
+    list-style-type: none;
+}
+
+#followersTab img{
+    width: 50px;
 }
