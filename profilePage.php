@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/general.css"> 
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/navigatie.css" />
     <link rel="stylesheet" type="text/css" href="css/registratieLogin.css"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
     </style> 
-    <title>Document</title>
 </head>
 <body>
+    <header>
+    <?php include ("navigation.inc.php"); ?>
+    </header>
     
 <section class="flex">
 
