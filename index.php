@@ -21,10 +21,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengram</title>
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/general.css"> 
-     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <link rel="stylesheet" type="text/css" href="css/navigatie.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/general.css"> 
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
 
 </head>
 <body>

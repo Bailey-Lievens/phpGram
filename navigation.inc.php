@@ -1,3 +1,4 @@
+    <link rel="stylesheet" type="text/css" href="css/navigation.css" />
         <img src="https://via.placeholder.com/200x80?text=Logo+location+probably" alt="logo">
         <nav>
             <a href="index.php">Home</a>

@@ -27,7 +27,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
     </style> 
-    <title>Document</title>
+    <title>Register</title>
 </head>
 <body>
     
