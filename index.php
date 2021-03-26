@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/general.css"> 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <link rel="stylesheet" type="text/css" href="css/navigatie.css" />
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
@@ -19,8 +18,6 @@
 
 </head>
 <body>
-    
     <?php include_once("navigation.inc.php")?>
-
 </body>
 </html>
