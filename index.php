@@ -1,4 +1,5 @@
 <?php include_once('core/autoload.php');?>
+<?php include_once('isloggedin.inc.php');?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,5 +62,7 @@
     </section>
 
     <a href="#" class="loadMore">load more</a>
+
+    <?php include_once("footer.inc.php")?>    
 </body>
 </html>
