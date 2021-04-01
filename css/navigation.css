@@ -1,9 +1,22 @@
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 0.5em;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+}
+
 nav a{
     font-family: 'Ubuntu', sans-serif;
     color: white;
     text-decoration: none;
     transition: 0.2s;
     padding-bottom: 0.2em;
+    margin-left: 1em;
 }
 
 nav a:hover{
