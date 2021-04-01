@@ -1,4 +1,5 @@
 <?php include_once('core/autoload.php');?>
+<?php include_once('isloggedin.inc.php');?>
 
 <!DOCTYPE html>
 <html lang="en">
