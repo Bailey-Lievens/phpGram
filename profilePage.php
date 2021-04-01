@@ -90,6 +90,7 @@
         </div>
     </section>  
 
+    <?php include_once("footer.inc.php")?> 
     <script src="js/tabs.js"></script>
 </body>
 </html>

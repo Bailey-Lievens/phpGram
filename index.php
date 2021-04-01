@@ -18,5 +18,7 @@
 </head>
 <body>
     <?php include_once("navigation.inc.php")?>
+
+    <?php include_once("footer.inc.php")?>    
 </body>
 </html>
