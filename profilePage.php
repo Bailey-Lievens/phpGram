@@ -14,20 +14,21 @@
     </style> 
 </head>
 <body>
-
-    <div id="account_header">
+    <section id="account_info">
+        <div id="account_header">
             <img src="images/Bailey.jpg" alt="Profile picture" id="profile_picture">
-        <div>
-            <h1 id="username_header">Bailey Lievens</h1>
-            <a id="edit_profile" href="#">⚙️ Edit profile</a>
+            <div>
+                <h1 id="username_header">Bailey Lievens</h1>
+                <a id="edit_profile" href="#">⚙️ Edit profile</a>
+            </div>
         </div>
-    </div>
 
-    <section id="biography">
-        <h2>Biography</h2>
-        <p>~ Pretentious living being 🕶 <br>
-            ~ @bailey.lievens 🖌<br>
-            ~ aspiring dilf 🧔</p>
+        <section id="biography">
+            <h2>Biography</h2>
+            <p>~ Pretentious living being 🕶 <br>
+                ~ @bailey.lievens 🖌<br>
+                ~ aspiring dilf 🧔</p>
+        </section>
     </section>
 
     <section id="tabs">
@@ -52,14 +53,39 @@
             <ul>
                 <li>
                     <img src="images/Ellen.jpg">
-                    <p>Ellen Hiel</p>
+                    <p>Ellen</p>
                     <a href="#">Follow</a>
+                </li>
+                <li>
+                    <img src="images/Amelie.jpg">
+                    <p>Amelie</p>
+                    <a href="#" class="isFollowing">Unfollow</a>
+                </li>
+                <li>
+                    <img src="images/doggo.jpg">
+                    <p>best Doggo</p>
+                    <a href="#" class="isFollowing">Unfollow</a>
                 </li>
             </ul>
         </div>
         
         <div id="followingTab" class="tab" style="display:none">
             <ul>
+                <li>
+                    <img src="images/Ellen.jpg">
+                    <p>Ellen</p>
+                    <a href="#" class="isFollowing">Unfollow</a>
+                </li>
+                <li>
+                    <img src="images/Amelie.jpg">
+                    <p>Amelie</p>
+                    <a href="#" class="isFollowing">Unfollow</a>
+                </li>
+                <li>
+                    <img src="images/doggo.jpg">
+                    <p>best Doggo</p>
+                    <a href="#" class="isFollowing">Unfollow</a>
+                </li>
             </ul>
         </div>
     </section>  

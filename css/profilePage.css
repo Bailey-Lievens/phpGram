@@ -60,6 +60,10 @@ body {
     font-style: italic;
 }
 
+.tab{
+    justify-content: center;
+}
+
 #tabBar{
     display: flex;
     justify-content: space-evenly;
@@ -113,6 +117,87 @@ body {
     list-style-type: none;
 }
 
-#followersTab img{
-    width: 50px;
+ul li{ /*List container*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color:  rgba(255, 255, 255, 0.24);
+    border-radius: 8px;
+    color: white;
+
+    width: 360px;
+
+    margin-bottom: 1em;
+}
+
+li img{ /*Profile picture in list*/
+    clip-path: polygon(15% 0, 100% 0%, 84% 100%, 0% 100%);
+    width: 80px;
+    position: relative;
+    left: -10px;
+}
+
+li p{/*Name in list*/
+    font-size: 1.2em;
+}
+
+li a{/*Follow button in list*/
+    text-decoration: none;
+    color: black;
+
+    background-color: rgba(255, 255, 255, 0.692);
+    border-radius: 10px;
+
+    padding: 1em;
+    margin-right: 1em;
+    transition: 0.2s;
+}
+
+li a:hover{
+    content: "Follow";
+    background-color: rgb(255, 255, 255);
+    box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.39);
+}
+
+.isFollowing{
+    background-color: rgba(255, 255, 255, 0.13);
+    border: solid white 2px;
+}
+
+.isFollowing:hover{
+    background-color: rgba(248, 0, 0, 0.644);;
+}
+
+ul li:nth-child(even){
+    position: relative;
+    left: 4em;
+}
+
+@media (min-width: 700px){
+    #tabs{
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    #account_info{
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+@media (min-width: 1400px){
+    #tabs{
+        width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+
+    #account_info{
+        width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;
+    }
 }
