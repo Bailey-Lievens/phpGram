@@ -1,3 +1,100 @@
 body {
     background: linear-gradient(90deg, rgb(134, 41, 255) 0%, rgba(239,52,84,1) 100%);
+    font-family: 'Ubuntu', sans-serif;
 }
+
+.post {
+    color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    width: 30em;
+    height: 30em;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding-bottom: 1em;
+}
+
+.post header {
+    background-color: #952BE7;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+
+}
+
+.post header img {
+    height: 3em;
+    width: 3em;
+    border-radius: 2em;
+}
+
+
+.post header a:nth-child(4) {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+
+}
+
+.post header a:nth-child(2) {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    margin-right: 5em;
+    
+}
+
+.post div img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    height: 20em;
+    width: 20em;
+}
+
+.post div p {
+    margin-left: 5em;
+    margin-right: 5em;
+}
+
+.post section a:nth-child(1) {
+    margin-left: 5em;
+}
+
+.post section a {
+    text-decoration: none;
+    color: white;
+    background-color: none;
+    margin-left: 1em;
+}
+
+.post section a:hover {
+    color: #952BE7;
+    border-bottom: 2px solid #952BE7;
+}
+
+.loadMore {
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    border: 2px solid white;
+    padding: 0.5em 1em 0.5em 1em;
+    margin: 2em auto 2em auto;
+    display: block;
+    width: 7em;
+}
+
+.loadMore:hover {
+    background-color: white;
+    color: #BA2EAA;
+
+}
+
