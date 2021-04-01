@@ -1,25 +1,3 @@
-body{
-    font-family: sans-serif;
-}
-
-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    margin: 2em;
-    margin-top: 1em;
-}
-
-nav a{
-    margin-left: 1em;
-}
-
 body {
     background: linear-gradient(90deg, rgb(134, 41, 255) 0%, rgba(239,52,84,1) 100%);
-}
-
-#home {
-    border-bottom: 1px solid white;
 }
