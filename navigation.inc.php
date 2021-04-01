@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="css/navigation.css"/>
 <header>
-    <img src="https://via.placeholder.com/200x80?text=Logo+location+probably" alt="logo">
+    <img id="logo" src="images/logo.png" alt="logo">
     <nav>
         <div id="navWrapper">
             <a href="index.php">Home</a>

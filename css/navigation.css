@@ -10,6 +10,10 @@ header{
     margin-bottom: 2em;
 }
 
+#logo{
+    width: 20em;
+}
+
 nav a{
     font-family: 'Ubuntu', sans-serif;
     color: white;
@@ -27,7 +31,7 @@ nav a:hover{
     display: none;
 }
 
-@media (max-width: 600px){
+@media (max-width: 740px){
     .menu{
         position: relative;
         background-color: white;
@@ -69,5 +73,4 @@ nav a:hover{
     #navWrapper:first-child{
         padding-top: 5em;
     }
-
 }
