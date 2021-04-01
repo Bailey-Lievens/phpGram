@@ -1,14 +1,4 @@
-<?php
-    include_once('core/autoload.php');
-    
-    session_start();
-
-    $conn = Database::getConnection();
-    $query = $conn->query("SELECT * FROM users");
-    $query->execute();
-    $res = $query->fetchAll();
-    include_once('isloggedin.inc.php');
-?>
+<?php include_once('core/autoload.php');?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,22 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengram</title>
 
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
+    </style> 
 
 </head>
 <body>
-    <header>
-        <?php include ("navigation.inc.php"); ?>
-    </header>    
-
-    <h1>Best team</h1>
-
-    <?php foreach($res as $user): ?>
-        
-        <li><?php echo $user["username"] ?></li>
-        
-    <?php endforeach; ?>
-
+    <?php include_once("navigation.inc.php")?>
 </body>
 </html>

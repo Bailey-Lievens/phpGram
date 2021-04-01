@@ -1,6 +1,4 @@
-<?php
-    include_once('isloggedin.inc.php');
-    ?>
+<?php include_once('isloggedin.inc.php');?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +12,8 @@
     </style> 
 </head>
 <body>
+    <?php include_once("navigation.inc.php")?>
+
     <section id="account_info">
         <div id="account_header">
             <img src="images/Bailey.jpg" alt="Profile picture" id="profile_picture">

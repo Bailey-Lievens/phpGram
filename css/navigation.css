@@ -1,0 +1,73 @@
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 0.5em;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+}
+
+nav a{
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+    padding-bottom: 0.2em;
+    margin-left: 1em;
+}
+
+nav a:hover{
+    border-bottom: 2px solid white;
+}
+
+#menuButton{
+    display: none;
+}
+
+@media (max-width: 600px){
+    .menu{
+        position: relative;
+        background-color: white;
+        width: 40px;
+        height: 5px;
+        margin-bottom: 0.5em;
+        z-index: 999;
+    }
+    #menuButton{
+        display: inline;
+        margin-right: 3.7em;
+    }
+    .menu:first-child{
+        position:relative;
+        left: -8px;
+        transition: 0.5s;
+    }
+
+    /*Change nav so it can slide in*/
+    #navWrapper{
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.575);
+
+        height: 100vh;
+
+        position: fixed;
+        top: 0;
+        left: 100%;
+        transition: 0.3s;
+    }
+
+    #navWrapper a{
+        width: 100px;
+        margin-top: 2.5em;
+        margin-right: 5em;
+    }
+
+    #navWrapper:first-child{
+        padding-top: 5em;
+    }
+
+}

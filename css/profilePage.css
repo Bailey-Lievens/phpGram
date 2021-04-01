@@ -4,8 +4,7 @@
 
 body {
     background: linear-gradient(90deg, rgb(134, 41, 255) 0%, rgba(239,52,84,1) 100%);
-
-    padding-top: 2em;
+    margin-top: 0;
 }
 
 #account_header{
