@@ -1,4 +1,18 @@
-<?php include_once('isloggedin.inc.php');?>
+<?php 
+include_once('classes/Database.php');
+include_once('isloggedin.inc.php');
+
+
+$mysqli = new mysqli("localhost","root","root","testdb");
+
+if ($mysqli -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,16 +32,17 @@
         <div id="account_header">
             <img src="images/Bailey.jpg" alt="Profile picture" id="profile_picture">
             <div>
-                <h1 id="username_header">Bailey Lievens</h1>
-                <a id="edit_profile" href="#">⚙️ Edit profile</a>
+                <h1 id="username_header"><?php echo htmlspecialchars($info["username"]) ?> </h1>
+                <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
             </div>
         </div>
 
         <section id="biography">
             <h2>Biography</h2>
-            <p>~ Pretentious living being 🕶 <br>
-                ~ @bailey.lievens 🖌<br>
-                ~ aspiring dilf 🧔</p>
+            <p><?php echo htmlspecialchars($info["bio"]) ?></p>
+
+
+    
         </section>
     </section>
 

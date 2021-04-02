@@ -173,6 +173,10 @@ ul li:nth-child(even){
     left: 4em;
 }
 
+.hide{
+    display: none;
+}
+
 @media (min-width: 700px){
     #tabs{
         width: 70%;
