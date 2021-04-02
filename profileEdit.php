@@ -1,26 +1,23 @@
 <?php include_once('isloggedin.inc.php');
-      include_once('classes/adjustProfile.php');
-      
-      session_start();
+      include_once('classes/User.php');
 
-$userPro = new UserProfile;
-$userPro->setUser($_SESSION["id"]);
+    
 
-$data = $userPro->fetchData();
+    
+    if (!empty($_POST['edit'])) {
+        $user = new User();
+        $userid = $_SESSION["userid"];
+        $user->setusername($_POST["username"]);
+        $user->setemail($_POST["email"]);
+        $user->setbio($_POST["bio"]);
+        $user->setUserid($userid);
+    }
+        
 
-$emailVerification = true;
-$required = "@";
-$requiredVerification = true;
-$passwordVerification = true;
-$passwordMatch1 = true;
-$passwordMatch2 = true;
-$securePassword;
-
-
-if(!empty($_POST)){
-    include_once(__DIR__ . "/classes/verificatieProfile.php");  
-}
-
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    
       ?>
 
       
@@ -43,7 +40,8 @@ if(!empty($_POST)){
         <div id="account_header">
             <img src="images/Bailey.jpg" alt="Profile picture" id="profile_picture">
             <div>
-                <h1 id="username_header">Bailey Lievens</h1>
+                
+                <h1 id="username_header"><?php echo $_SESSION['username']; ?></h1>
                 <a id="edit_profile" href="profilePage.php">Go back to profile</a>
             </div>
         </div>
@@ -52,54 +50,26 @@ if(!empty($_POST)){
 
         <section id="biography">
 
-        <form id="form" action="" method="post" enctype="multipart/form-data">
+        <form action="profilePage.php" method="POST">
+        <div>
+        <label for="username"><a>Name:</a></label>
+        <input type="text" name="username"  value=""/>
+        </div>
 
-<?php if(isset($error)):?>
-<div class="error" style="color: red;"><?php echo $error;?></div>
-<?php endif;?>
-<h2>Change my name</h2>
-<div>
-    <p> <?php echo htmlspecialchars($data["username"]) ?></p>
-    <label for="username" class="showInput changeLabel">new name</label>
-    <input class="inputField showInput" type="text" id="username" name="username">
-</div>
-<h2>Change my password</h2>
-<div id="passChange">
-    <label for="passwordVerification" class="showInput changeLabel">old Password</label>
-    <input class="inputField showInput" type="password" id="passwordVerification"
-        name="passwordVerification">
+        <div>
+        <label for="email"><a>Email:</a></label>
+        <input type="text" name="email"  value=""/>
+        </div>
+        <div>
+        <label for="bio"><a>Bio:</a></label>
+        <textarea name="bio" rows="10" cols="30"></textarea>
+        </div>
 
-    <label for="password" class="showInput changeLabel">new password</label>
-    <input class="inputField showInput" type="password" id="password" name="password">
+        <input name="edit" type="submit"  value="Update">
+        <div>
+        </div>
 
-    <label for="passwordConfirmation" class="showInput changeLabel">confirm new password</label>
-    <input class="inputField showInput" type="password" id="passwordConfirmation"
-        name="passwordConfirmation">
-</div>
-
-<h2>Change my email</h2>
-<div id="emailChange">
-    <p><?php echo htmlspecialchars($data["email"]) ?></p>
-    <label for="emailVerification" class="showInput changeLabel">Password</label>
-    <input class="inputField showInput" type="password" id="emailVerification" name="emailVerification">
-
-    <label for="email" class="showInput changeLabel">New emailadres</label>
-    <input class="inputField showInput" type="text" id="email" name="email">
-</div>
-
-<h2>Change my bio</h2>
-<div>
-    <p><?php echo htmlspecialchars($data["bio"]) ?></p>
-    <input class="inputField showInput" type="text" id="bio" name="bio">
-</div>
-</br>
-<div>
-    <input type="submit" id="submitBtn" class="hide" value="confirm changes">
-    <a href='javascript:void();' id="changeProfileBtn" onclick="changeProfile()">adjust profile</a>
-
-</div>
-
-</form>
+        </form>
 
     </section>
 

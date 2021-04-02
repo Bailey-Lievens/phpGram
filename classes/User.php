@@ -2,16 +2,40 @@
 
     class User{
 
+        private $userid;
         private $username;
         private $password;
         private $email;
+        private $bio;
+
 
         const MIN_USERNAME = 5; //Minimum amount of username characters
         const MAX_USERNAME = 20; //Maximum amount of username characters
 
         const MIN_PASSWORD = 5; //Minimum amount of password characters
         const MAX_PASSWORD = 200; //Maximum amount of password characters
-        const MIN_CAPITAL = 1; //Minimum amount of capital characters        
+        const MIN_CAPITAL = 1; //Minimum amount of capital characters    
+        const MAX_BIO = 350;  //Maximum amount of bio characters   
+
+        function canLogin($username, $password) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT * FROM users WHERE username = :username");
+            $query->bindValue(":username", $username);
+            $query->execute();
+
+            $user = $query->fetch();
+            $hash = $user['password'];
+
+            if(!$user) {
+                return false;
+            }
+            
+            if(password_verify($password, $hash)) {
+                return true;
+            } else {
+                return false;
+            }
+    }
 
         public function setUsername($username){
 
@@ -56,16 +80,46 @@
             return $this->email;
         }
 
+        public function setBio($bio){
+
+            self::checkBio($bio);
+
+            $this->bio = $bio;
+        }
+
+        public function getBio(){
+            return $this->bio;
+        }
+
+    
+
         public function save(){
             $conn = Database::getConnection();
             $query = $conn->prepare("INSERT INTO users (username, password, email) VALUES (:username, :password, :email)");
             
             $query->bindValue(":username", $this->username);
             $query->bindValue(":password", $this->password);
-            $query->bindValue(":email", $this->email);            
+            $query->bindValue(":email", $this->email);  
+                
+
+            $result=$query->execute();
+            return $result;
+        }
+
+        public function update(){
+            $conn = Database::getConnection();
+            $query = $conn->prepare("UPDATE users SET username=:username, email=:email, bio=:bio WHERE id=:userid");
+
+            $query->bindValue(":userid", $this->userid);
+            $query->bindValue(":username", $this->username);
+            $query->bindValue(":email", $this->email);     
+            $query->bindValue(":bio", $this->bio);        
 
             $query->execute();
+            return $query; 
         }
+
+        
 
         private function checkPassword($password){
             if($password == ""){
@@ -150,6 +204,44 @@
             } else {
                 return True;
             }
+        }
+        private function checkBio($bio){
+
+            if($bio == ""){
+                throw new Exception("Email cannot be empty.");
+            }
+
+            if(strlen($bio) > self::MAX_BIO){
+                throw new Exception("Bios can only be ". self::MAX_BIO ." characters long");
+            }
+        }
+
+        /**
+         * Get the value of userid
+         */ 
+        public function getUserid($username)
+        {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT username FROM users WHERE username = :username");
+
+            $query-> bindValue(":username", $username);
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_OBJ);
+            
+            return $result->id;
+            
+        }
+
+        /**
+         * Set the value of userid
+         *
+         * @return  self
+         */ 
+        public function setUserid($userid)
+        {
+                $this->userid = $userid;
+
+                return $this;
         }
     }
 ?>

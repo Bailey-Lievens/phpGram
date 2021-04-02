@@ -1,37 +1,25 @@
 <?php
     include_once('core/autoload.php');
-    session_start();
-    function canLogin($username, $password) {
-            $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT * FROM users WHERE username = :username");
-            $query->bindValue(":username", $username);
-            $query->execute();
-
-            $user = $query->fetch();
-            $hash = $user['password'];
-
-            if(!$user) {
-                return false;
-            }
-            
-            if(password_verify($password, $hash)) {
-                return true;
-            } else {
-                return false;
-            }
-    }
+    
+    
 
     if($_SESSION["loggedin"]) {
-        header("Location: index.php");
+        header("Location: index.php");   
     }
+
+    $user = new user();
 
     if(!empty($_POST)) {
 
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        if(canLogin($username, $password)) {
-            $_SESSION["loggedin"] = true;
+        if($user->canLogin($username, $password)) {
+            session_start(); 
+            $_SESSION['username'] = $username;
+            $_SESSION['loggedin'] = true;
+            $_SESSION["userid"] = $user->getUserId($username);
+
             header("Location: index.php");
         } else {
             $error = "Username or password are incorrect.";

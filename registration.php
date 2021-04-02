@@ -1,7 +1,9 @@
 <?php
     include_once('core/autoload.php');
 
+    
     if(!empty($_POST)){
+        
         try {
             $user = new User();
 
@@ -11,6 +13,10 @@
 
             $user->save();
             
+            session_start();
+            $_SESSION['username'] = $user->getUsername();
+            $_SESSION['loggedin'] = true;
+            $_SESSION["userid"] = $user->getUserId($username);
         } catch (\Throwable $e) {
             $error = $e->getMessage();
         }
