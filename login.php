@@ -1,8 +1,6 @@
 <?php
     include_once('core/autoload.php');
     
-    
-
     if($_SESSION["loggedin"]) {
         header("Location: index.php");   
     }

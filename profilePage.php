@@ -1,18 +1,6 @@
-<?php 
-include_once('classes/Database.php');
-include_once('isloggedin.inc.php');
+<?php include_once('core/autoload.php');?>
+<?php include_once('isloggedin.inc.php');?>
 
-
-$mysqli = new mysqli("localhost","root","root","testdb");
-
-if ($mysqli -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-  exit();
-}
-
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

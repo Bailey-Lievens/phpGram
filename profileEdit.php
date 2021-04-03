@@ -1,8 +1,7 @@
-<?php include_once('isloggedin.inc.php');
-      include_once('classes/User.php');
+<?php include_once('core/autoload.php');?>
+<?php include_once('isloggedin.inc.php');?>
 
-    
-
+<?php
     
     if (!empty($_POST['edit'])) {
         $user = new User();
@@ -12,13 +11,8 @@
         $user->setbio($_POST["bio"]);
         $user->setUserid($userid);
     }
-        
-
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
     
-      ?>
+?>
 
       
 <!DOCTYPE html>
@@ -28,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My profile</title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/profilePage.css">
+    <link rel="stylesheet" type="text/css" href="css/profilePageEdit.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
     </style> 
@@ -36,48 +30,47 @@
 <body>
     <?php include_once("navigation.inc.php")?>
 
-    <section id="account_info">
-        <div id="account_header">
-            <img src="images/Bailey.jpg" alt="Profile picture" id="profile_picture">
+    <section class="flex">
+
+        <form method="post">
+
+            <h2>Edit your account</h2>
+
+            <?php if(isset($error)):?>
+                <div class="error" style="color: white;">
+                <?php echo $error;?></div>
+            <?php endif;?>
+
             <div>
-                
-                <h1 id="username_header"><?php echo $_SESSION['username']; ?></h1>
-                <a id="edit_profile" href="profilePage.php">Go back to profile</a>
+                <label for="bio">Biography</label>
+                <input type="text" id="biography" name="bio">
             </div>
-        </div>
 
-       
+            <div>
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email">
+            </div>
 
-        <section id="biography">
+            <div>
+                <label for="newPassword">New password</label>
+                <input type="password" id="newPassword" name="newPassword">
+            </div>
 
-        <form action="profilePage.php" method="POST">
-        <div>
-        <label for="username"><a>Name:</a></label>
-        <input type="text" name="username"  value=""/>
-        </div>
+            <div>
+                <label for="oldPassword">Old password</label>
+                <input type="password" id="oldPassword" name="oldPassword">
+            </div>
 
-        <div>
-        <label for="email"><a>Email:</a></label>
-        <input type="text" name="email"  value=""/>
-        </div>
-        <div>
-        <label for="bio"><a>Bio:</a></label>
-        <textarea name="bio" rows="10" cols="30"></textarea>
-        </div>
-
-        <input name="edit" type="submit"  value="Update">
-        <div>
-        </div>
+            <div class="submitBtn">
+                <input type="submit" id="submitBtn" value="Save changes">	
+                <a href="profilePage.php">Cancel</a>
+            </div>
 
         </form>
 
     </section>
 
-        </section>
-
-       
-    <script src="js/profiel.js"></script>
+    
     <?php include_once("footer.inc.php")?> 
-    <script src="js/tabs.js"></script>
 </body>
 </html>

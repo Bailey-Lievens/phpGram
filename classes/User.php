@@ -35,7 +35,7 @@
             } else {
                 return false;
             }
-    }
+        }
 
         public function setUsername($username){
 
@@ -216,9 +216,7 @@
             }
         }
 
-        /**
-         * Get the value of userid
-         */ 
+
         public function getUserid($username)
         {
             $conn = Database::getConnection();
@@ -232,11 +230,6 @@
             
         }
 
-        /**
-         * Set the value of userid
-         *
-         * @return  self
-         */ 
         public function setUserid($userid)
         {
                 $this->userid = $userid;

@@ -1,24 +1,15 @@
 <?php include_once('core/autoload.php');?>
-<?php include_once('isloggedin.inc.php');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-?>
-
-
-
-
+<?php include_once('isloggedin.inc.php');?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengram</title>
 
-    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/index.css" />
 
     <style>
@@ -27,18 +18,16 @@ error_reporting(E_ALL);
 
 </head>
 <body>
-
     <?php include_once("navigation.inc.php")?>
     <section class="post">
         <header>
-            <img src="https://via.placeholder.com/150" alt="profilePicture">
+            <img src="images/Bailey.jpg" alt="profilePicture">
             <a href="#">username</a>
             <p>10 minutes ago</p>
             <a href="#">...</a>
-            <?php echo $_SESSION['userid'];?>
         </header>
         <div>
-            <img src="https://via.placeholder.com/250" alt="postPicture">
+            <img src="images/doggo.jpg" alt="postPicture">
             <p>description picture</p>
         </div>
         <section>
@@ -53,13 +42,13 @@ error_reporting(E_ALL);
 
     <section class="post">
         <header>
-            <img src="https://via.placeholder.com/150" alt="profilePicture">
+            <img src="images/ellen.jpg" alt="profilePicture">
             <a href="#">username</a>
             <p>10 minutes ago</p>
             <a href="#">...</a>
         </header>
         <div>
-            <img src="https://via.placeholder.com/250" alt="postPicture">
+            <img src="images/doggo.jpg" alt="postPicture">
             <p>description picture</p>
         </div>
         <section>
