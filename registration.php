@@ -1,7 +1,6 @@
-<?php
-    include_once('core/autoload.php');
+<?php include_once('core/autoload.php'); ?>
 
-    
+<?php
     if(!empty($_POST)){
         
         try {

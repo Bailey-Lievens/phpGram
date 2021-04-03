@@ -3,15 +3,20 @@
 
 <?php
     
-    if (!empty($_POST['edit'])) {
-        $user = new User();
-        $userid = $_SESSION["userid"];
-        $user->setusername($_POST["username"]);
-        $user->setemail($_POST["email"]);
-        $user->setbio($_POST["bio"]);
-        $user->setUserid($userid);
-    }
-    
+    if(!empty($_POST)){
+        try {
+            $user = new User();
+
+            $userid = $_SESSION["userid"];
+            $user->setusername($_POST["username"]);
+            $user->setemail($_POST["email"]);
+            $user->setbio($_POST["bio"]);
+            $user->setUserId($userid);
+        }
+        } catch (\Throwable $e) {
+            $error = $e->getMessage();
+        }
+    }  
 ?>
 
       
