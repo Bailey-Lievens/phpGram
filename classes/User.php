@@ -91,8 +91,6 @@
             return $this->bio;
         }
 
-    
-
         public function save(){
             $conn = Database::getConnection();
             $query = $conn->prepare("INSERT INTO users (username, password, email) VALUES (:username, :password, :email)");
@@ -115,8 +113,8 @@
             $query->bindValue(":email", $this->email);     
             $query->bindValue(":bio", $this->bio);        
 
-            $query->execute();
-            return $query; 
+            $result = $query->execute();
+            return $result; 
         }
 
         
@@ -207,34 +205,18 @@
         }
         private function checkBio($bio){
 
-            if($bio == ""){
-                throw new Exception("Email cannot be empty.");
-            }
-
             if(strlen($bio) > self::MAX_BIO){
                 throw new Exception("Bios can only be ". self::MAX_BIO ." characters long");
             }
         }
 
 
-        public function getUserid($username)
-        {
-            $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT username FROM users WHERE username = :username");
-
-            $query-> bindValue(":username", $username);
-            $query->execute();
-            $result = $query->fetch(PDO::FETCH_OBJ);
-            
-            return $result->id;
-            
+        public function getUserId(){
+            return $this->userid;
         }
 
-        public function setUserid($userid)
-        {
-                $this->userid = $userid;
-
-                return $this;
+        public function setUserid($userid){
+            $this->userid = $userid;
         }
     }
 ?>
