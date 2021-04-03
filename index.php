@@ -19,6 +19,35 @@
 </head>
 <body>
     <?php include_once("navigation.inc.php")?>
+    <section class="new">
+        <p>New post</p>
+    </section>
+
+    <section id="newPost">
+            <div>
+                <label for="description">Description</label>
+                <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"></textarea>
+            </div>
+
+            <div class="error">
+                <p>Write a description please.</p>
+            </div>
+
+            <div>
+                <input type="file" name="inputPicturePost" id="inputPicturePost" accept="image/png, image/jpeg"/>
+            </div>
+
+            <div class="error">
+                <p>Upload a picture of your masterpiece please.</p>
+            </div>
+
+            <div class="submitNewPost">
+                <a type="submit">post</a>
+            </div>
+            	
+            <p class="cancelBtn">cancel</p>
+    </section>
+
     <section class="post">
         <header>
             <img src="images/Bailey.jpg" alt="profilePicture">
@@ -62,7 +91,7 @@
     </section>
 
     <a href="#" class="loadMore">load more</a>
-
-    <?php include_once("footer.inc.php")?>    
+    <?php include_once("footer.inc.php")?>
+    <script src="js/newPost.js"></script>    
 </body>
 </html>

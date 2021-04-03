@@ -3,6 +3,85 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
+.new p {
+    color: white;
+    margin: 1em auto 1em auto;
+    display: block;
+    text-align: center;
+    width: 30em;
+    cursor: pointer;
+}
+
+.new p:hover {
+    text-decoration: underline;
+}
+
+#newPost {
+    display: none;
+    margin: 0.5em auto 0.5em auto;
+    width: 30em;
+    color: white;
+}
+
+#description {
+    border: none;
+    padding: 10px 0px 10px 10px;
+    display: inline-block;
+    margin-top: 0.5em;
+    background-color: black;
+    opacity: .3;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 7px 7px 25px -6px;
+    color: white;
+    resize: none;
+}
+
+.error p {
+    color: white;
+    background-color: red;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    text-align: center;
+    width: 29.6em;
+}
+
+#inputPicturePost {
+    margin-top: 0.5em;
+    margin-bottom: 0.2em;
+}
+
+.submitNewPost {
+    display: inline-block;
+    cursor: pointer;
+    border: 2px solid white;
+    margin-top: 0.5em;
+    padding: 0.5em 1em 0.5em 1em;
+    text-align: center;
+    width: 7em;
+}
+
+.submitNewPost:hover {
+    background-color: white;
+    color: #8729FE;
+}
+
+.cancelBtn {
+    display: inline-block;
+    cursor: pointer;
+    border: 2px solid white;
+    margin-top: 0.5em;
+    padding: 0.5em 1em 0.5em 1em;
+    text-align: center;
+    width: 7em;
+}
+
+.cancelBtn:hover {
+    border: 2px solid red;
+    color: red;
+}
+
 .post {
     color: white;
     background-color: black;
@@ -13,7 +92,7 @@ body {
     width: 30em;
     height: 30em;
     padding-bottom: 1em;
-    box-shadow: -5px 10px #8729FE, 5px -10px #EE3454;
+    box-shadow: -5px 10px #EE3454, 5px -10px #8729FE;
 }
 
 .post header {
@@ -94,6 +173,5 @@ body {
 .loadMore:hover {
     background-color: white;
     color: #BA2EAA;
-
 }
 
