@@ -32,7 +32,7 @@
 
     <section class="flex">
 
-        <form method="post">
+        <form method="post" id="profileEditForm">
 
             <h2>Edit your account</h2>
 
@@ -42,8 +42,16 @@
             <?php endif;?>
 
             <div>
+                <div class="imageEditWrapper">
+                    <img id="profilePicturePreview" src="images/DefaultProfilePicture.jpg" alt="profilePicture">
+                    <label id="inputLabel" for="inputImageFile">Change profile picture</label>
+                </div>
+                <input type="file" name="file" id="inputImageFile" accept="image/png, image/jpeg"/>
+            </div>
+
+            <div>
                 <label for="bio">Biography</label>
-                <input type="text" id="biography" name="bio">
+                <textarea name="bio" id="biography" form="profileEditForm" cols="30" rows="10"></textarea>
             </div>
 
             <div>
@@ -63,7 +71,7 @@
 
             <div class="submitBtn">
                 <input type="submit" id="submitBtn" value="Save changes">	
-                <a href="profilePage.php">Cancel</a>
+                <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
             </div>
 
         </form>
@@ -72,5 +80,6 @@
 
     
     <?php include_once("footer.inc.php")?> 
+    <script src="js/imagePreview.js"></script>
 </body>
 </html>

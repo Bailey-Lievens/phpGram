@@ -27,7 +27,7 @@
 
         <section id="biography">
             <h2>Biography</h2>
-            <p><?php echo htmlspecialchars($info["bio"]) ?></p>
+            <p>sdfkjnsdkfjnsmdlfknsmldkfnsmlkdnf </p>
 
 
     

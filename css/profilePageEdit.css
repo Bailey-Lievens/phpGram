@@ -11,15 +11,50 @@ section{
     margin: 0px auto 0px auto;
 }
 
+.imageEditWrapper{
+    display: flex;
+    align-items: center;
+}
+
+.imageEditWrapper img{
+    margin-right: 1em;
+}
+
+.imageEditWrapper label{
+    color: white;
+    transition: ease-in 0.1s;
+}
+
+.imageEditWrapper label:hover{
+    border-bottom: whitesmoke solid 2px;
+    padding-bottom: 0.3em;
+    cursor: pointer;
+}
+
+#inputImageFile{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    color: white;
+    display: none;
+}
+
 h2{
     font-family: 'Ubuntu', sans-serif;
     color: black;
     padding-top: 40px;
     padding-bottom: 20px;
+    margin-left: 5%;
     width: 90%;
-    margin: 0px auto;
     font-size: 30px;
 }
+
+#profilePicturePreview{
+    width: 8em;
+    height: 8em;
+    clip-path: polygon(15% 0, 100% 0%, 84% 100%, 0% 100%);
+}
+
 label, a{
     font-family: 'Open Sans', sans-serif;
     color: black;
@@ -44,10 +79,11 @@ form div{
 }
 
 #biography{
-    
+    resize: none;
+    height: 100px;
 }
 
-input[type="text"], input[type="password"] { /*Color was whack so i made a temporary fix :)*/
+input[type="text"], input[type="password"], textarea { /*Color was whack so i made a temporary fix :)*/
     color: white;
 }
 
@@ -81,37 +117,25 @@ input[type="text"], input[type="password"] { /*Color was whack so i made a tempo
     }
     h2{
         width: 70%;
-    }
-    #logo-container img{
-        margin-bottom: 50px;
-        width: 220px;
-        text-align: center;
-    }
-    #logo-container{
-        width: 100%;
-        text-align: center;
+        margin-left: 15%;
     }
 }
 @media (min-width: 992px){
     .flex{
         display: flex;
-        flex-direction: row-reverse;
-    }
-    #logo-container{
-        width: 30%;
-        height: 68.3vh;
-        padding-top: 300px;
+        flex-direction: row;
+        justify-content: center;
     }
     form{
         width: 70%;
-        margin-top: 100px;
     }
     form div{
-        width: 50%;
+        width: 100%;
     }
     h2{
-        width: 50%;
+        width: 70%;
         font-size: 45px;
+        margin-left: 0;
     }
 
 }
