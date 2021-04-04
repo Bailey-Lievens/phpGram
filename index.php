@@ -1,5 +1,6 @@
 <?php include_once('core/autoload.php');?>
 <?php include_once('isloggedin.inc.php');?>
+<?php include_once('posting.inc.php');?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,30 +24,37 @@
         <p>New post</p>
     </section>
 
+    <form action="" method="post">
     <section id="newPost">
             <div>
                 <label for="description">Description</label>
                 <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"></textarea>
             </div>
 
+            <?php if($errorDescription):?>
             <div class="error">
                 <p>Write a description please.</p>
             </div>
+            <?php endif;?>
 
             <div>
                 <input type="file" name="inputPicturePost" id="inputPicturePost" accept="image/png, image/jpeg"/>
             </div>
 
+            <?php if(isset($errorPicture)):?>
             <div class="error">
                 <p>Upload a picture of your masterpiece please.</p>
             </div>
+            <?php endif;?>
 
             <div class="submitNewPost">
-                <a type="submit">post</a>
+                <label type="submit" for="description">post</label>
             </div>
+            <button id="button">test</button>
             	
             <p class="cancelBtn">cancel</p>
     </section>
+    </form>
 
     <section class="post">
         <header>

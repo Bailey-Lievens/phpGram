@@ -3,6 +3,14 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
+.newPost div input {
+    background-color: red;
+}
+
+#button {
+    background-color: red;
+}
+
 .new p {
     color: white;
     margin: 1em auto 1em auto;
