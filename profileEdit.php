@@ -2,20 +2,8 @@
 <?php include_once('isloggedin.inc.php');?>
 
 <?php
-    
     if(!empty($_POST)){
-        try {
-            $user = new User();
-
-            $userid = $_SESSION["userid"];
-            $user->setusername($_POST["username"]);
-            $user->setemail($_POST["email"]);
-            $user->setbio($_POST["bio"]);
-            $user->setUserId($userid);
-        }
-        } catch (\Throwable $e) {
-            $error = $e->getMessage();
-        }
+        var_dump("form was submitted");
     }  
 ?>
 
@@ -25,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My profile</title>
+    <title>Profile edit</title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/profilePageEdit.css">
     <style>
