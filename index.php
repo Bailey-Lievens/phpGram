@@ -41,16 +41,13 @@
                 <input type="file" name="inputPicturePost" id="inputPicturePost" accept="image/png, image/jpeg"/>
             </div>
 
-            <?php if(isset($errorPicture)):?>
+            <?php if($errorPicture):?>
             <div class="error">
                 <p>Upload a picture of your masterpiece please.</p>
             </div>
             <?php endif;?>
 
-            <div class="submitNewPost">
-                <label type="submit" for="description">post</label>
-            </div>
-            <button id="button">test</button>
+            <button type="submit" class="submitNewPost">post</button>
             	
             <p class="cancelBtn">cancel</p>
     </section>

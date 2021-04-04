@@ -7,10 +7,6 @@ body {
     background-color: red;
 }
 
-#button {
-    background-color: red;
-}
-
 .new p {
     color: white;
     margin: 1em auto 1em auto;
@@ -61,13 +57,15 @@ body {
 }
 
 .submitNewPost {
+    color: white;
+    background-color: transparent;
     display: inline-block;
     cursor: pointer;
     border: 2px solid white;
     margin-top: 0.5em;
     padding: 0.5em 1em 0.5em 1em;
     text-align: center;
-    width: 7em;
+    width: 9em;
 }
 
 .submitNewPost:hover {

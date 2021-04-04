@@ -1,21 +1,19 @@
 <?php include_once('core/autoload.php');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
-        $description = $_POST['description'];
-        var_dump($description);
+    $description = $_POST['description'];
+    $picture = $_POST['inputPicturePost'];
 
 
     if(!empty($_POST)) {
-        var_dump("not empty");
 
-        if(!empty($description)) {
+        if(!empty($description) && !empty($picture)) {
+            var_dump("ok");
 
-        } else {
+        } if(empty($description))  {
             $errorDescription = true;
+        } if(empty($picture)) {
+            $errorPicture = true;
         }
-
     }
-
+// when click on post the tab 'new post' closes but have to be open when there is an error
     ?>
