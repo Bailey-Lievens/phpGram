@@ -20,15 +20,21 @@
 </head>
 <body>
     <?php include_once("navigation.inc.php")?>
-    <section class="new">
-        <p>New post</p>
+    <section>
+        <p class="new">New post</p>
     </section>
+    
+    <?php if($postOK): ?>
+    <section class="congrats">
+        <p>Congrats your masterpiece is posted!</p>
+    </section>
+    <?php endif; ?>
 
     <form action="" method="post">
     <section id="newPost">
             <div>
                 <label for="description">Description</label>
-                <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"></textarea>
+                <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"><?php if(empty($picture)) echo htmlspecialchars($description); ?></textarea>
             </div>
 
             <?php if($errorDescription):?>

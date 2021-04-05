@@ -7,7 +7,7 @@ body {
     background-color: red;
 }
 
-.new p {
+.new {
     color: white;
     margin: 1em auto 1em auto;
     display: block;
@@ -16,8 +16,19 @@ body {
     cursor: pointer;
 }
 
-.new p:hover {
+.new:hover {
     text-decoration: underline;
+}
+
+.congrats {
+    color: white;
+    display: block;
+    margin: 0 auto 1em auto;
+    padding: 0.1em;
+    background-color: green;
+    border-radius: 10px;
+    width: 30em;
+    text-align: center;
 }
 
 #newPost {

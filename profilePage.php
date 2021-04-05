@@ -1,5 +1,18 @@
 <?php include_once('core/autoload.php');?>
 <?php include_once('isloggedin.inc.php');?>
+<?php
+    $conn = Database::getConnection();
+    $query = $conn->prepare("SELECT id FROM users WHERE username = :username");
+    $query->bindValue(":username", $_SESSION['username']);            
+    $query->execute();
+    $result = $query->fetch();
+    $userid = $result['id'];
+
+    $query = $conn->prepare("SELECT picture FROM posts WHERE user_id = :userid");
+    $query->bindValue(":userid", $userid);            
+    $query->execute();
+    $results = $query->fetchAll();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +33,7 @@
         <div id="account_header">
             <img src="images/Bailey.jpg" alt="Profile picture" id="profile_picture">
             <div>
-                <h1 id="username_header"><?php echo htmlspecialchars($info["username"]) ?> </h1>
+                <h1 id="username_header"><?php echo htmlspecialchars($_SESSION["username"]) ?> </h1>
                 <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
             </div>
         </div>
@@ -42,14 +55,11 @@
         </div>
 
         <div id="postsTab" class="tab">
-            <img src="images/doggo.jpg">
-            <img src="images/doggo.jpg">
-            <img src="images/doggo.jpg">
-            <img src="images/doggo.jpg">
-            <img src="images/doggo.jpg">
-            <img src="images/doggo.jpg">
-            <img src="images/doggo.jpg">
-            <img src="images/doggo.jpg">
+            <?php foreach($results as $result): ?>
+                <img src="<?php echo $result['picture'] ?>"> 
+                <!-- moet nog gefixt worden dat, ofwel de links van de opgeladen foto's urls worden,
+                ofwel de opgeladen foto's in de image map worden opgeslagen -->
+            <?php endforeach; ?>
         </div>
         
         <div id="followersTab" class="tab" style="display:none">
