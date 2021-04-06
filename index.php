@@ -2,10 +2,6 @@
 <?php include_once('isloggedin.inc.php');?>
 <?php include_once('posting.inc.php');?>
 
-<?php
-    var_dump("he");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

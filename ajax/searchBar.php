@@ -1,18 +1,19 @@
-<?php include_once(__DIR__ . "/../classes/Search.php");?>
 <?php //Code for the search function 
     if(!empty($_POST)){
 
         $input = $_POST["searchInput"];
         $isTag = $_POST["isTag"];
 
-        $search = new Search();
+        $conn = new PDO("mysql:host=localhost:8889;dbname=testdb", "root", "root");
+        $query = $conn->prepare("SELECT username FROM users WHERE username LIKE CONCAT( '%', :input, '%') LIMIT 5");
+        $query->bindValue(":input", $input);
+        $query->execute();
+        $r = $query->fetchAll();
 
-        $search->setInput($input);
-        $search->setIsTag($isTag);
 
         $response = [
             'status' => "success",
-            "input" => $input
+            'results' => $r
         ];
 
         header("Content-Type: application/json");
