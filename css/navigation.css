@@ -31,6 +31,63 @@ nav a:hover{
     display: none;
 }
 
+#searchLabel, #searchSubmit{
+    display: none;
+}
+
+#searchResultList{
+    position: fixed;
+    margin-top: 4.2em;
+
+    background-color: rgba(235, 235, 235, 0.877);
+    width: 20em;
+    list-style-type: none;
+
+    padding: 0em;
+    border-radius: 10px;
+    box-shadow: 7px 7px 25px -6px;
+}
+
+#searchResultList img{
+    width: 3em;
+    border-radius: 50%;
+}
+
+#searchResultList li{
+    padding: 1em 0.5em 1em 0.5em;
+    display: flex;
+    align-items: center;
+
+    border-bottom: solid rgba(0, 0, 0, 0.11) 2px;
+    
+}
+
+#searchResultList li span{
+    margin-left: 1em;
+}
+
+#searchInput{
+    border: none;
+    padding: 10px 0px 10px 10px;
+    display: inline-block;
+    background-color: rgba(235, 235, 235, 0.877);
+    border-radius: 10px;
+    box-shadow: 7px 7px 25px -6px;
+    color: black;
+    width: 20em;
+
+    position: fixed;
+}
+
+#searchInput:focus{
+    outline: none;
+}
+
+#searchInput::placeholder{
+    color: rgb(95, 95, 95);
+    opacity: 1;
+}
+
 @media (max-width: 740px){
     .menu{
         position: relative;
