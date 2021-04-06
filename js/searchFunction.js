@@ -1,7 +1,8 @@
 var searchInputBar = document.getElementById("searchInput");
 var searchBarOutput = document.getElementById("searchResultList");
 var searchInput;
-var isTag = false;
+
+var isTag;
 
 searchInputBar.onfocus = function(){
     searchBarOutput.style.display = "block";
@@ -15,15 +16,7 @@ searchInputBar.addEventListener("keyup", function(){
     searchInput = searchInputBar.value;
     var formData = new FormData();
 
-    //Check to see if the user is searching for a tag
-    if(isTag || searchInput.charAt(0) == "#"){
-        isTag = true;
-    } else {
-        isTag = false;
-    }
-
     formData.append("searchInput", searchInput);
-    formData.append("isTag", isTag);
 
     fetch("./ajax/searchBar.php", {
         method: "POST",
@@ -31,7 +24,19 @@ searchInputBar.addEventListener("keyup", function(){
     })
         .then(response => response.json())
         .then(result => {
-            console.log("succes:", result);
+            searchBarOutput.innerHTML = "";
+
+            if(result != null){
+                result.forEach(user => {
+                    var listItem = document.createElement('li');
+                    if(searchInput.charAt(0) == "#"){
+                        listItem.innerHTML = "<img src='images/tagDefault.jpg' alt='"+ user.tags +"Picture'> <span>"+ user.tags +"</span>";
+                    } else{
+                        listItem.innerHTML = "<img src='images/DefaultProfilePicture.jpg' alt='"+ user.username +"ProfilePicture'> <span>"+ user.username +"</span>";
+                    }
+                    searchBarOutput.appendChild(listItem);
+                });
+            }
         })
         .catch(error => {
             console.error("Error:", error);

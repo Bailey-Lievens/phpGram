@@ -2,19 +2,20 @@
     if(!empty($_POST)){
 
         $input = $_POST["searchInput"];
-        $isTag = $_POST["isTag"];
 
         $conn = new PDO("mysql:host=localhost:8889;dbname=testdb", "root", "root");
-        $query = $conn->prepare("SELECT username FROM users WHERE username LIKE CONCAT( '%', :input, '%') LIMIT 5");
+        if ($input[0] != '#') {
+            $query = $conn->prepare("SELECT username FROM users WHERE username LIKE CONCAT( '%', :input, '%') LIMIT 5");
+        } else {
+            $query = $conn->prepare("SELECT tags FROM posts WHERE tags LIKE CONCAT( '%', :input, '%') LIMIT 5");
+        }
         $query->bindValue(":input", $input);
         $query->execute();
-        $r = $query->fetchAll();
+        $response = $query->fetchAll();
 
-
-        $response = [
-            'status' => "success",
-            'results' => $r
-        ];
+        if (empty($input)) {
+            $response = null;
+        }
 
         header("Content-Type: application/json");
         echo json_encode($response);
