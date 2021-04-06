@@ -21,6 +21,7 @@
 <body>
     <?php include_once("navigation.inc.php")?>
     <section>
+        <br>
         <p class="new">New post</p>
     </section>
     

@@ -36,16 +36,20 @@ nav a:hover{
 }
 
 #searchResultList{
-    position: fixed;
+    position: absolute;
     margin-top: 4.2em;
 
     background-color: rgba(235, 235, 235, 0.877);
     width: 20em;
+    height: initial;
     list-style-type: none;
 
     padding: 0em;
     border-radius: 10px;
     box-shadow: 7px 7px 25px -6px;
+
+    display: none;
+    transition: ease-out 2s; 
 }
 
 #searchResultList img{
@@ -76,7 +80,7 @@ nav a:hover{
     color: black;
     width: 20em;
 
-    position: fixed;
+    position: absolute;
 }
 
 #searchInput:focus{

@@ -3,12 +3,10 @@
     <div id="logoSearchWrapper">
         <img id="logo" src="images/logo.png" alt="logo">
         <form method="get">
-            <label id="searchLabel" for="q">Search here!</label>
-            <input placeholder="Search Pengram" type="search" id="searchInput" name="q">
+            <label id="searchLabel" for="searchInput">Search here!</label>
+            <input autocomplete="off" placeholder="Search Pengram" type="search" id="searchInput" name="searchInput">
             <ul id="searchResultList">
-                <li> <img src="images/Bailey.jpg" alt="BaileyProfilePicture"> <span>Bailey Lievens</span></li>
-                <li> <img src="images/Amelie.jpg" alt="AmelieProfilePicture"> <span>Amelie Gosiau</span></li>
-                <li> <img src="images/Ellen.jpg" alt="EllenProfilePicture"> <span>Ellen Hiel</span></li>
+                
             </ul>
             <input id="searchSubmit" type="submit">
         </form>
