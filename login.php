@@ -2,7 +2,7 @@
     include_once('core/autoload.php');
     
     if($_SESSION["loggedin"]) {
-        header("Location: index.php");   
+      header("Location: index.php");   
     }
 
     $user = new user();

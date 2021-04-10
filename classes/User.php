@@ -59,12 +59,15 @@
             $password = password_hash($password, PASSWORD_BCRYPT, $options);
 
             $this->password = $password;
+            return $this;
         }
 
         public function getPassword(){
             return $this->password;
         }
 
+
+        
         public function setEmail($email){
 
             self::checkEmail($email);
@@ -82,7 +85,7 @@
 
         public function setBio($bio){
 
-            self::checkBio($bio);
+            
 
             $this->bio = $bio;
         }
@@ -104,18 +107,34 @@
             return $result;
         }
 
-        public function update(){
+        public function update($userid, $username, $email, $bio){
             $conn = Database::getConnection();
             $query = $conn->prepare("UPDATE users SET username=:username, email=:email, bio=:bio WHERE id=:userid");
 
-            $query->bindValue(":userid", $this->userid);
-            $query->bindValue(":username", $this->username);
-            $query->bindValue(":email", $this->email);     
-            $query->bindValue(":bio", $this->bio);        
+            $query->bindValue(":userid", $userid);
+            $query->bindValue(":username", $username);
+            $query->bindValue(":email", $email);     
+            $query->bindValue(":bio", $bio);        
 
             $result = $query->execute();
-            return $result; 
+            return $result;    
         }
+
+        public function changePassword($userid, $password, $newpassword) {
+            
+            
+        }
+
+        public function select($userid)  { 
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT * FROM users WHERE id=:userid LIMIT 1");
+            $query->bindValue(":userid", $userid);
+
+            $result = $query->execute();
+            return $result;  
+
+      } 
+        
 
         
 
@@ -210,11 +229,20 @@
             }
         }
 
+        public function getUserid($username)
+        {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT * FROM users WHERE username = :username");
 
-        public function getUserId(){
-            return $this->userid;
+            $query-> bindValue(":username", $username);
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_OBJ);
+            
+            return $result->id; 
+          
+            
         }
-
+        
         public function setUserid($userid){
             $this->userid = $userid;
         }
