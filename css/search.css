@@ -1,0 +1,91 @@
+body {
+    background: linear-gradient(90deg, rgb(134, 41, 255) 0%, rgba(239,52,84,1) 100%);
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.post {
+    color: white;
+    background-color: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    width: 30em;
+    height: 30em;
+    padding-bottom: 1em;
+    box-shadow: -5px 10px #EE3454, 5px -10px #8729FE;
+}
+
+.post header {
+    background-color: black;
+    margin: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post header img {
+    height: 3em;
+    width: 3em;
+    border-radius: 2em;
+    margin-right: 2em;
+}
+
+
+.post header a:nth-child(4) {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    margin-left: 1em;
+
+}
+
+.post header a:nth-child(2) {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    margin-right: 6em;
+    margin-left: -1em;
+    
+}
+
+.post div img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    height: 20em;
+    width: 20em;
+}
+
+.post div p {
+    margin-left: 5em;
+    margin-right: 5em;
+}
+
+.post section a:nth-child(1) {
+    margin-left: 5em;
+}
+
+.post section a {
+    text-decoration: none;
+    color: white;
+    background-color: none;
+    margin-left: 1em;
+}
+
+.post section a:hover {
+    color: #8729FE;
+    border-bottom: 2px solid #8729FE;
+}
+
+#tag_title_section{
+    margin-left: 12.5em;
+    margin-top: 4em;
+}
