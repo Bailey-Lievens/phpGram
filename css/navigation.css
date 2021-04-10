@@ -50,6 +50,8 @@ nav a:hover{
 
     display: none;
     transition: ease-out 2s; 
+
+    z-index: 999999;
 }
 
 #searchResultList img{
@@ -68,6 +70,15 @@ nav a:hover{
 
 #searchResultList li span{
     margin-left: 1em;
+}
+
+#searchResultList li a{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 #searchInput{

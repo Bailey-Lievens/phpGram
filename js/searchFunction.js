@@ -9,7 +9,9 @@ searchInputBar.onfocus = function(){
 }
 
 searchInputBar.onblur = function(){
-    searchBarOutput.style.display = "none";
+    setTimeout(function(){
+        searchBarOutput.style.display = "none";
+    }, 200);
 }
 
 searchInputBar.addEventListener("keyup", function(){
@@ -30,9 +32,9 @@ searchInputBar.addEventListener("keyup", function(){
                 result.forEach(user => {
                     var listItem = document.createElement('li');
                     if(searchInput.charAt(0) == "#"){
-                        listItem.innerHTML = "<img src='images/tagDefault.jpg' alt='"+ user.tags +"Picture'> <span>"+ user.tags +"</span>";
+                        listItem.innerHTML = "<a href='search.php?q="+ user.tags +"'> <img src='images/tagDefault.jpg' alt='"+ user.tags +"Picture'> <span>"+ user.tags +"</span></a>";
                     } else{
-                        listItem.innerHTML = "<img src='images/DefaultProfilePicture.jpg' alt='"+ user.username +"ProfilePicture'> <span>"+ user.username +"</span>";
+                        listItem.innerHTML = "<a href='profilePage.php?user="+ user.username +"'><img src='images/DefaultProfilePicture.jpg' alt='"+ user.username +"ProfilePicture'> <span>"+ user.username +"</span></a>";
                     }
                     searchBarOutput.appendChild(listItem);
                 });

@@ -33,17 +33,14 @@
         <div id="account_header">
             <img src="images/Bailey.jpg" alt="Profile picture" id="profile_picture">
             <div>
-                <h1 id="username_header"><?php echo htmlspecialchars($_SESSION["username"]) ?> </h1>
+                <h1 id="username_header"><?php echo htmlspecialchars($_SESSION["username"])?></h1>
                 <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
             </div>
         </div>
 
         <section id="biography">
             <h2>Biography</h2>
-            <p>sdfkjnsdkfjnsmdlfknsmldkfnsmlkdnf </p>
-
-
-    
+            <p>sdfkjns </p>
         </section>
     </section>
 

@@ -12,12 +12,13 @@ body {
     flex-direction: row;
     padding-left: 2em;
     padding-right: 2em;
+    margin-top: 3em;
 }
 #profile_picture{
     min-width: 100px;
     max-width: 150px;
     clip-path: polygon(15% 0, 100% 0%, 84% 100%, 0% 100%);
-    z-index: 999;
+    z-index: 95;
 
     margin-left: 1em;
 }
@@ -50,7 +51,7 @@ body {
     position: relative;
 
     top: -55px;
-    z-index: 30;
+    z-index: 20;
 
     border-radius: 20px;
 }
@@ -116,7 +117,7 @@ body {
     list-style-type: none;
 }
 
-ul li{ /*List container*/
+.tab ul li{ /*List container*/
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -130,18 +131,18 @@ ul li{ /*List container*/
     margin-bottom: 1em;
 }
 
-li img{ /*Profile picture in list*/
+.tab li img{ /*Profile picture in list*/
     clip-path: polygon(15% 0, 100% 0%, 84% 100%, 0% 100%);
     width: 80px;
     position: relative;
     left: -10px;
 }
 
-li p{/*Name in list*/
+.tab li p{/*Name in list*/
     font-size: 1.2em;
 }
 
-li a{/*Follow button in list*/
+.tab li a{/*Follow button in list*/
     text-decoration: none;
     color: black;
 
@@ -153,22 +154,22 @@ li a{/*Follow button in list*/
     transition: 0.2s;
 }
 
-li a:hover{
+.tab li a:hover{
     content: "Follow";
     background-color: rgb(255, 255, 255);
     box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.39);
 }
 
-.isFollowing{
+.tab .isFollowing{
     background-color: rgba(255, 255, 255, 0.13);
     border: solid white 2px;
 }
 
-.isFollowing:hover{
-    background-color: rgba(248, 0, 0, 0.644);;
+.tab .isFollowing:hover{
+    background-color: rgba(248, 0, 0, 0.644);
 }
 
-ul li:nth-child(even){
+.tab ul li:nth-child(even){
     position: relative;
     left: 4em;
 }
@@ -188,6 +189,7 @@ ul li:nth-child(even){
         width: 60%;
         margin-left: 20%;
         margin-right: 20%;
+        margin-top: 2em;
     }
 }
 
@@ -202,5 +204,9 @@ ul li:nth-child(even){
         width: 50%;
         margin-left: 25%;
         margin-right: 25%;
+    }
+
+    #account_info{
+        margin-top: 2em;
     }
 }
