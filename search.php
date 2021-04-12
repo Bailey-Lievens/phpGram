@@ -42,14 +42,12 @@
         </section>
 
         <?php foreach($result as $post):?>
-
-            <?php var_dump($post);?>
         
             <section class="post">
                 <header>
                     <img src="images/Bailey.jpg" <?php echo("alt='profilePicture_".$post["username"]."'")?>> <!-- Add path to profile image-->
                     <?php echo("<a href='profilePage.php?user='". $post["username"] ."> ". $post["username"] ." </a>")?>
-                    <p>10 minutes ago</p>
+                    <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
                     <a href="#">...</a>
                 </header>
                 <div>
