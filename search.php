@@ -23,13 +23,15 @@
 </head>
 <body>
     <?php include_once("navigation.inc.php")?>
-    <section id="tag_title_section">
-        
-        <h1 id="tag_title">#<?php echo $_GET[q]?></h1>
-        <h3><span id="amount_posts">25,566</span> posts</h3>
-    </section>
     
     <section id="tag_posts">
+
+        <section id="tag_title_section">
+            
+            <h1 id="tag_title">#<?php echo $_GET[q]?></h1>
+            <h3><span id="amount_posts">25,566</span> posts</h3>
+        </section>
+
         <section class="post">
             <header>
                 <img src="images/Bailey.jpg" alt="profilePicture">
