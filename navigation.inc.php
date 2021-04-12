@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="css/navigation.css"/>
 <header>
     <div id="logoSearchWrapper">
-        <img id="logo" src="images/logo.png" alt="logo">
+        <a href="index.php"><img id="logo" src="images/logo.png" alt="logo"></a>
         <form method="get">
             <label id="searchLabel" for="searchInput">Search here!</label>
             <input autocomplete="off" placeholder="Search Pengram" type="search" id="searchInput" name="searchInput">

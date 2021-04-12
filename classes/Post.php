@@ -47,13 +47,15 @@
             $query->bindValue(":picture", $this->picture);     
             $query->bindValue(":date", $this->date);  
 
-            $result = $query->execute();
-            return $result; 
+            $r = $query->execute();
+            return $r; 
         }
 
         //If tag exists don't do anything, if tag does not exist insert it into tags table
         private function checkTags($description){
             $desc_array = explode(" ", $description);
+
+            var_dump("checkTags");
 
             for ($i=0; $i< count($desc_array) ; $i++) { 
                 if ($desc_array[$i][0] == "#") {
