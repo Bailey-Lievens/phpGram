@@ -55,8 +55,6 @@
         private function checkTags($description){
             $desc_array = explode(" ", $description);
 
-            var_dump("checkTags");
-
             for ($i=0; $i< count($desc_array) ; $i++) { 
                 if ($desc_array[$i][0] == "#") {
                     $conn = Database::getConnection();

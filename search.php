@@ -1,9 +1,18 @@
 <?php include_once('core/autoload.php');?>
 <?php include_once('isloggedin.inc.php');?>
 
-<?php if (empty($_GET)) {
-    header("Location: index.php");
-}?>
+<?php 
+    if (empty($_GET)) {
+        header("Location: index.php");
+    }
+
+    $conn = Database::getConnection();
+    $query = $conn->prepare("SELECT username, description, picture, date FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :searchQ, '%')");
+
+    $query->bindValue(":searchQ","#".$_GET[q]);
+    $query->execute();
+    $result = $query->fetchAll();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,29 +38,31 @@
         <section id="tag_title_section">
             
             <h1 id="tag_title">#<?php echo $_GET[q]?></h1>
-            <h3><span id="amount_posts">25,566</span> posts</h3>
+            <h3><span id="amount_posts"><?php echo count($result)?></span> posts</h3>
         </section>
 
-        <section class="post">
-            <header>
-                <img src="images/Bailey.jpg" alt="profilePicture">
-                <a href="#">username</a>
-                <p>10 minutes ago</p>
-                <a href="#">...</a>
-            </header>
-            <div>
-                <img src="images/doggo.jpg" alt="postPicture">
-                <p>description picture</p>
-            </div>
-            <section>
-                <a href="#">
-                    like
-                </a>
-                <a href="#">
-                    react
-                </a>
+        <?php foreach($result as $post):?>
+
+            <?php var_dump($post);?>
+        
+            <section class="post">
+                <header>
+                    <img src="images/Bailey.jpg" <?php echo("alt='profilePicture_".$post["username"]."'")?>> <!-- Add path to profile image-->
+                    <?php echo("<a href='profilePage.php?user='". $post["username"] ."> ". $post["username"] ." </a>")?>
+                    <p>10 minutes ago</p>
+                    <a href="#">...</a>
+                </header>
+                <div>
+                    <img src="images/doggo.jpg" alt="postPicture"> <!-- Add path to post image-->
+                    <?php echo("<p>". $post["description"] ."</p>")?> 
+                </div>
+                <section>
+                    <a href="#">like</a>
+                    <a href="#">react</a>
+                </section>
             </section>
-        </section>
+
+        <?php endforeach;?>
     </section>
 
     <br>
