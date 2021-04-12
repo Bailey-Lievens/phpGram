@@ -7,7 +7,7 @@
     }
 
     $conn = Database::getConnection();
-    $query = $conn->prepare("SELECT username, description, picture, date FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :searchQ, '%')");
+    $query = $conn->prepare("SELECT username, description, picture, date FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :searchQ, '%') ORDER BY date DESC ");
 
     $query->bindValue(":searchQ","#".$_GET[q]);
     $query->execute();
