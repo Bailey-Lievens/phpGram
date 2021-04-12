@@ -7,7 +7,7 @@
         if ($input[0] != '#') {
             $query = $conn->prepare("SELECT username FROM users WHERE username LIKE CONCAT( '%', :input, '%') LIMIT 5");
         } else {
-            $query = $conn->prepare("SELECT tags FROM posts WHERE tags LIKE CONCAT( '%', :input, '%') LIMIT 5");
+            $query = $conn->prepare("SELECT tag_name FROM tags WHERE tag_name LIKE CONCAT( '%', :input, '%') LIMIT 5");
         }
         $query->bindValue(":input", $input);
         $query->execute();

@@ -14,6 +14,7 @@
         }      
 
         public function setDescription($description){
+            self::checkTags($description);
             $this->description = $description;
         }
 
@@ -50,5 +51,29 @@
             return $result; 
         }
 
+        //If tag exists don't do anything, if tag does not exist insert it into tags table
+        private function checkTags($description){
+            $desc_array = explode(" ", $description);
+
+            for ($i=0; $i< count($desc_array) ; $i++) { 
+                if ($desc_array[$i][0] == "#") {
+                    $conn = Database::getConnection();
+                    $query = $conn->prepare("SELECT id FROM tags WHERE tag_name = :currentTag");
+
+                    $query->bindValue(":currentTag", $desc_array[$i]);            
+                    $query->execute();
+                    $result = $query->fetch();
+
+                    //If tag is not found insert into tags table
+                    if(!$result){
+                        $conn = Database::getConnection();
+                        $query = $conn->prepare("INSERT INTO tags (tag_name) VALUES (:currentTag)");
+
+                        $query->bindValue(":currentTag", $desc_array[$i]);            
+                        $query->execute();
+                    }
+                }
+            }
+        }
         
     }

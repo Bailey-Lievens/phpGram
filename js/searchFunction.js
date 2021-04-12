@@ -32,7 +32,7 @@ searchInputBar.addEventListener("keyup", function(){
                 result.forEach(user => {
                     var listItem = document.createElement('li');
                     if(searchInput.charAt(0) == "#"){
-                        listItem.innerHTML = "<a href='search.php?q="+ user.tags.substring(1)/*remove the #*/ +"'> <img src='images/tagDefault.jpg' alt='"+ user.tags +"Picture'> <span>"+ user.tags +"</span></a>";
+                        listItem.innerHTML = "<a href='search.php?q="+ user.tag_name.substring(1)/*remove the #*/ +"'> <img src='images/tagDefault.jpg' alt='"+ user.tag_name +"Picture'> <span>"+ user.tag_name +"</span></a>";
                     } else{
                         listItem.innerHTML = "<a href='profilePage.php?user="+ user.username +"'><img src='images/DefaultProfilePicture.jpg' alt='"+ user.username +"ProfilePicture'> <span>"+ user.username +"</span></a>";
                     }
