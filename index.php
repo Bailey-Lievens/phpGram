@@ -1,6 +1,12 @@
 <?php include_once('core/autoload.php');?>
 <?php include_once('isloggedin.inc.php');?>
 <?php include_once('posting.inc.php');?>
+<?php
+    $conn = Database::getConnection();
+    $users = $conn->query("SELECT * FROM users");
+    $users->execute();
+    $user = $users->fetchAll();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,10 +67,11 @@
     </section>
     </form>
 
+    <?php foreach($user as $u): ?>
     <section class="post">
         <header>
             <img src="images/Bailey.jpg" alt="profilePicture">
-            <a href="#">username</a>
+            <a href="user.php?id=<?php echo $u['id']?>"><?php echo $u['username']?></a>
             <p>10 minutes ago</p>
             <a href="#">...</a>
         </header>
@@ -81,27 +88,7 @@
             </a>
         </section>
     </section>
-
-    <section class="post">
-        <header>
-            <img src="images/ellen.jpg" alt="profilePicture">
-            <a href="#">username</a>
-            <p>10 minutes ago</p>
-            <a href="#">...</a>
-        </header>
-        <div>
-            <img src="images/doggo.jpg" alt="postPicture">
-            <p>description picture</p>
-        </div>
-        <section>
-            <a href="#">
-                like
-            </a>
-            <a href="#">
-                react
-            </a>
-        </section>
-    </section>
+    <?php endforeach; ?>
 
     <a href="#" class="loadMore">load more</a>
     <?php include_once("footer.inc.php")?>
