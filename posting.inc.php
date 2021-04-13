@@ -35,4 +35,13 @@
             </script>";
         }
     }
+    var_dump($_FILES["inputPicturePost"]["name"]);
+    var_dump($_FILES['inputPicturePost']['size']);
+
+    $uploads_dir = "uploads/";
+    $tmp_name = $_FILES["inputPicturePost"]["tmp_name"];
+    $name = basename($_FILES["inputPicturePost"]["name"]);
+    $target_file = $uploads_dir . $name;
+    move_uploaded_file($tmp_name, $target_file);
+
     ?>
