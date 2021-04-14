@@ -15,6 +15,7 @@
 
         public function setDescription($description){
             self::checkTags($description);
+            self::checkDescription($description);
             $this->description = $description;
         }
 
@@ -23,7 +24,8 @@
         }
 
         public function setPicture($picture){
-            $this->picture = $picture;
+            self::checkImage($picture);
+            $this->picture = "/post_uploads/" . $picture;
         }
 
         public function getPicture(){
@@ -49,6 +51,18 @@
 
             $r = $query->execute();
             return $r; 
+        }
+
+        private function checkDescription($description){
+            if($description == "") {
+                throw new Exception("Description cannot be empty.");
+            }
+        }
+
+        private function checkImage($image){
+            if ($image == "") {
+                throw new Exception("You need to upload an image.");
+            }
         }
 
         //If tag exists don't do anything, if tag does not exist insert it into tags table

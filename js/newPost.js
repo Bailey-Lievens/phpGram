@@ -20,6 +20,5 @@ document.querySelector(".cancelBtn").addEventListener("click", function(e){
         document.querySelector("#description").value = "";
         document.querySelector("#inputPicturePost").value = "";
         open = false;
-    } else {}
-    
+    }
 });

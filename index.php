@@ -33,38 +33,32 @@
     </section>
     
     <?php if($postOK): ?>
-    <section class="congrats">
-        <p>Congrats your masterpiece is posted!</p>
-    </section>
+        <section class="congrats">
+            <p>Congrats your masterpiece is posted!</p>
+        </section>
     <?php endif; ?>
 
-    <form action="" method="post">
-    <section id="newPost">
-            <div>
-                <label for="description">Description</label>
-                <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"><?php if(empty($picture)) echo htmlspecialchars($description); ?></textarea>
-            </div>
+    <?php if(isset($error)):?>
+        <section class="congrats red"> 
+            <p><?php echo $error;?></p>
+        </section>
+    <?php endif;?>
 
-            <?php if($errorDescription):?>
-            <div class="error">
-                <p>Write a description please.</p>
-            </div>
-            <?php endif;?>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <section id="newPost">
+                <div>
+                    <label for="description">Description</label>
+                    <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"><?php if(empty($picture)) echo htmlspecialchars($description); ?></textarea>
+                </div>
 
-            <div>
-                <input type="file" name="inputPicturePost" id="inputPicturePost" accept="image/png, image/jpeg"/>
-            </div>
+                <div>
+                    <input type="file" name="inputPicturePost" id="inputPicturePost" accept="image/png, image/jpeg"/>
+                </div>
 
-            <?php if($errorPicture):?>
-            <div class="error">
-                <p>Upload a picture of your masterpiece please.</p>
-            </div>
-            <?php endif;?>
-
-            <button type="submit" class="submitNewPost">post</button>
-            	
-            <p class="cancelBtn">cancel</p>
-    </section>
+                <button type="submit" name="submit" class="submitNewPost">post</button>
+                    
+                <p class="cancelBtn">cancel</p>
+        </section>
     </form>
 
     <?php foreach($user as $u): ?>

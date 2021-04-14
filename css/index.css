@@ -20,6 +20,7 @@ body {
     text-decoration: underline;
 }
 
+
 .congrats {
     color: white;
     display: block;
@@ -29,6 +30,10 @@ body {
     border-radius: 10px;
     width: 30em;
     text-align: center;
+}
+
+.red {
+    background-color: red;
 }
 
 #newPost {
