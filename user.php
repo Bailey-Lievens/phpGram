@@ -46,9 +46,9 @@
     </section>
 
     <div id="postsTab">
-        <img src="images/doggo.jpg">
-        <img src="images/doggo.jpg"> 
-        <img src="images/doggo.jpg">  
+    <?php foreach($picture as $p): ?>
+        <img src="<?php echo $p['picture'] ?>">
+    <?php endforeach; ?>
     </div>
     
     <?php include_once("footer.inc.php")?> 

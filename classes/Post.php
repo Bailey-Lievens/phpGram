@@ -25,7 +25,7 @@
 
         public function setPicture($picture){
             self::checkImage($picture);
-            $this->picture = "/post_uploads/" . $picture;
+            $this->picture = "post_uploads/" . $picture;
         }
 
         public function getPicture(){

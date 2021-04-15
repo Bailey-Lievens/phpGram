@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 13, 2021 at 11:12 AM
+-- Generation Time: Apr 15, 2021 at 10:06 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -25,37 +25,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `posts`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `biography` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `user_id` int(11) NOT NULL,
+  `description` varchar(100) COLLATE utf8mb4_bin NOT NULL,
+  `picture` text COLLATE utf8mb4_bin NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `posts`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `biography`) VALUES
-(1, 'Bailey', 'Lievens', 'Email', NULL),
-(6, 'Bailey', 'password', 'b@lievens.be', 'test bio Bailey'),
-(11, 'ellen', '$2y$12$ZgHR/QaqzcruCktLjzhaB.cfSeLKSEiHjNLkM1rlOf63itxWq2YDi', 'ellen', 'test bio ellen'),
-(12, 'test', '$2y$12$p5l.riMYDIRDZdQZYpZnf.tA6Bl338YdLPHxpw.5.lPCt3C2v25bG', 'test@test.be', 'test bio test'),
-(13, 'elleeeeeeen2', '$2y$12$lW8p4dLcXGm2rW3HMQIRLeej60lGViKaJjszi1Ar/wfe4HKt/vtwC', 'ellen@gmail.be', NULL),
-(14, 'EllenTheVelo', '$2y$12$Dwbw.5MKeUHPQPdpZeA8Muh21Sh1mE6N7dK69V0T3qLv1WfNfDl6G', 'Ellen@gm.com', NULL);
+INSERT INTO `posts` (`id`, `user_id`, `description`, `picture`, `date`) VALUES
+(157, 11, 'test', 'post_uploads/Knipsel.PNG', '2021-04-15 10:03:26'),
+(158, 11, 'test2', 'post_uploads/163824013_179750463789456_6679605415306659869_n.png', '2021-04-15 10:03:33'),
+(159, 11, 'test3', 'post_uploads/red-3580560_1920.jpg', '2021-04-15 10:03:42'),
+(160, 6, 'test', 'post_uploads/Knipsel.PNG', '2021-04-15 10:03:26'),
+(161, 6, 'test2', 'post_uploads/163824013_179750463789456_6679605415306659869_n.png', '2021-04-15 10:03:33'),
+(162, 6, 'test3', 'post_uploads/red-3580560_1920.jpg', '2021-04-15 10:03:42'),
+(163, 1, 'test', 'post_uploads/Knipsel.PNG', '2021-04-15 10:03:26'),
+(164, 1, 'test2', 'post_uploads/163824013_179750463789456_6679605415306659869_n.png', '2021-04-15 10:03:33'),
+(165, 1, 'test3', 'post_uploads/red-3580560_1920.jpg', '2021-04-15 10:03:42');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `users`
+-- Indexes for table `posts`
 --
-ALTER TABLE `users`
+ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -63,10 +66,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `posts`
 --
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+ALTER TABLE `posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
