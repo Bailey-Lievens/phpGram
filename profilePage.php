@@ -18,6 +18,7 @@
     $userid = $_SESSION["userid"];
     $bio= $user->select($userid);
     
+  
     
 ?>
 
@@ -47,7 +48,7 @@
 
         <section id="biography">
             <h2>Biography</h2>
-            <p><?php echo $users['bio'];?></p>
+            <p><?php echo $bio["bio"]; ?></p>
 
 
     

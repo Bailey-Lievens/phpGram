@@ -49,6 +49,17 @@
             $result = $query->execute();
             return $result; 
         }
+        public function selectpicture(){
+            $conn = Database::getConnection();
+            $query = $conn->query("SELECT * FROM posts WHERE picture=:picture LIMIT 20");
 
+            if($query->num_rows > 0){
+                while($row = $query->fetch_all()){
+                    
+                }
+            }
+      
+        
+    }
         
     }

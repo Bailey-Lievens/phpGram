@@ -49,7 +49,6 @@
         }
 
         public function setPassword($password){
-
             self::checkPassword($password);
             
             $options = [
@@ -120,8 +119,18 @@
             return $result;    
         }
 
-        public function changePassword($userid, $password, $newpassword) {
+        public function changePassword($userid, $password) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("UPDATE users SET password=:password WHERE id=:userid");
             
+            $hash = password_hash( $password, PASSWORD_DEFAULT);
+            $password = $hash;
+
+            $query->bindValue(":userid", $userid);
+            $query->bindValue(":password", $password);
+            
+            $result=$query->execute();
+            return $result;
             
         }
 
@@ -130,13 +139,13 @@
             $query = $conn->prepare("SELECT * FROM users WHERE id=:userid LIMIT 1");
             $query->bindValue(":userid", $userid);
 
-            $result = $query->execute();
+            $query->execute();
+            $result = $query->fetch();
+           
             return $result;  
+            
 
       } 
-        
-
-        
 
         private function checkPassword($password){
             if($password == ""){

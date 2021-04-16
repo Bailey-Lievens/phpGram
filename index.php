@@ -2,8 +2,7 @@
 <?php include_once('isloggedin.inc.php');?>
 <?php include_once('posting.inc.php');
 
-      echo $_SESSION["userid"];
-      var_dump($_SESSION["userid"]);
+     
 ?>
 
 <!DOCTYPE html>
