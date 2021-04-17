@@ -2,9 +2,32 @@
 <?php include_once('isloggedin.inc.php');?>
 
 <?php
-    if(!empty($_POST)){
-        var_dump("form was submitted");
-    }  
+$user = new User();
+$user_edit = $_SESSION["userid"];
+
+
+ if (!empty($_POST['edit'])) {
+    $username = $_POST["username"];
+    $bio = $_POST["bio"];
+    $email = $_POST["email"];
+}
+
+$user->update($user_edit, $username, $email, $bio);
+ 
+
+
+$user_pass = new User();
+$user_id =$_SESSION['userid'];
+
+    if (!empty($_POST['changepass'])) {
+        $password = $_POST['password'];
+        var_dump($user_pass);
+     
+}
+$user_pass->changePassword($user_id, $password);
+        
+
+
 ?>
 
       
@@ -42,34 +65,42 @@
                 </div>
                 <input type="file" name="file" id="inputImageFile" accept="image/png, image/jpeg"/>
             </div>
+            
+            <div>
+                <label for="username">Username</label>
+                <input id="email" type="text" name="username" value="">
+            </div>
 
             <div>
                 <label for="bio">Biography</label>
-                <textarea name="bio" id="biography" form="profileEditForm" cols="30" rows="10"></textarea>
+                <textarea name="bio" id="biography" form="profileEditForm" cols="30" rows="10" value=""></textarea>
             </div>
 
             <div>
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email">
-            </div>
-
-            <div>
-                <label for="newPassword">New password</label>
-                <input type="password" id="newPassword" name="newPassword">
-            </div>
-
-            <div>
-                <label for="oldPassword">Old password</label>
-                <input type="password" id="oldPassword" name="oldPassword">
+                <input type="text" id="email" name="email" value="">
             </div>
 
             <div class="submitBtn">
-                <input type="submit" id="submitBtn" value="Save changes">	
+                <input name="edit" type="submit" id="submitBtn" value="update">	
                 <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
             </div>
 
         </form>
 
+        <form method="post" id="profileEditForm">
+
+            <h2>Change your password</h2>  
+        <div>
+                <label for="password">New password</label>
+                <input type="password" id="email" name="password">
+            </div>
+
+            <div class="submitBtn">
+                <input name="changepass" type="submit" id="submitBtn" value="update">	
+                <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
+            </div>
+            </form>
     </section>
 
     

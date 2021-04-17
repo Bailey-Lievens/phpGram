@@ -52,6 +52,9 @@
             $r = $query->execute();
             return $r; 
         }
+        public function selectpicture(){
+            $conn = Database::getConnection();
+            $query = $conn->query("SELECT * FROM posts WHERE picture=:picture LIMIT 20");
 
         private function checkDescription($description){
             if($description == "") {
