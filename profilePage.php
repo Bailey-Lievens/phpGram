@@ -7,19 +7,19 @@
     $query->execute();
     $result = $query->fetch();
     $userid = $result['id'];
-
-    $query = $conn->prepare("SELECT picture FROM posts WHERE user_id = :userid");
-    $query->bindValue(":userid", $userid);            
-    $query->execute();
-    $results = $query->fetchAll();
     
-    
-    $user = new User();
-    $userid = $_SESSION["userid"];
+    /*$user = new User();
+    $userid = $_SESSION["userid"]; //userid is al gedeclareerd op lijn 9
     $bio= $user->select($userid);
-    
-  
-    
+    */
+
+    $users = $conn->query("SELECT * FROM users WHERE username = '" .  $_GET['user']  ."' ");
+    $users->execute();
+    $userpage = $users->fetchAll();
+
+    $pictures = $conn->query("SELECT * FROM posts WHERE user_id = '" .  $userid  ."' ");
+    $pictures->execute();
+    $picture = $pictures->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -38,23 +38,24 @@
 <body>
     <?php include_once("navigation.inc.php")?>
 
+    <?php foreach($userpage as $u): ?>
     <section id="account_info">
         <div id="account_header">
             <img src="images/Bailey.jpg" alt="Profile picture" id="profile_picture">
             <div>
-                <h1 id="username_header"><?php echo $_SESSION['username'] ?> </h1>
+                <h1 id="username_header"><?php echo $u['username'] ?> </h1>
+                <?php if($userid === $u['id']): ?>
                 <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
+                <?php endif; ?>
             </div>
         </div>
 
         <section id="biography">
             <h2>Biography</h2>
-            <p><?php echo $bio["bio"]; ?></p>
-
-
-    
+            <p><?php echo $u['biography'] ?></p>
         </section>
     </section>
+    <?php endforeach; ?>
 
     <section id="tabs">
         <div id="tabBar">
@@ -64,10 +65,8 @@
         </div>
 
         <div id="postsTab" class="tab">
-            <?php foreach($results as $result): ?>
-                <img src="<?php echo $result['picture'] ?>"> 
-                <!-- moet nog gefixt worden dat, ofwel de links van de opgeladen foto's urls worden,
-                ofwel de opgeladen foto's in de image map worden opgeslagen -->
+            <?php foreach($picture as $p): ?>
+                <img src="<?php echo $p['picture'] ?>">
             <?php endforeach; ?>
         </div>
         

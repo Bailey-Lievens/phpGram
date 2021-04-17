@@ -6,6 +6,7 @@
     $users = $conn->query("SELECT * FROM users");
     $users->execute();
     $user = $users->fetchAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +66,7 @@
     <section class="post">
         <header>
             <img src="images/Bailey.jpg" alt="profilePicture">
-            <a href="user.php?id=<?php echo $u['id']?>"><?php echo $u['username']?></a>
+            <a href="profilePage.php?user=<?php echo $u['username']?>"><?php echo $u['username']?></a>
             <p>10 minutes ago</p>
             <a href="#">...</a>
         </header>
