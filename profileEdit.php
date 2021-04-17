@@ -88,22 +88,27 @@ $user_pass->changePassword($user_id, $password);
 
         </form>
 
-        <form method="post" id="profileEditForm">
-
-            <h2>Change your password</h2>  
-        <div>
-                <label for="password">New password</label>
-                <input type="password" id="email" name="password">
-            </div>
-
-            <div class="submitBtn">
-                <input name="changepass" type="submit" id="submitBtn" value="update">	
-                <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
-            </div>
-            </form>
+       
     </section>
 
-    
+
+    <section class="flex">
+    <form method="post" id="profileEditForm">
+
+<h2>Change your password</h2>  
+<div>
+    <label for="password">New password</label>
+    <input type="password" id="email" name="password">
+</div>
+
+<div class="submitBtn">
+    <input name="changepass" type="submit" id="submitBtn" value="update">	
+    <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
+</div>
+</form>
+        </section>
+
+        
     <?php include_once("footer.inc.php")?> 
     <script src="js/imagePreview.js"></script>
 </body>
