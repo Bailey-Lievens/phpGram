@@ -52,9 +52,6 @@
             $r = $query->execute();
             return $r; 
         }
-        public function selectpicture(){
-            $conn = Database::getConnection();
-            $query = $conn->query("SELECT * FROM posts WHERE picture=:picture LIMIT 20");
 
         private function checkDescription($description){
             if($description == "") {
@@ -93,6 +90,7 @@
             }
         }
 
+        //Returns time based on given date
         //Function I stole from https://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago Converts time to time since
         public static function timeSincePost($datetime) {
             $now = new DateTime;

@@ -7,11 +7,6 @@
     $query->execute();
     $result = $query->fetch();
     $userid = $result['id'];
-    
-    /*$user = new User();
-    $userid = $_SESSION["userid"]; //userid is al gedeclareerd op lijn 9
-    $bio= $user->select($userid);
-    */
 
     $users = $conn->query("SELECT * FROM users WHERE username = '" .  $_GET['user']  ."' ");
     $users->execute();
@@ -45,7 +40,7 @@
             <div>
                 <h1 id="username_header"><?php echo $u['username'] ?> </h1>
                 <?php if($userid === $u['id']): ?>
-                <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
+                    <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
                 <?php endif; ?>
             </div>
         </div>
