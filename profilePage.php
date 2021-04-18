@@ -11,8 +11,12 @@
     $users = $conn->query("SELECT * FROM users WHERE username = '" .  $_GET['user']  ."' ");
     $users->execute();
     $userpage = $users->fetchAll();
+    
+    $id = $conn->query("SELECT * FROM users WHERE username = '" .  $_GET['user']  ."' ");
+    $id->execute();
+    $iduser = $id->fetch();
 
-    $pictures = $conn->query("SELECT * FROM posts WHERE user_id = '" .  $userid  ."' ");
+    $pictures = $conn->query("SELECT * FROM posts WHERE user_id = '" .  $iduser['id']  ."' ");
     $pictures->execute();
     $picture = $pictures->fetchAll();
 ?>
