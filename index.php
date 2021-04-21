@@ -1,12 +1,12 @@
-    <?php include_once('core/autoload.php');?>
+<?php include_once('core/autoload.php');?>
 <?php include_once('isloggedin.inc.php');?>
 <?php include_once('posting.inc.php');?>
 <?php
     $conn = Database::getConnection();
 
-    $posts = $conn->query("SELECT * FROM posts LIMIT 20");
-    $posts->execute();
-    $post = $posts->fetchAll();
+    $query = $conn->query("SELECT * FROM posts LIMIT 20");
+    $query->execute();
+    $posts = $query->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -62,23 +62,24 @@
         </section>
     </form>
 
-    <?php foreach($post as $p): 
-        
-        $query = $conn->prepare("SELECT * FROM users WHERE id = :userid");
-        $query->bindValue(":userid", $p['user_id']);
-        $query->execute();
-        $user = $query->fetch();?>
+    <?php 
+        foreach($posts as $post): 
+            $query = $conn->prepare("SELECT username, picture FROM users WHERE id = :userid");
+            $query->bindValue(":userid", $post['user_id']);
+            $query->execute();
+            $user = $query->fetch();
+    ?>
+
     <section class="post">
         <header>
-            <img src=<?php echo $user['image']  ?> alt="profilePicture">
+            <img src="<?php echo($user['picture'])?>" alt="profilePicture">
             <a href="profilePage.php?user=#" ><?php echo $user['username']; ?></a>
-            <p><?php $temp = explode(" ", $p['date']);
-            echo $temp[1]; ?></p>
+            <p><?php echo Post::timeSincePost($post["date"]); ?></p>
             <a href="#">...</a>
         </header>
         <div>
-            <img src="<?php echo $p['picture'] ?>" alt="postPicture">
-            <p><?php echo $p['description'] ?></p>
+            <img src="<?php echo $post['picture'] ?>" alt="postPicture">
+            <p><?php echo $post['description'] ?></p>
         </div>
         <section>
             <a href="#">
