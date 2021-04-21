@@ -64,7 +64,7 @@
 
     <?php 
         foreach($posts as $post): 
-            $query = $conn->prepare("SELECT username, picture FROM users WHERE id = :userid");
+            $query = $conn->prepare("SELECT username, profile_picture FROM users WHERE id = :userid");
             $query->bindValue(":userid", $post['user_id']);
             $query->execute();
             $user = $query->fetch();
@@ -72,7 +72,7 @@
 
     <section class="post">
         <header>
-            <img src="<?php echo($user['picture'])?>" alt="profilePicture">
+            <img src="<?php echo($user['profile_picture'])?>" alt="profilePicture">
             <a href="profilePage.php?user=#" ><?php echo $user['username']; ?></a>
             <p><?php echo Post::timeSincePost($post["date"]); ?></p>
             <a href="#">...</a>

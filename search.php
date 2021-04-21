@@ -7,7 +7,7 @@
     }
 
     $conn = Database::getConnection();
-    $query = $conn->prepare("SELECT username, description, picture, date FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :searchQ, '%') ORDER BY date DESC ");
+    $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :searchQ, '%') ORDER BY date DESC ");
 
     $query->bindValue(":searchQ","#".$_GET[q]);
     $query->execute();
@@ -45,7 +45,7 @@
         
             <section class="post">
                 <header>
-                    <img src="images/Bailey.jpg" <?php echo("alt='profilePicture_".$post["username"]."'")?>> <!-- Add path to profile image-->
+                    <img src="<?php echo($post["profile_picture"]) ?>" <?php echo("alt='profilePicture_".$post["username"]."'")?>> <!-- Add path to profile image-->
                     <?php echo("<a href='profilePage.php?user='". $post["username"] ."> ". $post["username"] ." </a>")?>
                     <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
                     <a href="#">...</a>

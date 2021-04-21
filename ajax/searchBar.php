@@ -5,7 +5,7 @@
 
         $conn = new PDO("mysql:host=localhost:8889;dbname=testdb", "root", "root");
         if ($input[0] != '#') {
-            $query = $conn->prepare("SELECT username FROM users WHERE username LIKE CONCAT( '%', :input, '%') LIMIT 5");
+            $query = $conn->prepare("SELECT username, profile_picture FROM users WHERE username LIKE CONCAT( '%', :input, '%') LIMIT 5");
         } else {
             $query = $conn->prepare("SELECT tag_name FROM tags WHERE tag_name LIKE CONCAT( '%', :input, '%') LIMIT 5");
         }
