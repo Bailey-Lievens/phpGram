@@ -145,8 +145,6 @@
             $result = $query->fetch();
            
             return $result;  
-            
-
       } 
 
         private function checkPassword($password){
@@ -246,8 +244,6 @@
             }
         }
 
-        
-
         public function getUserid($username)
         {
             $conn = Database::getConnection();
@@ -259,9 +255,6 @@
             
             return $result->id; 
         }
-        
-
-       
     }
 ?>
     
