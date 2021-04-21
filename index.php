@@ -4,7 +4,7 @@
 <?php
     $conn = Database::getConnection();
 
-    $query = $conn->query("SELECT users.username,users.profile_picture, posts.description, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.date DESC LIMIT 20");
+    $query = $conn->query("SELECT users.username,users.picture, posts.description, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.date DESC LIMIT 20");
     $query->execute();
     $posts = $query->fetchAll();
 ?>
@@ -66,7 +66,7 @@
 
     <section class="post">
         <header>
-            <img src="<?php echo($post['profile_picture'])?>" alt="profilePicture">
+            <img src="<?php echo($post['picture'])?>" alt="profilePicture">
             <?php echo("<a href='profilePage.php?user=". $post["username"] ."'> ". $post["username"] ." </a>")?>
             <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
             <a href="#">...</a>
