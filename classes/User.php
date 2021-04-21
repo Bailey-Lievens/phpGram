@@ -8,7 +8,6 @@
         private $biography;
         private $image;
 
-
         const MIN_USERNAME = 5; //Minimum amount of username characters
         const MAX_USERNAME = 20; //Maximum amount of username characters
 
@@ -65,8 +64,6 @@
             return $this->password;
         }
 
-
-        
         public function setEmail($email){
 
             self::checkEmail($email);
@@ -83,9 +80,6 @@
         }
 
         public function setBio($biography){
-
-            
-
             $this->biography = $biography;
         }
 
@@ -121,7 +115,6 @@
             $query->bindValue(":biography", $biography);  
             $query->bindValue(":img", $image); 
             
-          
             $result = $query->execute();
             return $result;    
         }
