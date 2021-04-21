@@ -41,7 +41,7 @@
 <section class="flex">
 
     <div id="logo-container">
-        <img src="images/woordlogo.png" alt="logo">
+    <img src="images/logo.png" alt="logo">
     </div>
 
     <form method="post" class="clearfix">
