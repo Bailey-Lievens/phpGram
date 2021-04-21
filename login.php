@@ -1,14 +1,13 @@
 <?php
     include_once('core/autoload.php');
     
-    if($_SESSION["loggedin"]) {
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]) {
       header("Location: index.php");   
     }
 
     $user = new user();
 
-    if(!empty($_POST)) {
-
+    if(isset($_POST["aanmelden"])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
 
@@ -44,10 +43,10 @@
 <section class="flex">
 
 <div id="logo-container">
-    <img src="images/woordlogo.png" alt="logo">
+    <img src="images/logo.png" alt="logo">
 </div>
 
-<form action="" method="post">
+<form action="#" method="post">
 
     <h2>Meld je aan</h2>
 
@@ -58,16 +57,16 @@
 
     <div>
         <label for="username">Username</label>
-        <input type="text" id="username" name="username">
+        <input type="text" id="username" name="username" required>
     </div>
 
     <div>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password">
+        <input type="password" id="password" name="password" required>
     </div>
 
     <div class="submitBtn">
-	    <input type="submit" id="submitBtn" value="Aanmelden">	
+	    <input type="submit" name="aanmelden" id="submitBtn" value="Aanmelden">	
     </div>
     <div class="registrationLink">
         <a href="registration.php">No account yet? Create one now.</a>

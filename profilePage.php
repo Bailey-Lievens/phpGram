@@ -1,12 +1,14 @@
-<?php include_once('core/autoload.php');?>
+    <?php include_once('core/autoload.php');?>
 <?php include_once('isloggedin.inc.php');?>
 <?php
     $conn = Database::getConnection();
-    $query = $conn->prepare("SELECT id FROM users WHERE username = :username");
+    $query = $conn->prepare("SELECT * FROM users WHERE username = :username"); // $query = $conn->prepare("SELECT id FROM users WHERE username = :username");
     $query->bindValue(":username", $_SESSION['username']);            
     $query->execute();
     $result = $query->fetch();
     $userid = $result['id'];
+    $userimage = $result['image'];
+    $userbiography = $result['biography'];
 
     $users = $conn->query("SELECT * FROM users WHERE username = '" .  $_GET['user']  ."' ");
     $users->execute();
@@ -40,7 +42,7 @@
     <?php foreach($userpage as $u): ?>
     <section id="account_info">
         <div id="account_header">
-            <img src="images/Bailey.jpg" alt="Profile picture" id="profile_picture">
+            <img src=<?php echo $userimage ?> alt="Profile picture" id="profile_picture">
             <div>
                 <h1 id="username_header"><?php echo $u['username'] ?> </h1>
                 <?php if($userid === $u['id']): ?>
@@ -114,3 +116,4 @@
     <script src="js/tabs.js"></script>
 </body>
 </html>
+    

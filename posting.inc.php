@@ -1,4 +1,5 @@
 <?php include_once('core/autoload.php');
+include_once('isloggedin.inc.php');
 
     $conn = Database::getConnection();
     $query = $conn->prepare("SELECT id FROM users WHERE username = :username");
@@ -7,27 +8,21 @@
     $result = $query->fetch();
     $userid = $result['id'];
 
-    if(!empty($_POST)) {
+    if(isset($_POST['submit'])) {
 
         try {
 
             $currentDirectory = getcwd();
             $uploadDirectory = "/post_uploads/";
 
-            //Filename is based on username and time the post was submitted as to avoid any possible duplicate names
             $fileName = $_SESSION["username"]."_post_".date("YmdHis").".jpg";
             $fileTmpName  = $_FILES['inputPicturePost']['tmp_name'];
 
-            $fileSaveQuality = 80; //Quality of files saved in %
+            $fileSaveQuality = 80; 
 
-            $uploadPath = $currentDirectory . $uploadDirectory . $fileName; //Where the file will be stored
+            $uploadPath = $currentDirectory . $uploadDirectory . $fileName; 
 
             move_uploaded_file($fileTmpName, $uploadPath);
-            
-            //create the image to resize from the previously stored image
-            $imageToResize = imagecreatefromjpeg("post_uploads/".$fileName);
-            imagejpeg($imageToResize, 'post_uploads/'.$fileName, $fileSaveQuality);
-            imageDestroy($imageToResize);
 
             $post = new Post();
             $post->setUserId($userid);
@@ -37,8 +32,7 @@
             $post->post();
 
             $postOK = true;
-
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $error = $e->getMessage();
         }
     }

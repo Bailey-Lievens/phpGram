@@ -2,35 +2,68 @@
 <?php include_once('isloggedin.inc.php');?>
 
 <?php
+
 $user = new User();
 $user_edit = $_SESSION["userid"];
 
-
- if (!empty($_POST['edit'])) {
-    $username = $_POST["username"];
-    $bio = $_POST["bio"];
-    $email = $_POST["email"];
-}
-
-$user->update($user_edit, $username, $email, $bio);
- 
-
-
-$user_pass = new User();
-$user_id =$_SESSION['userid'];
-
-    if (!empty($_POST['changepass'])) {
-        $password = $_POST['password'];
-        var_dump($user_pass);
-     
-}
-$user_pass->changePassword($user_id, $password);
+if(!empty($_POST)){
         
+    try {
+        $user = new User();
+        $user_edit = $_SESSION["userid"];
 
+    if (isset($_POST['edit'])) {
+         
+  
+        $currentDirectory = getcwd();
+        $uploadDirectory = "/images/";
 
+       
+        $fileName = $_SESSION["username"] .".jpg";
+        $fileTmpName  = $_FILES['profileImage']['tmp_name'];
+
+        $fileSaveQuality = 80; 
+
+        $uploadPath = $currentDirectory . $uploadDirectory . $fileName; 
+
+        move_uploaded_file($fileTmpName, $uploadPath);
+
+        $username = $_POST["username"];
+        $biography = $_POST["biography"];
+        $email = $_POST["email"];
+        $image =  "images/"  .$fileName;
+    }  
+
+        $user->update($user_edit, $username, $email, $biography,$image);
+        session_start();
+        header('location: profilePage.php');
+        }    
+    
+    catch (\Throwable $e) {
+        $error = $e->getMessage();
+        }
+    }
+
+if(!empty($_POST)){
+    
+    try {
+        $user_pass = new User();
+        $user_id =$_SESSION['userid'];
+        
+        if (isset($_POST['changepass'])) {
+            $password = $_POST['password'];
+        }
+        $user_pass->changePassword($user_id, $password);
+        session_start();
+        header('location: profilePage.php');
+    } 
+        catch (\Throwable $e) {
+        $error2 = $e->getMessage();
+        }
+       
+    }
 ?>
-
-      
+   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +82,7 @@ $user_pass->changePassword($user_id, $password);
 
     <section class="flex">
 
-        <form method="post" id="profileEditForm">
+        <form action="#" method="post" id="profileEditForm"  enctype="multipart/form-data">
 
             <h2>Edit your account</h2>
 
@@ -63,7 +96,7 @@ $user_pass->changePassword($user_id, $password);
                     <img id="profilePicturePreview" src="images/DefaultProfilePicture.jpg" alt="profilePicture">
                     <label id="inputLabel" for="inputImageFile">Change profile picture</label>
                 </div>
-                <input type="file" name="file" id="inputImageFile" accept="image/png, image/jpeg"/>
+                <input type="file" name="profileImage" id="inputImageFile" accept="image/png, image/jpeg"/>
             </div>
             
             <div>
@@ -72,8 +105,8 @@ $user_pass->changePassword($user_id, $password);
             </div>
 
             <div>
-                <label for="bio">Biography</label>
-                <textarea name="bio" id="biography" form="profileEditForm" cols="30" rows="10" value=""></textarea>
+                <label for="biography">biography</label>
+                <textarea name="biography" id="biography" form="profileEditForm" cols="30" rows="10" value=""></textarea>
             </div>
 
             <div>
@@ -82,7 +115,7 @@ $user_pass->changePassword($user_id, $password);
             </div>
 
             <div class="submitBtn">
-                <input name="edit" type="submit" id="submitBtn" value="update">	
+            <input name="edit" type="submit" id="submitBtn" value="update" >
                 <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
             </div>
 
@@ -93,16 +126,21 @@ $user_pass->changePassword($user_id, $password);
 
 
     <section class="flex">
-    <form method="post" id="profileEditForm">
+    <form action="#" method="post" id="profileEditForm">
 
 <h2>Change your password</h2>  
+
+<?php if(isset($error2)):?>
+                <div class="error" style="color: white;">
+                <?php echo $error2;?></div>
+            <?php endif;?>
 <div>
     <label for="password">New password</label>
     <input type="password" id="email" name="password">
 </div>
 
 <div class="submitBtn">
-    <input name="changepass" type="submit" id="submitBtn" value="update">	
+    <input name="changepass" type="submit" id="submitBtn" value="update"></input>	
     <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
 </div>
 </form>

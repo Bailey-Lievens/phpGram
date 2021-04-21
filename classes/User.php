@@ -1,11 +1,12 @@
-<?php
+    <?php
     class User{
 
         private $userid;
         private $username;
         private $password;
         private $email;
-        private $bio;
+        private $biography;
+        private $image;
 
 
         const MIN_USERNAME = 5; //Minimum amount of username characters
@@ -81,16 +82,17 @@
             return $this->email;
         }
 
-        public function setBio($bio){
+        public function setBio($biography){
 
             
 
-            $this->bio = $bio;
+            $this->biography = $biography;
         }
 
         public function getBio(){
-            return $this->bio;
+            return $this->biography;
         }
+
 
         public function save(){
             $conn = Database::getConnection();
@@ -105,20 +107,28 @@
             return $result;
         }
 
-        public function update($userid, $username, $email, $bio){
+        public function update($userid, $username, $email, $biography, $image){
+             self::checkUsername($username);
+             self::checkEmail($email);
+             self::checkBiography($biography);
+
             $conn = Database::getConnection();
-            $query = $conn->prepare("UPDATE users SET username=:username, email=:email, bio=:bio WHERE id=:userid");
+            $query = $conn->prepare("UPDATE users SET username=:username, email=:email, biography=:biography, users.image=:img WHERE id=:userid");
 
             $query->bindValue(":userid", $userid);
             $query->bindValue(":username", $username);
             $query->bindValue(":email", $email);     
-            $query->bindValue(":bio", $bio);        
-
+            $query->bindValue(":biography", $biography);  
+            $query->bindValue(":img", $image); 
+            
+          
             $result = $query->execute();
             return $result;    
         }
 
         public function changePassword($userid, $password) {
+            self::checkPassword($password);
+
             $conn = Database::getConnection();
             $query = $conn->prepare("UPDATE users SET password=:password WHERE id=:userid");
             
@@ -190,6 +200,18 @@
             }
         }
 
+        private function checkBiography($biography){
+            if($biography == ""){
+                throw new Exception("Biography cannot be empty.");
+            }
+            if(strlen($biography) > self::MAX_BIO){
+                throw new Exception("Biography's can only be ". self::MAX_BIO ." characters long");
+            }
+             
+        }
+
+        
+
         private function checkEmail($email){
 
             if($email == ""){
@@ -201,7 +223,7 @@
             }
         }
 
-        private function emailExists($email){ //checks if a record exists with the given email || true -> record found || false -> record not found
+        private function emailExists($email){ 
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT id FROM users WHERE email = :email");
 
@@ -216,7 +238,7 @@
             }
         }
 
-        private function usernameExists($username){ //checks if a record exists with the given username || true -> record found || false -> record not found
+        private function usernameExists($username){ 
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT id FROM users WHERE username = :username");
 
@@ -230,12 +252,8 @@
                 return True;
             }
         }
-        private function checkBio($bio){
 
-            if(strlen($bio) > self::MAX_BIO){
-                throw new Exception("Bios can only be ". self::MAX_BIO ." characters long");
-            }
-        }
+        
 
         public function getUserid($username)
         {
@@ -247,12 +265,12 @@
             $result = $query->fetch(PDO::FETCH_OBJ);
             
             return $result->id; 
-          
-            
         }
         
-        public function setUserid($userid){
-            $this->userid = $userid;
-        }
+
+       
     }
 ?>
+    
+
+    

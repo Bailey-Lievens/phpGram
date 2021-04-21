@@ -1,12 +1,12 @@
-<?php include_once('core/autoload.php');?>
+    <?php include_once('core/autoload.php');?>
 <?php include_once('isloggedin.inc.php');?>
 <?php include_once('posting.inc.php');?>
 <?php
     $conn = Database::getConnection();
-    $users = $conn->query("SELECT * FROM users");
-    $users->execute();
-    $user = $users->fetchAll();
 
+    $posts = $conn->query("SELECT * FROM posts LIMIT 20");
+    $posts->execute();
+    $post = $posts->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +33,7 @@
         <p class="new">New post</p>
     </section>
     
-    <?php if($postOK): ?>
+    <?php if(isset($postOK)): ?>
         <section class="congrats">
             <p>Congrats your masterpiece is posted!</p>
         </section>
@@ -45,11 +45,11 @@
         </section>
     <?php endif;?>
 
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="#" method="POST" enctype="multipart/form-data">
         <section id="newPost">
                 <div>
                     <label for="description">Description</label>
-                    <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"><?php if(empty($picture)) echo htmlspecialchars($description); ?></textarea>
+                    <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"></textarea>
                 </div>
 
                 <div>
@@ -62,17 +62,23 @@
         </section>
     </form>
 
-    <?php foreach($user as $u): ?>
+    <?php foreach($post as $p): 
+        
+        $query = $conn->prepare("SELECT * FROM users WHERE id = :userid");
+        $query->bindValue(":userid", $p['user_id']);
+        $query->execute();
+        $user = $query->fetch();?>
     <section class="post">
         <header>
-            <img src="images/Bailey.jpg" alt="profilePicture">
-            <a href="profilePage.php?user=<?php echo $u['username']?>"><?php echo $u['username']?></a>
-            <p>10 minutes ago</p>
+            <img src=<?php echo $user['image']  ?> alt="profilePicture">
+            <a href="profilePage.php?user=#" ><?php echo $user['username']; ?></a>
+            <p><?php $temp = explode(" ", $p['date']);
+            echo $temp[1]; ?></p>
             <a href="#">...</a>
         </header>
         <div>
-            <img src="images/doggo.jpg" alt="postPicture">
-            <p>description picture</p>
+            <img src="<?php echo $p['picture'] ?>" alt="postPicture">
+            <p><?php echo $p['description'] ?></p>
         </div>
         <section>
             <a href="#">
@@ -90,3 +96,4 @@
     <script src="js/newPost.js"></script>    
 </body>
 </html>
+    
