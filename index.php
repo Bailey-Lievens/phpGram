@@ -4,7 +4,7 @@
 <?php
     $conn = Database::getConnection();
 
-    $query = $conn->query("SELECT * FROM posts LIMIT 20");
+    $query = $conn->query("SELECT users.username,users.profile_picture, posts.description, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.date DESC LIMIT 20");
     $query->execute();
     $posts = $query->fetchAll();
 ?>
@@ -62,19 +62,13 @@
         </section>
     </form>
 
-    <?php 
-        foreach($posts as $post): 
-            $query = $conn->prepare("SELECT username, profile_picture FROM users WHERE id = :userid");
-            $query->bindValue(":userid", $post['user_id']);
-            $query->execute();
-            $user = $query->fetch();
-    ?>
+    <?php foreach($posts as $post):?>
 
     <section class="post">
         <header>
-            <img src="<?php echo($user['profile_picture'])?>" alt="profilePicture">
-            <a href="profilePage.php?user=#" ><?php echo $user['username']; ?></a>
-            <p><?php echo Post::timeSincePost($post["date"]); ?></p>
+            <img src="<?php echo($post['profile_picture'])?>" alt="profilePicture">
+            <?php echo("<a href='profilePage.php?user=". $post["username"] ."'> ". $post["username"] ." </a>")?>
+            <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
             <a href="#">...</a>
         </header>
         <div>

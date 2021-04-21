@@ -46,7 +46,7 @@
             <section class="post">
                 <header>
                     <img src="<?php echo($post["profile_picture"]) ?>" <?php echo("alt='profilePicture_".$post["username"]."'")?>> <!-- Add path to profile image-->
-                    <?php echo("<a href='profilePage.php?user='". $post["username"] ."> ". $post["username"] ." </a>")?>
+                    <?php echo("<a href='profilePage.php?user=". $post["username"] ."'> ". $post["username"] ." </a>")?>
                     <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
                     <a href="#">...</a>
                 </header>

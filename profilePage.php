@@ -2,25 +2,15 @@
 <?php include_once('isloggedin.inc.php');?>
 <?php
     $conn = Database::getConnection();
-    $query = $conn->prepare("SELECT * FROM users WHERE username = :username"); // $query = $conn->prepare("SELECT id FROM users WHERE username = :username");
-    $query->bindValue(":username", $_SESSION['username']);            
+    $query = $conn->prepare("SELECT id, username, biography, profile_picture FROM users WHERE username = :username");
+    $query->bindValue(":username", $_GET['user']);            
     $query->execute();
-    $result = $query->fetch();
-    $userid = $result['id'];
-    $userimage = $result['image'];
-    $userbiography = $result['biography'];
+    $user_info = $query->fetch();
 
-    $users = $conn->query("SELECT * FROM users WHERE username = '" .  $_GET['user']  ."' ");
-    $users->execute();
-    $userpage = $users->fetchAll();
-    
-    $id = $conn->query("SELECT * FROM users WHERE username = '" .  $_GET['user']  ."' ");
-    $id->execute();
-    $iduser = $id->fetch();
-
-    $pictures = $conn->query("SELECT * FROM posts WHERE user_id = '" .  $iduser['id']  ."' ");
-    $pictures->execute();
-    $picture = $pictures->fetchAll();
+    $query = $conn->prepare("SELECT description, picture FROM posts WHERE user_id = :userid");
+    $query->bindValue(":userid", $user_info['id']);
+    $query->execute();
+    $user_posts = $query->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My profile</title>
+    <title><?php echo($user_info["username"]); ?></title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/profilePage.css">
     <link rel="icon" href="images/favico.ico">
@@ -39,13 +29,12 @@
 <body>
     <?php include_once("navigation.inc.php")?>
 
-    <?php foreach($userpage as $u): ?>
     <section id="account_info">
         <div id="account_header">
-            <img src=<?php echo $userimage ?> alt="Profile picture" id="profile_picture">
+            <img src="<?php echo($user_info["profile_picture"]);?>" alt="<?php echo("profile_picture_" + $user_info["username"]);?>" id="profile_picture">
             <div>
-                <h1 id="username_header"><?php echo $u['username'] ?> </h1>
-                <?php if($userid === $u['id']): ?>
+                <h1 id="username_header"><?php echo($user_info["username"]);?></h1>
+                <?php if($_SESSION["username"] === $_GET["user"]): ?>
                     <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
                 <?php endif; ?>
             </div>
@@ -53,10 +42,9 @@
 
         <section id="biography">
             <h2>Biography</h2>
-            <p><?php echo $u['biography'] ?></p>
+            <p><?php echo $user_info['biography'] ?></p>
         </section>
     </section>
-    <?php endforeach; ?>
 
     <section id="tabs">
         <div id="tabBar">
@@ -66,26 +54,26 @@
         </div>
 
         <div id="postsTab" class="tab">
-            <?php foreach($picture as $p): ?>
-                <img src="<?php echo $p['picture'] ?>">
+            <?php foreach($user_posts as $post): ?>
+                <img src="<?php echo $post['picture'] ?>">
             <?php endforeach; ?>
         </div>
         
         <div id="followersTab" class="tab" style="display:none">
             <ul>
                 <li>
-                    <img src="images/Ellen.jpg">
+                    <img src="user_profilepictures/Ellen.jpg">
                     <p>Ellen</p>
                     <a href="#">Follow</a>
                 </li>
                 <li>
-                    <img src="images/Amelie.jpg">
+                    <img src="user_profilepictures/Amelie.jpg">
                     <p>Amelie</p>
                     <a href="#" class="isFollowing">Unfollow</a>
                 </li>
                 <li>
-                    <img src="images/doggo.jpg">
-                    <p>best Doggo</p>
+                    <img src="user_profilepictures/Bailey.jpg">
+                    <p>Bailey</p>
                     <a href="#" class="isFollowing">Unfollow</a>
                 </li>
             </ul>
@@ -94,18 +82,18 @@
         <div id="followingTab" class="tab" style="display:none">
             <ul>
                 <li>
-                    <img src="images/Ellen.jpg">
+                    <img src="user_profilepictures/Ellen.jpg">
                     <p>Ellen</p>
                     <a href="#" class="isFollowing">Unfollow</a>
                 </li>
                 <li>
-                    <img src="images/Amelie.jpg">
+                    <img src="user_profilepictures/Amelie.jpg">
                     <p>Amelie</p>
                     <a href="#" class="isFollowing">Unfollow</a>
                 </li>
                 <li>
-                    <img src="images/doggo.jpg">
-                    <p>best Doggo</p>
+                    <img src="user_profilepictures/Bailey.jpg">
+                    <p>Bailey</p>
                     <a href="#" class="isFollowing">Unfollow</a>
                 </li>
             </ul>
