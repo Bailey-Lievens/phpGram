@@ -45,13 +45,13 @@
         
             <section class="post">
                 <header>
-                    <img src="<?php echo($post["profile_picture"]) ?>" <?php echo("alt='profilePicture_".$post["username"]."'")?>> <!-- Add path to profile image-->
+                    <img src="<?php echo($post["profile_picture"]) ?>" <?php echo("alt='profilePicture_".$post["username"]."'")?>>
                     <?php echo("<a href='profilePage.php?user=". $post["username"] ."'> ". $post["username"] ." </a>")?>
                     <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
                     <a href="#">...</a>
                 </header>
                 <div>
-                    <img src="images/doggo.jpg" alt="postPicture"> <!-- Add path to post image-->
+                <img src="<?php echo($post["picture"]) ?>" <?php echo("alt='profilePicture_".$post["picture"]."'")?>>
                     <?php echo("<p>". $post["description"] ."</p>")?> 
                 </div>
                 <section>
