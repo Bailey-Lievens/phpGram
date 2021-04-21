@@ -2,7 +2,7 @@
 <?php include_once('isloggedin.inc.php');?>
 <?php
     $conn = Database::getConnection();
-    $query = $conn->prepare("SELECT id, username, biography, profile_picture FROM users WHERE username = :username");
+    $query = $conn->prepare("SELECT id, username, biography, picture FROM users WHERE username = :username");
     $query->bindValue(":username", $_GET['user']);            
     $query->execute();
     $user_info = $query->fetch();
@@ -31,7 +31,7 @@
 
     <section id="account_info">
         <div id="account_header">
-            <img src="<?php echo($user_info["profile_picture"]);?>" alt="<?php echo("profile_picture_" + $user_info["username"]);?>" id="profile_picture">
+            <img src="<?php echo($user_info["picture"]);?>" alt="<?php echo("profile_picture_" + $user_info["username"]);?>" id="profile_picture">
             <div>
                 <h1 id="username_header"><?php echo($user_info["username"]);?></h1>
                 <?php if($_SESSION["username"] === $_GET["user"]): ?>
