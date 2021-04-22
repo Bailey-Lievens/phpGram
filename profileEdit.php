@@ -3,18 +3,19 @@
 
 <?php
 
-$user = new User();
+/*$user = new User();
 $user_edit = $_SESSION["userid"];
+*/
 
-$conn = Database::getConnection(); // get email
+// get email, username and biography to set current value
+$conn = Database::getConnection(); 
 $query = $conn->prepare("SELECT email, username, biography FROM users WHERE username = :username");
 $query->bindValue(":username", $_SESSION['username']);
 $query->execute();
-$email = $query->fetch();
+$info = $query->fetch();
 
-
-
-if (isset($_POST['imageEdit'])) {
+// edit image or delete image
+/*if (isset($_POST['imageEdit'])) {
          
   
     $currentDirectory = getcwd();
@@ -34,32 +35,26 @@ if (isset($_POST['imageEdit'])) {
         $user->updatePicture($user_edit, $image);
         session_start();
         header('location: profilePage.php?user='+$_SESSION[$username]);
+        */
            
-if(!empty($_POST)){
-
+// update username, email and biography
+if(!empty($_POST['email']) && !empty($_POST['biography'])){
     try {
         $user = new User();
-        $user_edit = $_SESSION["userid"];
+        $userid = $_SESSION["userid"];
+        $email = $_POST['email'];
+        $biography = $_POST['biography'];
 
-    if (isset($_POST['edit'])) {
-    
-        $username = $_POST["username"];
-        //$email = $_POST["email"];
-        $biography = $_POST["biography"];
-        
-    }  
-
-        $user->update($user_edit, $username, $email, $biography);
-        session_start();
-        header('location: profilePage.php?user='+$_SESSION[$username]);
-        }    
-    
-    catch (\Throwable $e) {
+        $user->update($userid, $email, $biography);
+        var_dump('hallo');
+        header('location: profilePage.php?user=' . $_SESSION['username']);
+    } catch (\Throwable $e) {
         $error = $e->getMessage();
-        }
     }
+}
 
-if(!empty($_POST)){
+// change password
+/*if(!empty($_POST)){
     
     try {
         $user_pass = new User();
@@ -76,7 +71,7 @@ if(!empty($_POST)){
         $error2 = $e->getMessage();
         }
        
-    }
+    }*/
 
     //header('location: profilePage.php?user='.$_SESSION["username"]);
 ?>
@@ -100,7 +95,7 @@ if(!empty($_POST)){
 
     <section class="flex">
 
-<form action="#" method="post" id="profileEditForm"  enctype="multipart/form-data">
+<form action="" method="post" id="profileEditForm"  enctype="multipart/form-data">
     <div>
         <div class="imageEditWrapper">
             <img id="profilePicturePreview" src="user_profilepictures/Default.jpg" alt="profilePicture">
@@ -122,28 +117,22 @@ if(!empty($_POST)){
 
     <section class="flex">
 
-        <form action="#" method="post" id="profileEditForm"  enctype="multipart/form-data">
+        <form action="" method="post" id="profileEditForm"  enctype="multipart/form-data">
 
             <h1>Edit your account</h1>
 
             <?php if(isset($error)):?>
-                <div class="error" style="color: white;">
-                <?php echo $error;?></div>
+                <div class="error" style="color: white;"><?php echo $error;?></div>
             <?php endif;?>
-            
-            <div>
-                <label for="username">Username</label>
-                <input id="email" type="text" name="username" value="<?php echo $email['username']; ?>">
-            </div>
 
             <div>
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email" value="<?php echo $email['email']; ?>">
+                <input type="text" id="email" name="email" value="<?php echo $info['email']; ?>">
             </div>
 
             <div>
                 <label for="biography">biography</label>
-                <textarea name="biography" id="biography" cols="30" rows="10" value=""><?php echo $email['biography']; ?></textarea>
+                <textarea name="biography" id="biography" cols="30" rows="10" value=""><?php echo $info['biography']; ?></textarea>
             </div>
 
             <div class="submitBtn">
@@ -158,7 +147,7 @@ if(!empty($_POST)){
 
 
     <section class="flex">
-    <form action="#" method="post" id="profileEditForm">
+    <form action="" method="post" id="profileEditForm">
 
 <h1>Change your password</h1>  
 

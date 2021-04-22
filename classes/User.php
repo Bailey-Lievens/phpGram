@@ -101,15 +101,13 @@
             return $result;
         }
 
-        public function update($userid, $username, $email, $biography){
-            self::checkUsername($username);
+        public function update($userid, $email, $biography){
             self::checkEmail($email);
             self::checkBiography($biography);
             $conn = Database::getConnection();
-            $query = $conn->prepare("UPDATE users SET username=:username, email=:email, biography=:biography WHERE id=:userid");
+            $query = $conn->prepare("UPDATE users SET email=:email, biography=:biography WHERE id=:userid");
 
             $query->bindValue(":userid", $userid);
-            $query->bindValue(":username", $username);
             $query->bindValue(":email", $email);     
             $query->bindValue(":biography", $biography);  
 
@@ -202,20 +200,16 @@
         }
 
         private function checkBiography($biography){
-            if($biography == ""){
-                throw new Exception("Biography cannot be empty.");
-            }
+            
             if(strlen($biography) > self::MAX_BIO){
                 throw new Exception("Biography's can only be ". self::MAX_BIO ." characters long");
             }
              
-        }
-
-        
+        }        
 
         private function checkEmail($email){
 
-            if($email == ""){
+            if(empty($email)){
                 throw new Exception("Email cannot be empty.");
             }
 

@@ -46,7 +46,7 @@
     <img src="images/logo.png" alt="logo">
 </div>
 
-<form action="#" method="post">
+<form action="" method="post">
 
     <h2>Meld je aan</h2>
 
