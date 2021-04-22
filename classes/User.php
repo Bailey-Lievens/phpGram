@@ -101,23 +101,33 @@
             return $result;
         }
 
-        public function update($userid, $username, $email, $biography, $image){
-             self::checkUsername($username);
-             self::checkEmail($email);
-             self::checkBiography($biography);
-
+        public function update($userid, $username, $email, $biography){
+            self::checkUsername($username);
+            self::checkEmail($email);
+            self::checkBiography($biography);
             $conn = Database::getConnection();
-            $query = $conn->prepare("UPDATE users SET username=:username, email=:email, biography=:biography, users.image=:img WHERE id=:userid");
+            $query = $conn->prepare("UPDATE users SET username=:username, email=:email, biography=:biography WHERE id=:userid");
 
             $query->bindValue(":userid", $userid);
             $query->bindValue(":username", $username);
             $query->bindValue(":email", $email);     
             $query->bindValue(":biography", $biography);  
-            $query->bindValue(":img", $image); 
-            
+
             $result = $query->execute();
             return $result;    
         }
+
+        public function updatePicture($userid,$image){
+           $conn = Database::getConnection();
+           $query = $conn->prepare("UPDATE users SET users.image=:img WHERE id=:userid");
+
+           $query->bindValue(":userid", $userid);
+           $query->bindValue(":img", $image); 
+           
+           $result = $query->execute();
+           return $result;    
+       }
+
 
         public function changePassword($userid, $password) {
             self::checkPassword($password);

@@ -6,37 +6,44 @@
 $user = new User();
 $user_edit = $_SESSION["userid"];
 
+if (isset($_POST['imageEdit'])) {
+         
+  
+    $currentDirectory = getcwd();
+    $uploadDirectory = "/user_profilepictures/";
+
+    $fileName = $_SESSION["username"] .".jpg";
+    $fileTmpName  = $_FILES['profileImage']['tmp_name'];
+
+    $fileSaveQuality = 80; 
+
+    $uploadPath = $currentDirectory . $uploadDirectory . $fileName; 
+
+    move_uploaded_file($fileTmpName, $uploadPath);
+
+    $image =  "user_profilepictures/"  .$fileName;
+}
+        $user->updatePicture($user_edit, $image);
+        session_start();
+        header('location: profilePage.php?user='+$_SESSION[$username]);
+           
 if(!empty($_POST)){
-        
+
     try {
         $user = new User();
         $user_edit = $_SESSION["userid"];
 
     if (isset($_POST['edit'])) {
-         
-  
-        $currentDirectory = getcwd();
-        $uploadDirectory = "/images/";
-
-       
-        $fileName = $_SESSION["username"] .".jpg";
-        $fileTmpName  = $_FILES['profileImage']['tmp_name'];
-
-        $fileSaveQuality = 80; 
-
-        $uploadPath = $currentDirectory . $uploadDirectory . $fileName; 
-
-        move_uploaded_file($fileTmpName, $uploadPath);
-
+    
         $username = $_POST["username"];
-        $biography = $_POST["biography"];
         $email = $_POST["email"];
-        $image =  "images/"  .$fileName;
+        $biography = $_POST["biography"];
+        
     }  
 
-        $user->update($user_edit, $username, $email, $biography,$image);
+        $user->update($user_edit, $username, $email, $biography);
         session_start();
-        header('location: profilePage.php');
+        header('location: profilePage.php?user='+$_SESSION[$username]);
         }    
     
     catch (\Throwable $e) {
@@ -62,6 +69,8 @@ if(!empty($_POST)){
         }
        
     }
+
+    //header('location: profilePage.php?user='.$_SESSION["username"]);
 ?>
    
 <!DOCTYPE html>
@@ -80,24 +89,39 @@ if(!empty($_POST)){
 <body>
     <?php include_once("navigation.inc.php")?>
 
+
+    <section class="flex">
+
+<form action="#" method="post" id="profileEditForm"  enctype="multipart/form-data">
+    <div>
+        <div class="imageEditWrapper">
+            <img id="profilePicturePreview" src="user_profilepictures/Default.jpg" alt="profilePicture">
+            <label id="inputLabel" for="inputImageFile">Change profile picture</label>
+        </div>
+        <input type="file" name="profileImage" id="inputImageFile" accept="image/png, image/jpeg"/>
+    </div>
+
+    <div class="submitBtn">
+    <input name="imageEdit" type="submit" id="submitBtn" value="update" >
+        <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
+    </div>
+
+</form>
+
+
+</section>
+
+
     <section class="flex">
 
         <form action="#" method="post" id="profileEditForm"  enctype="multipart/form-data">
 
-            <h2>Edit your account</h2>
+            <h1>Edit your account</h1>
 
             <?php if(isset($error)):?>
                 <div class="error" style="color: white;">
                 <?php echo $error;?></div>
             <?php endif;?>
-
-            <div>
-                <div class="imageEditWrapper">
-                    <img id="profilePicturePreview" src="images/DefaultProfilePicture.jpg" alt="profilePicture">
-                    <label id="inputLabel" for="inputImageFile">Change profile picture</label>
-                </div>
-                <input type="file" name="profileImage" id="inputImageFile" accept="image/png, image/jpeg"/>
-            </div>
             
             <div>
                 <label for="username">Username</label>
@@ -105,13 +129,13 @@ if(!empty($_POST)){
             </div>
 
             <div>
-                <label for="biography">biography</label>
-                <textarea name="biography" id="biography" form="profileEditForm" cols="30" rows="10" value=""></textarea>
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" value="">
             </div>
 
             <div>
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" value="">
+                <label for="biography">biography</label>
+                <textarea name="biography" id="biography" cols="30" rows="10" value=""></textarea>
             </div>
 
             <div class="submitBtn">
@@ -128,7 +152,7 @@ if(!empty($_POST)){
     <section class="flex">
     <form action="#" method="post" id="profileEditForm">
 
-<h2>Change your password</h2>  
+<h1>Change your password</h1>  
 
 <?php if(isset($error2)):?>
                 <div class="error" style="color: white;">
