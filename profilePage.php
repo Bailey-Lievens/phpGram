@@ -7,7 +7,7 @@
     $query->execute();
     $user_info = $query->fetch();
 
-    $query = $conn->prepare("SELECT description, picture FROM posts WHERE user_id = :userid");
+    $query = $conn->prepare("SELECT description, picture FROM posts WHERE user_id = :userid ORDER BY posts.date DESC");
     $query->bindValue(":userid", $user_info['id']);
     $query->execute();
     $user_posts = $query->fetchAll();
@@ -55,7 +55,7 @@
 
         <div id="postsTab" class="tab">
             <?php foreach($user_posts as $post): ?>
-                <img src="<?php echo $post['picture'] ?>">
+                <img id="postImg" src="<?php echo $post['picture'] ?>">
             <?php endforeach; ?>
         </div>
         

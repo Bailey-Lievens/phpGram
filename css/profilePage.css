@@ -109,10 +109,18 @@ body {
     flex-wrap: wrap;
 }
 
+#postsTab #postImg {
+    display: block;
+    height: 10em;
+    width: 2em;
+    object-fit: cover;
+}
+
 #postsTab img{
-    flex: 1 0 25%;
+    flex: 1 1 25%;
     width: 100px;
     margin: 10px;
+    height: 25%;
 }
 
 #followersTab ul{
