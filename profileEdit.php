@@ -6,6 +6,14 @@
 $user = new User();
 $user_edit = $_SESSION["userid"];
 
+$conn = Database::getConnection(); // get email
+$query = $conn->prepare("SELECT email, username, biography FROM users WHERE username = :username");
+$query->bindValue(":username", $_SESSION['username']);
+$query->execute();
+$email = $query->fetch();
+
+
+
 if (isset($_POST['imageEdit'])) {
          
   
@@ -36,7 +44,7 @@ if(!empty($_POST)){
     if (isset($_POST['edit'])) {
     
         $username = $_POST["username"];
-        $email = $_POST["email"];
+        //$email = $_POST["email"];
         $biography = $_POST["biography"];
         
     }  
@@ -125,22 +133,22 @@ if(!empty($_POST)){
             
             <div>
                 <label for="username">Username</label>
-                <input id="email" type="text" name="username" value="">
+                <input id="email" type="text" name="username" value="<?php echo $email['username']; ?>">
             </div>
 
             <div>
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email" value="">
+                <input type="text" id="email" name="email" value="<?php echo $email['email']; ?>">
             </div>
 
             <div>
                 <label for="biography">biography</label>
-                <textarea name="biography" id="biography" cols="30" rows="10" value=""></textarea>
+                <textarea name="biography" id="biography" cols="30" rows="10" value=""><?php echo $email['biography']; ?></textarea>
             </div>
 
             <div class="submitBtn">
             <input name="edit" type="submit" id="submitBtn" value="update" >
-                <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
+                <a href="profilePage.php?user=<?php echo $_SESSION['username'] ?>" style="margin-left: 2em">Cancel</a>
             </div>
 
         </form>
