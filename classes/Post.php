@@ -140,6 +140,16 @@
             $posts = $query->fetchAll();
             return $posts;
         }
+
+        //Returns all posts posted by the given userId
+        public static function getPostsById($userId, $amount = 20){
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT picture FROM posts WHERE user_id = :userId ORDER BY posts.date DESC LIMIT ".$amount."");
+            $query->bindValue(":userId", $userId);
+            $query->execute();
+            $posts = $query->fetchAll();
+            return $posts;
+        }
         
     }
 ?>

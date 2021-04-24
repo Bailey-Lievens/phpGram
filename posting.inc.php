@@ -1,5 +1,5 @@
 <?php
-    $userId = User::getUserId($_SESSION['username']);
+    $userId = User::getUserIdByName($_SESSION['username']);
 
     if(isset($_POST['submit'])) {
         try {

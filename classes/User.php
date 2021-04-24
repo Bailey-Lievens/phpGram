@@ -36,7 +36,7 @@
             }
         }
 
-        public static function getUserId($username){
+        public static function getUserIdByName($username){
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT id FROM users WHERE username = :username");
 

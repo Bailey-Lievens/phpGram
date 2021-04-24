@@ -1,16 +1,12 @@
-    <?php include_once('core/autoload.php');?>
+<?php include_once('core/autoload.php');?>
 <?php include_once('isloggedin.inc.php');?>
 <?php
-    $conn = Database::getConnection();
-    $query = $conn->prepare("SELECT id, username, biography, profile_picture FROM users WHERE username = :username");
-    $query->bindValue(":username", $_GET['user']);            
-    $query->execute();
-    $user_info = $query->fetch();
+    $userId = User::getUserIdByName($_GET['user']);
+    $username = User::getUsernameById($userId);
+    $biography = User::getBioById($userId);
+    $profilePicture = User::getPictureById($userId);
 
-    $query = $conn->prepare("SELECT description, picture FROM posts WHERE user_id = :userid ORDER BY posts.date DESC");
-    $query->bindValue(":userid", $user_info['id']);
-    $query->execute();
-    $user_posts = $query->fetchAll();
+    $userPosts = Post::getPostsById($userId);
 ?>
 
 <!DOCTYPE html>
@@ -31,9 +27,9 @@
 
     <section id="account_info">
         <div id="account_header">
-            <img src="<?php echo($user_info["profile_picture"]);?>" alt="<?php echo("profile_picture_" + $user_info["username"]);?>" id="profile_picture">
+            <img src="<?php echo($profilePicture);?>" alt="<?php echo("profile_picture_". $username ."");?>" id="profile_picture">
             <div>
-                <h1 id="username_header"><?php echo($user_info["username"]);?></h1>
+                <h1 id="username_header"><?php echo($username);?></h1>
                 <?php if($_SESSION["username"] === $_GET["user"]): ?>
                     <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
                 <?php endif; ?>
@@ -42,7 +38,7 @@
 
         <section id="biography">
             <h2>Biography</h2>
-            <p><?php echo $user_info['biography'] ?></p>
+            <p><?php echo($biography);?></p>
         </section>
     </section>
 
@@ -54,7 +50,7 @@
         </div>
 
         <div id="postsTab" class="tab">
-            <?php foreach($user_posts as $post): ?>
+            <?php foreach($userPosts as $post): ?>
                 <img id="postImg" src="<?php echo $post['picture'] ?>">
             <?php endforeach; ?>
         </div>
