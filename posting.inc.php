@@ -1,21 +1,14 @@
-<?php include_once('core/autoload.php');
-include_once('isloggedin.inc.php');
-
-    $conn = Database::getConnection();
-    $query = $conn->prepare("SELECT id FROM users WHERE username = :username");
-    $query->bindValue(":username", $_SESSION['username']);            
-    $query->execute();
-    $result = $query->fetch();
-    $userid = $result['id'];
+<?php include_once('core/autoload.php');?>
+<?php
+    $userId = User::getUserId($_SESSION['username']);
 
     if(isset($_POST['submit'])) {
-
         try {
 
             $currentDirectory = getcwd();
-            $uploadDirectory = "/post_uploads/";
+            $uploadDirectory = "/post_uploads/"; //Directory where posted image will be located
 
-            $fileName = $_SESSION["username"]."_post_".date("YmdHis").".jpg";
+            $fileName = $userId."_post_".date("YmdHis").".jpg";
             $fileTmpName  = $_FILES['inputPicturePost']['tmp_name'];
 
             $fileSaveQuality = 80; 

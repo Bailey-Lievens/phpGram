@@ -36,6 +36,17 @@
             }
         }
 
+        public static function getUserId($username){
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT id FROM users WHERE username = :username");
+
+            $query-> bindValue(":username", $username);
+            $query->execute();
+            $result = $query->fetch();
+
+            return $result['id']; 
+        }
+
         public function setUsername($username){
 
             self::checkUsername($username);
@@ -144,17 +155,6 @@
             
         }
 
-        public function select($userid)  { 
-            $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT * FROM users WHERE id=:userid LIMIT 1");
-            $query->bindValue(":userid", $userid);
-
-            $query->execute();
-            $result = $query->fetch();
-           
-            return $result;  
-      } 
-
         private function checkPassword($password){
             if($password == ""){
                 throw new Exception("Password cannot be empty.");
@@ -200,15 +200,12 @@
         }
 
         private function checkBiography($biography){
-            
             if(strlen($biography) > self::MAX_BIO){
                 throw new Exception("Biography's can only be ". self::MAX_BIO ." characters long");
             }
-             
         }        
 
         private function checkEmail($email){
-
             if(empty($email)){
                 throw new Exception("Email cannot be empty.");
             }
@@ -246,18 +243,6 @@
             } else {
                 return True;
             }
-        }
-
-        public function getUserid($username)
-        {
-            $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT * FROM users WHERE username = :username");
-
-            $query-> bindValue(":username", $username);
-            $query->execute();
-            $result = $query->fetch(PDO::FETCH_OBJ);
-            
-            return $result->id; 
         }
     }
 ?>
