@@ -1,4 +1,3 @@
-<?php include_once('core/autoload.php');?>
 <?php
     $userId = User::getUserId($_SESSION['username']);
 
@@ -18,7 +17,7 @@
             move_uploaded_file($fileTmpName, $uploadPath);
 
             $post = new Post();
-            $post->setUserId($userid);
+            $post->setUserId($userId);
             $post->setDescription($_POST['description']);
             $post->setPicture($fileName); 
             $post->setDate(date("Y-m-d H:i:s"));  

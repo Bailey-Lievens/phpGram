@@ -2,11 +2,7 @@
 <?php include_once('isloggedin.inc.php');?>
 <?php include_once('posting.inc.php');?>
 <?php
-    $conn = Database::getConnection();
-
-    $query = $conn->query("SELECT users.username,users.profile_picture, posts.description, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.date DESC LIMIT 20");
-    $query->execute();
-    $posts = $query->fetchAll();
+    $posts = Post::getPosts(20);
 ?>
 
 <!DOCTYPE html>

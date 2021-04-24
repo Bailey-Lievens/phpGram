@@ -120,5 +120,14 @@
             if (!$full) $string = array_slice($string, 0, 1);
             return $string ? implode(', ', $string) . ' ago' : 'just now';
         }
+
+        //Returns posts || amount depends on parameter
+        public static function getPosts($amount){
+            $conn = Database::getConnection();
+            $query = $conn->query("SELECT users.username,users.profile_picture, posts.description, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.date DESC LIMIT 20");
+            $query->execute();
+            $posts = $query->fetchAll();
+            return $posts;
+        }
         
     }
