@@ -14,6 +14,22 @@ $email = User::getEmailById($userId);
 $username = User::getUsernameById($userId);
 $biography = User::getBioById($userId);
 
+if(!empty($_POST)){
+    try {
+        $user = new User();
+
+        $user->setUserId($userId);
+        $user->setEmail($_POST["email"]);
+        $user->setBio($_POST["biography"]);
+        $user->update();
+        header("Location: profilePage.php?user=".$username);
+    } catch (\Throwable $e) {
+        $error = $e->getMessage();
+    }
+}
+
+// update username, email and biography
+
 // edit image or delete image
 /*if (isset($_POST['imageEdit'])) {
          
@@ -37,19 +53,6 @@ $biography = User::getBioById($userId);
         header('location: profilePage.php?user='+$_SESSION[$username]);
         */
            
-// update username, email and biography
-if(!empty($_POST['email']) && !empty($_POST['biography'])){
-    try {
-        $user = new User();
-        $email = $_POST['email'];
-        $biography = $_POST['biography'];
-
-        $user->update($userid, $email, $biography);
-        header('location: profilePage.php?user=' . $_SESSION['username']);
-    } catch (\Throwable $e) {
-        $error = $e->getMessage();
-    }
-}
 
 // change password
 /*if(!empty($_POST)){
@@ -143,7 +146,7 @@ if(!empty($_POST['email']) && !empty($_POST['biography'])){
 
         <?php if(isset($error2)):?>
             <div class="error" style="color: white;">
-            <?php echo $error2;?>
+                <?php echo $error2;?>
             </div>
         <?php endif;?>
         <div>

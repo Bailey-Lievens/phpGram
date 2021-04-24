@@ -1,21 +1,19 @@
 <?php
     include_once('core/autoload.php');
+    session_start();
     
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]) {
       header("Location: index.php");   
     }
 
-    $user = new user();
-
     if(isset($_POST["aanmelden"])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        if($user->canLogin($username, $password)) {
-            session_start(); 
+        if(User::canLogin($username, $password)) {
             $_SESSION['username'] = $username;
             $_SESSION['loggedin'] = true;
-            $_SESSION["userid"] = $user->getUserId($username);
+            $_SESSION["userid"] = User::getUserIdByName($username);
 
             header("Location: index.php");
         } else {

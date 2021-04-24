@@ -1,7 +1,7 @@
     <?php
     class User{
 
-        private $userid;
+        private $userId;
         private $username;
         private $password;
         private $email;
@@ -16,7 +16,7 @@
         const MIN_CAPITAL = 1; //Minimum amount of capital characters    
         const MAX_BIO = 350;  //Maximum amount of bio characters   
 
-        function canLogin($username, $password) {
+        public static function canLogin($username, $password) {
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT * FROM users WHERE username = :username");
             $query->bindValue(":username", $username);
@@ -34,6 +34,14 @@
             } else {
                 return false;
             }
+        }
+
+        public function setUserId($userId){
+            $this->userId = $userId;
+        }
+
+        public function getUserId(){
+            return $this->userId;
         }
 
         public static function getUserIdByName($username){
@@ -94,12 +102,7 @@
         }
 
         public function setEmail($email){
-
             self::checkEmail($email);
-
-            if($this->emailExists($email)){
-                throw new Exception("This email has already been registered.");
-            }
 
             $this->email = $email;
         }
@@ -118,6 +121,7 @@
         }
 
         public function setBio($biography){
+            self::checkBiography($biography);
             $this->biography = $biography;
         }
 
@@ -156,25 +160,23 @@
             return $result;
         }
 
-        public function update($userid, $email, $biography){
-            self::checkEmail($email);
-            self::checkBiography($biography);
+        public function update(){
             $conn = Database::getConnection();
-            $query = $conn->prepare("UPDATE users SET email=:email, biography=:biography WHERE id=:userid");
+            $query = $conn->prepare("UPDATE users SET email=:email, biography=:biography WHERE id=:userId");
 
-            $query->bindValue(":userid", $userid);
-            $query->bindValue(":email", $email);     
-            $query->bindValue(":biography", $biography);  
+            $query->bindValue(":userId", $this->userId);
+            $query->bindValue(":email", $this->email);     
+            $query->bindValue(":biography", $this->biography);  
 
             $result = $query->execute();
             return $result;    
         }
 
-        public function updatePicture($userid, $image){
+        public function updatePicture($userId, $image){
            $conn = Database::getConnection();
-           $query = $conn->prepare("UPDATE users SET users.image=:img WHERE id=:userid");
+           $query = $conn->prepare("UPDATE users SET users.image=:img WHERE id=:userId");
 
-           $query->bindValue(":userid", $userid);
+           $query->bindValue(":userId", $userId);
            $query->bindValue(":img", $image); 
            
            $result = $query->execute();
@@ -182,16 +184,16 @@
        }
 
 
-        public function changePassword($userid, $password) {
+        public function changePassword($userId, $password) {
             self::checkPassword($password);
 
             $conn = Database::getConnection();
-            $query = $conn->prepare("UPDATE users SET password=:password WHERE id=:userid");
+            $query = $conn->prepare("UPDATE users SET password=:password WHERE id=:userId");
             
             $hash = password_hash( $password, PASSWORD_DEFAULT);
             $password = $hash;
 
-            $query->bindValue(":userid", $userid);
+            $query->bindValue(":userId", $userId);
             $query->bindValue(":password", $password);
             
             $result=$query->execute();
@@ -257,6 +259,10 @@
             if(!strpos($email, "@") || !strpos($email, ".") || strpos($email, " ") ){
                 throw new Exception("Email is invalid");
             }
+
+            if($this->emailExists($email)){
+                throw new Exception("This email has already been registered.");
+            }
         }
 
         private function emailExists($email){ 
@@ -270,6 +276,12 @@
             if(!$result){
                 return False;
             } else {
+                //Return false if the result is the users own email
+                if (!empty($this->userId)) {
+                    if ($result['id'] == $this->userId) {
+                        return False;
+                    }
+                }
                 return True;
             }
         }
