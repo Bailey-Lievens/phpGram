@@ -7,7 +7,7 @@
         header("Location: index.php");
     }
 
-    $result = Post::getPostsByTag($_GET[q]);
+    $posts = Post::getPostsByTag($_GET[q]);
 ?>
 
 <!DOCTYPE html>
@@ -34,10 +34,16 @@
         <section id="tag_title_section">
             
             <h1 id="tag_title">#<?php echo $_GET[q]?></h1>
-            <h3><span id="amount_posts"><?php echo count($result)?></span> posts</h3>
+            <h3><span id="amount_posts"><?php echo count($posts)?></span> 
+                <?php if (count($posts) != 1) {
+                    echo("posts");
+                } else {
+                    echo("post");
+                }?>
+            </h3>
         </section>
 
-        <?php foreach($result as $post):?>
+        <?php foreach($posts as $post):?>
         
             <section class="post">
                 <header>
