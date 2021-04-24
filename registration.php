@@ -1,8 +1,7 @@
-    <?php include_once('core/autoload.php'); ?>
+<?php include_once('core/autoload.php'); ?>
 
 <?php
     if(!empty($_POST)){
-        
         try {
             $user = new User();
 
@@ -14,9 +13,6 @@
             
             session_start();
             header('location: login.php');
-            $_SESSION['username'] = $user->getUsername();
-            $_SESSION['loggedin'] = true;
-            $_SESSION["userid"] = $user->getUserId($user->getUsername());
         } catch (\Throwable $e) {
             $error = $e->getMessage();
         }

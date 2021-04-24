@@ -2,7 +2,7 @@
 <?php include_once('isloggedin.inc.php');?>
 <?php include_once('posting.inc.php');?>
 <?php
-    $posts = Post::getPosts(20);
+    $posts = Post::getPostsByAmount(20);
 ?>
 
 <!DOCTYPE html>

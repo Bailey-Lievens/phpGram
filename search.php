@@ -2,16 +2,12 @@
 <?php include_once('isloggedin.inc.php');?>
 
 <?php 
+    //If user somehow goes to this page without a search parameter redirect to index.php
     if (empty($_GET)) {
         header("Location: index.php");
     }
 
-    $conn = Database::getConnection();
-    $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :searchQ, '%') ORDER BY date DESC ");
-
-    $query->bindValue(":searchQ","#".$_GET[q]);
-    $query->execute();
-    $result = $query->fetchAll();
+    $result = Post::getPostsByTag($_GET[q]);
 ?>
 
 <!DOCTYPE html>

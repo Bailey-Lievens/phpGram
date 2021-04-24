@@ -121,13 +121,25 @@
             return $string ? implode(', ', $string) . ' ago' : 'just now';
         }
 
-        //Returns posts || amount depends on parameter
-        public static function getPosts($amount){
+        //Returns posts based on given amount
+        public static function getPostsByAmount($amount){
             $conn = Database::getConnection();
             $query = $conn->query("SELECT users.username,users.profile_picture, posts.description, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.date DESC LIMIT ".$amount."");
             $query->execute();
             $posts = $query->fetchAll();
             return $posts;
         }
+
+        //Returns posts based on given tag 
+        //If no amount is specified it returns 20
+        public static function getPostsByTag($tag, $amount = 20){
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :searchQ, '%') ORDER BY date DESC LIMIT ".$amount."");
+            $query->bindValue(":searchQ","#".$tag);
+            $query->execute();
+            $posts = $query->fetchAll();
+            return $posts;
+        }
         
     }
+?>
