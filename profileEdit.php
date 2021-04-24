@@ -8,11 +8,11 @@ $user_edit = $_SESSION["userid"];
 */
 
 // get email, username and biography to set current value
-$conn = Database::getConnection(); 
-$query = $conn->prepare("SELECT email, username, biography FROM users WHERE username = :username");
-$query->bindValue(":username", $_SESSION['username']);
-$query->execute();
-$info = $query->fetch();
+$userId = $_SESSION['userid'];
+
+$email = User::getEmailById($userId);
+$username = User::getUsernameById($userId);
+$biography = User::getBioById($userId);
 
 // edit image or delete image
 /*if (isset($_POST['imageEdit'])) {
@@ -41,12 +41,10 @@ $info = $query->fetch();
 if(!empty($_POST['email']) && !empty($_POST['biography'])){
     try {
         $user = new User();
-        $userid = $_SESSION["userid"];
         $email = $_POST['email'];
         $biography = $_POST['biography'];
 
         $user->update($userid, $email, $biography);
-        var_dump('hallo');
         header('location: profilePage.php?user=' . $_SESSION['username']);
     } catch (\Throwable $e) {
         $error = $e->getMessage();
@@ -92,83 +90,75 @@ if(!empty($_POST['email']) && !empty($_POST['biography'])){
 <body>
     <?php include_once("navigation.inc.php")?>
 
+<section class="flex">
 
-    <section class="flex">
-
-<form action="" method="post" id="profileEditForm"  enctype="multipart/form-data">
-    <div>
-        <div class="imageEditWrapper">
-            <img id="profilePicturePreview" src="user_profilepictures/Default.jpg" alt="profilePicture">
-            <label id="inputLabel" for="inputImageFile">Change profile picture</label>
+    <form action="" method="post" id="profileEditForm"  enctype="multipart/form-data">
+        <div>
+            <div class="imageEditWrapper">
+                <img id="profilePicturePreview" src="user_profilepictures/Default.jpg" alt="profilePicture">
+                <label id="inputLabel" for="inputImageFile">Change profile picture</label>
+            </div>
+            <input type="file" name="profileImage" id="inputImageFile" accept="image/png, image/jpeg"/>
         </div>
-        <input type="file" name="profileImage" id="inputImageFile" accept="image/png, image/jpeg"/>
-    </div>
 
-    <div class="submitBtn">
-    <input name="imageEdit" type="submit" id="submitBtn" value="update" >
-        <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
-    </div>
+        <div class="submitBtn">
+        <input name="imageEdit" type="submit" id="submitBtn" value="update" >
+            <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
+        </div>
 
-</form>
+    </form>
 
+</section>
+<section class="flex">
+    <form action="" method="post" id="profileEditForm"  enctype="multipart/form-data">
 
+        <h1>Edit your account</h1>
+
+        <?php if(isset($error)):?>
+            <div class="error" style="color: white;"><?php echo($error);?></div>
+        <?php endif;?>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" value="<?php echo($email); ?>">
+        </div>
+
+        <div>
+            <label for="biography">biography</label>
+            <textarea name="biography" id="biography" cols="30" rows="10" value=""><?php echo($biography); ?></textarea>
+        </div>
+
+        <div class="submitBtn">
+        <input name="edit" type="submit" id="submitBtn" value="update" >
+            <a href="profilePage.php?user=<?php echo $_SESSION['username'] ?>" style="margin-left: 2em">Cancel</a>
+        </div>
+
+    </form>
 </section>
 
 
-    <section class="flex">
-
-        <form action="" method="post" id="profileEditForm"  enctype="multipart/form-data">
-
-            <h1>Edit your account</h1>
-
-            <?php if(isset($error)):?>
-                <div class="error" style="color: white;"><?php echo $error;?></div>
-            <?php endif;?>
-
-            <div>
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" value="<?php echo $info['email']; ?>">
-            </div>
-
-            <div>
-                <label for="biography">biography</label>
-                <textarea name="biography" id="biography" cols="30" rows="10" value=""><?php echo $info['biography']; ?></textarea>
-            </div>
-
-            <div class="submitBtn">
-            <input name="edit" type="submit" id="submitBtn" value="update" >
-                <a href="profilePage.php?user=<?php echo $_SESSION['username'] ?>" style="margin-left: 2em">Cancel</a>
-            </div>
-
-        </form>
-
-       
-    </section>
-
-
-    <section class="flex">
+<section class="flex">
     <form action="" method="post" id="profileEditForm">
+        <h1>Change your password</h1>  
 
-<h1>Change your password</h1>  
+        <?php if(isset($error2)):?>
+            <div class="error" style="color: white;">
+            <?php echo $error2;?>
+            </div>
+        <?php endif;?>
+        <div>
+            <label for="password">New password</label>
+            <input type="password" id="email" name="password">
+        </div>
 
-<?php if(isset($error2)):?>
-                <div class="error" style="color: white;">
-                <?php echo $error2;?></div>
-            <?php endif;?>
-<div>
-    <label for="password">New password</label>
-    <input type="password" id="email" name="password">
-</div>
+        <div class="submitBtn">
+            <input name="changepass" type="submit" id="submitBtn" value="update"></input>	
+            <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
+        </div>
+    </form>
+</section>
 
-<div class="submitBtn">
-    <input name="changepass" type="submit" id="submitBtn" value="update"></input>	
-    <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
-</div>
-</form>
-        </section>
-
-        
-    <?php include_once("footer.inc.php")?> 
-    <script src="js/imagePreview.js"></script>
+<?php include_once("footer.inc.php")?> 
+<script src="js/imagePreview.js"></script>
 </body>
 </html>

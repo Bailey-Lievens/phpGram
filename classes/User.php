@@ -58,6 +58,15 @@
             return $this->username;
         }
 
+        public static function getUsernameById($userId){
+            $conn = Database::getConnection(); 
+            $query = $conn->prepare("SELECT username FROM users WHERE id = :userId");
+            $query->bindValue(":userId", $userId);
+            $query->execute();
+            $username = $query->fetch();
+            return $username["username"];
+        }
+
         public function setPassword($password){
             self::checkPassword($password);
             
@@ -75,6 +84,15 @@
             return $this->password;
         }
 
+        public static function getPasswordById($userId){
+            $conn = Database::getConnection(); 
+            $query = $conn->prepare("SELECT password FROM users WHERE id = :userId");
+            $query->bindValue(":userId", $userId);
+            $query->execute();
+            $password = $query->fetch();
+            return $password["password"];
+        }
+
         public function setEmail($email){
 
             self::checkEmail($email);
@@ -90,6 +108,15 @@
             return $this->email;
         }
 
+        public static function getEmailById($userId){
+            $conn = Database::getConnection(); 
+            $query = $conn->prepare("SELECT email FROM users WHERE id = :userId");
+            $query->bindValue(":userId", $userId);
+            $query->execute();
+            $email = $query->fetch();
+            return $email["email"];
+        }
+
         public function setBio($biography){
             $this->biography = $biography;
         }
@@ -98,6 +125,23 @@
             return $this->biography;
         }
 
+        public static function getBioById($userId){
+            $conn = Database::getConnection(); 
+            $query = $conn->prepare("SELECT biography FROM users WHERE id = :userId");
+            $query->bindValue(":userId", $userId);
+            $query->execute();
+            $bio = $query->fetch();
+            return $bio["biography"];
+        }
+
+        public static function getPictureById($userId){
+            $conn = Database::getConnection(); 
+            $query = $conn->prepare("SELECT profile_picture FROM users WHERE id = :userId");
+            $query->bindValue(":userId", $userId);
+            $query->execute();
+            $picture = $query->fetch();
+            return $picture["profile_picture"];
+        }
 
         public function save(){
             $conn = Database::getConnection();
@@ -126,7 +170,7 @@
             return $result;    
         }
 
-        public function updatePicture($userid,$image){
+        public function updatePicture($userid, $image){
            $conn = Database::getConnection();
            $query = $conn->prepare("UPDATE users SET users.image=:img WHERE id=:userid");
 
