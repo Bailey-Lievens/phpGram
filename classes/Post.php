@@ -124,7 +124,7 @@
         //Returns posts based on given amount
         public static function getPostsByAmount($amount){
             $conn = Database::getConnection();
-            $query = $conn->query("SELECT users.username,users.profile_picture, posts.description, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.date DESC LIMIT ".$amount."");
+            $query = $conn->query("SELECT users.username,users.profile_picture, posts.description, posts.picture, posts.date, posts.id FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.date DESC LIMIT ".$amount."");
             $query->execute();
             $posts = $query->fetchAll();
             return $posts;

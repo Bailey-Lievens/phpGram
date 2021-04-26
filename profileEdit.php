@@ -28,8 +28,6 @@ if(!empty($_POST)){
     }
 }
 
-// update username, email and biography
-
 // edit image or delete image
 /*if (isset($_POST['imageEdit'])) {
          
