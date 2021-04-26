@@ -63,13 +63,13 @@
     <section class="post">
         <header>
             <img src="<?php echo($post['profile_picture'])?>" alt="profilePicture">
-            <?php echo("<a href='profilePage.php?user=". $post["username"] ."'> ". $post["username"] ." </a>")?>
+            <?php echo("<a href='profilePage.php?user=". htmlspecialchars($post["username"]) ."'> ". htmlspecialchars($post["username"]) ." </a>")?>
             <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
             <a href="#">...</a>
         </header>
         <div>
             <img src="<?php echo $post['picture'] ?>" alt="postPicture">
-            <p><?php echo $post['description'] ?></p>
+            <p><?php echo htmlspecialchars($post['description']) ?></p>
         </div>
         <section>
             <a href="#">
