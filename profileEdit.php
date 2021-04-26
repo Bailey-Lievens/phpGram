@@ -30,7 +30,6 @@ if (isset($_POST['imageEdit'])) {
     $fileSaveQuality = 80; 
 
     $uploadPath = $currentDirectory . $uploadDirectory . $fileName; 
-
     move_uploaded_file($fileTmpName, $uploadPath);
 
     $image =  "user_profilepictures/"  .$fileName;
@@ -111,23 +110,21 @@ if(!empty($_POST)){
 
         <div>
             <label for="email">Email</label>
-            <input type="text" id="email" name="email" value="<?php echo($email); ?>">
+            <input type="text" id="email" name="email" value="<?php echo(htmlspecialchars($email)); ?>">
         </div>
 
         <div>
             <label for="biography">biography</label>
-            <textarea name="biography" id="biography" cols="30" rows="10" value=""><?php echo($biography); ?></textarea>
+            <textarea name="biography" id="biography" cols="30" rows="10" value=""><?php echo(htmlspecialchars($biography)); ?></textarea>
         </div>
 
         <div class="submitBtn">
         <input name="edit" type="submit" id="submitBtn" value="update" >
-            <a href="profilePage.php?user=<?php echo $_SESSION['username'] ?>" style="margin-left: 2em">Cancel</a>
+            <a href="profilePage.php?user=<?php echo htmlspecialchars($_SESSION['username']) ?>" style="margin-left: 2em">Cancel</a>
         </div>
 
     </form>
 </section>
-
-
 <section class="flex">
     <form action="" method="post" id="profileEditForm">
         <h1>Change your password</h1>  

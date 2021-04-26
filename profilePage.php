@@ -27,9 +27,9 @@
 
     <section id="account_info">
         <div id="account_header">
-            <img src="<?php echo($profilePicture);?>" alt="<?php echo("profile_picture_". $username ."");?>" id="profile_picture">
+            <img src="<?php echo($profilePicture);?>" alt="<?php echo("profile_picture_". htmlspecialchars($username) ."");?>" id="profile_picture">
             <div>
-                <h1 id="username_header"><?php echo($username);?></h1>
+                <h1 id="username_header"><?php echo(htmlspecialchars($username));?></h1>
                 <?php if($_SESSION["username"] === $_GET["user"]): ?>
                     <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
                 <?php endif; ?>
@@ -38,7 +38,7 @@
 
         <section id="biography">
             <h2>Biography</h2>
-            <p><?php echo($biography);?></p>
+            <p><?php echo(htmlspecialchars($biography));?></p>
         </section>
     </section>
 
