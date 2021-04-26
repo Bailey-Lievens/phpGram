@@ -21,7 +21,7 @@
             $post->setDescription($_POST['description']);
             $post->setPicture($fileName); 
             $post->setDate(date("Y-m-d H:i:s"));  
-            $post->post();
+            $post->submitPost();
 
             $postOK = true;
         } catch (Throwable $e) {

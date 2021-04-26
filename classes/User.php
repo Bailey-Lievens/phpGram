@@ -174,7 +174,7 @@
 
         public function updatePicture($userId, $image){
            $conn = Database::getConnection();
-           $query = $conn->prepare("UPDATE users SET users.image=:img WHERE id=:userId");
+           $query = $conn->prepare("UPDATE users SET users.profile_picture=:img WHERE id=:userId");
 
            $query->bindValue(":userId", $userId);
            $query->bindValue(":img", $image); 

@@ -7,17 +7,46 @@
 $user_edit = $_SESSION["userid"];
 */
 
-// get email, username and biography to set current value
 $userId = $_SESSION['userid'];
 
 $email = User::getEmailById($userId);
 $username = User::getUsernameById($userId);
 $biography = User::getBioById($userId);
+$picture = User::getPictureById($userId);
+
+// edit image or delete image
+
+
+$user = new User();
+if (isset($_POST['imageEdit'])) {
+    
+    $currentDirectory = getcwd();
+    $uploadDirectory = "/user_profilepictures/";
+
+    // replace image on the same path in user_profilepictures
+    $fileName = $userId."_profilePicture.jpg";
+    $fileTmpName  = $_FILES['profileImage']['tmp_name'];
+
+    $fileSaveQuality = 80; 
+
+    $uploadPath = $currentDirectory . $uploadDirectory . $fileName; 
+
+    move_uploaded_file($fileTmpName, $uploadPath);
+
+    $image =  "user_profilepictures/"  .$fileName;
+    $user->updatePicture($userId, $image);
+    header('location: profilePage.php?user=' . $_SESSION['username']);
+}
+
+if(isset($_POST['deleteImage'])){
+    $image = "user_profilepictures/default.jpg";
+    $user->updatePicture($userId, $image);
+
+    header('location: profilePage.php?user=' . $_SESSION['username']);
+}
 
 if(!empty($_POST)){
     try {
-        $user = new User();
-
         $user->setUserId($userId);
         $user->setEmail($_POST["email"]);
         $user->setBio($_POST["biography"]);
@@ -28,53 +57,6 @@ if(!empty($_POST)){
     }
 }
 
-// update username, email and biography
-
-// edit image or delete image
-/*if (isset($_POST['imageEdit'])) {
-         
-  
-    $currentDirectory = getcwd();
-    $uploadDirectory = "/user_profilepictures/";
-
-    $fileName = $_SESSION["username"] .".jpg";
-    $fileTmpName  = $_FILES['profileImage']['tmp_name'];
-
-    $fileSaveQuality = 80; 
-
-    $uploadPath = $currentDirectory . $uploadDirectory . $fileName; 
-
-    move_uploaded_file($fileTmpName, $uploadPath);
-
-    $image =  "user_profilepictures/"  .$fileName;
-}
-        $user->updatePicture($user_edit, $image);
-        session_start();
-        header('location: profilePage.php?user='+$_SESSION[$username]);
-        */
-           
-
-// change password
-/*if(!empty($_POST)){
-    
-    try {
-        $user_pass = new User();
-        $user_id =$_SESSION['userid'];
-        
-        if (isset($_POST['changepass'])) {
-            $password = $_POST['password'];
-        }
-        $user_pass->changePassword($user_id, $password);
-        session_start();
-        header('location: profilePage.php');
-    } 
-        catch (\Throwable $e) {
-        $error2 = $e->getMessage();
-        }
-       
-    }*/
-
-    //header('location: profilePage.php?user='.$_SESSION["username"]);
 ?>
    
 <!DOCTYPE html>
@@ -93,24 +75,30 @@ if(!empty($_POST)){
 <body>
     <?php include_once("navigation.inc.php")?>
 
-<section class="flex">
+    <section class="flex">
 
-    <form action="" method="post" id="profileEditForm"  enctype="multipart/form-data">
-        <div>
-            <div class="imageEditWrapper">
-                <img id="profilePicturePreview" src="user_profilepictures/Default.jpg" alt="profilePicture">
-                <label id="inputLabel" for="inputImageFile">Change profile picture</label>
-            </div>
-            <input type="file" name="profileImage" id="inputImageFile" accept="image/png, image/jpeg"/>
+<form action="#" method="post" id="profileEditForm"  enctype="multipart/form-data">
+    <div>
+        <div class="imageEditWrapper">
+            <img id="profilePicturePreview" src=<?php echo $picture ?> alt="profilePicture">
+            
+            <label id="inputLabel" for="inputImageFile">Change profile picture</label>
+            
+            
         </div>
+        <input type="file" name="profileImage" id="inputImageFile" accept="image/png, image/jpeg"/>
+    </div>
 
-        <div class="submitBtn">
-        <input name="imageEdit" type="submit" id="submitBtn" value="update" >
-            <a href="profilePage.php" style="margin-left: 2em">Cancel</a>
-        </div>
+    <div class="submitBtn">
+    <input name="imageEdit" type="submit" id="submitBtn" value="update" >
+    
+    <input type="submit" name="deleteImage" id="submitBtn" value="Delete">
 
-    </form>
+         <a href="profilePage.php?user=<?php echo $_SESSION['username'] ?>" style="margin-left: 2em">Cancel</a>
+         
+    </div>
 
+</form>
 </section>
 <section class="flex">
     <form action="" method="post" id="profileEditForm"  enctype="multipart/form-data">
