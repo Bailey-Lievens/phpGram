@@ -47,14 +47,14 @@
         
             <section class="post">
                 <header>
-                    <img src="<?php echo($post["profile_picture"]) ?>" <?php echo("alt='profilePicture_".$post["username"]."'")?>>
-                    <?php echo("<a href='profilePage.php?user=". $post["username"] ."'> ". $post["username"] ." </a>")?>
+                    <img src="<?php echo($post["profile_picture"]) ?>" <?php echo("alt='profilePicture_".htmlspecialchars($post["username"])."'")?>>
+                    <?php echo("<a href='profilePage.php?user=". htmlspecialchars($post["username"]) ."'> ". htmlspecialchars($post["username"]) ." </a>")?>
                     <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
                     <a href="#">...</a>
                 </header>
                 <div>
                 <img src="<?php echo($post["picture"]) ?>" <?php echo("alt='profilePicture_".$post["picture"]."'")?>>
-                    <?php echo("<p>". $post["description"] ."</p>")?> 
+                    <?php echo("<p>". htmlspecialchars($post["description"]) ."</p>")?> 
                 </div>
                 <section>
                     <a href="#">like</a>

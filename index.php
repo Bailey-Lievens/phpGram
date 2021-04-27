@@ -63,21 +63,17 @@
     <section class="post">
         <header>
             <img src="<?php echo($post['profile_picture'])?>" alt="profilePicture">
-            <?php echo("<a href='profilePage.php?user=". $post["username"] ."'> ". $post["username"] ." </a>")?>
+            <?php echo("<a href='profilePage.php?user=". htmlspecialchars($post["username"]) ."'> ". htmlspecialchars($post["username"]) ." </a>")?>
             <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
             <a href="#">...</a>
         </header>
         <div>
             <img src="<?php echo $post['picture'] ?>" alt="postPicture">
-            <p><?php echo $post['description'] ?></p>
+            <p><?php echo htmlspecialchars($post['description']) ?></p>
         </div>
         <section>
-            <a href="#">
-                like
-            </a>
-            <a href="#">
-                react
-            </a>
+            <a href="#" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" onclick="like(event)"> like</a>
+            <a href="">react</a>
         </section>
     </section>
     <?php endforeach; ?>
@@ -85,6 +81,7 @@
     <a href="#" class="loadMore">load more</a>
     <?php include_once("footer.inc.php")?>
     <script src="js/newPost.js"></script>    
+    <script src="js/likes.js"></script>  
 </body>
 </html>
     
