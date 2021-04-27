@@ -3,10 +3,6 @@
 
 <?php
 
-/*$user = new User();
-$user_edit = $_SESSION["userid"];
-*/
-
 // get email, username and biography to set current value
 $userId = $_SESSION['userid'];
 
