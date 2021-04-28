@@ -2,7 +2,7 @@
 <?php include_once('isloggedin.inc.php');?>
 <?php include_once('posting.inc.php');?>
 <?php
-    $posts = Post::getPostsByAmount(20);
+    $posts = Post::getPostsFromFollowing($_SESSION['userid']);
 ?>
 
 <!DOCTYPE html>

@@ -150,6 +150,16 @@
             $posts = $query->fetchAll();
             return $posts;
         }
+
+        //Returns all posts posted by the people the user follows
+        public static function getPostsFromFollowing($userId, $amount = 20){
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id INNER JOIN followers ON users.id = followers.followingId WHERE followers.userId = :userId ORDER BY date DESC LIMIT ".$amount."");
+            $query->bindValue(":userId", $userId);
+            $query->execute();
+            $posts = $query->fetchAll();
+            return $posts;
+        }
         
     }
 ?>
