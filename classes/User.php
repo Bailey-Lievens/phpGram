@@ -149,7 +149,7 @@
 
         public static function getFollowersById($userId){
             $conn = Database::getConnection(); 
-            $query = $conn->prepare("SELECT users.username, users.profile_picture FROM users INNER JOIN followers ON followers.userId = users.id WHERE followers.followingId = :userId");
+            $query = $conn->prepare("SELECT users.id, users.username, users.profile_picture FROM users INNER JOIN followers ON followers.userId = users.id WHERE followers.followingId = :userId");
             $query->bindValue(":userId", $userId);
             $query->execute();
             $followers = $query->fetchAll();
@@ -158,11 +158,28 @@
 
         public static function getFollowingById($userId){
             $conn = Database::getConnection(); 
-            $query = $conn->prepare("SELECT users.username, users.profile_picture FROM users INNER JOIN followers ON followers.followingId = users.id WHERE followers.userId = :userId");
+            $query = $conn->prepare("SELECT users.id, users.username, users.profile_picture FROM users INNER JOIN followers ON followers.followingId = users.id WHERE followers.userId = :userId");
             $query->bindValue(":userId", $userId);
             $query->execute();
             $following = $query->fetchAll();
             return $following;
+        }
+
+        //Returns true if the user is following the given user
+        //Returns false if the user is not following the given user
+        public static function isFollowing($currentUser, $userToCheck){
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT followers.id FROM followers WHERE followers.userId = :currentUser AND followers.followingId = :userToCheck");
+            $query->bindValue(":userToCheck", $userToCheck);
+            $query->bindValue(":currentUser", $currentUser);            
+            $query->execute();
+            $result = $query->fetch();
+
+            if(!$result){
+                return True;
+            } else {
+                return False;
+            }
         }
 
         public function save(){

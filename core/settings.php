@@ -6,5 +6,5 @@
             "host" => "localhost",
             "dbName" => "testdb"
         ]
-    ]
+        ];
 ?>

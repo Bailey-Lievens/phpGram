@@ -36,7 +36,11 @@
                 <?php if($_SESSION["username"] === $_GET["user"]): ?>
                     <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
                 <?php else: ?>
-                    <a href="#"class="followButton"> Follow </a>
+                    <?php if(User::isFollowing($_SESSION['userid'] , $userId)):?>
+                        <a href="#"class="followButton"> Follow </a>
+                    <?php else: ?>
+                        <a href="#"class="followButton isFollowing"> Unfollow </a>
+                    <?php endif; ?>
                 <?php endif; ?>
             </div>
         </div>
@@ -62,41 +66,35 @@
         
         <div id="followersTab" class="tab" style="display:none">
             <ul>
-                <li>
-                    <img src="user_profilepictures/Ellen.jpg">
-                    <p>Ellen</p>
-                    <a href="#">Follow</a>
-                </li>
-                <li>
-                    <img src="user_profilepictures/Amelie.jpg">
-                    <p>Amelie</p>
-                    <a href="#" class="isFollowing">Unfollow</a>
-                </li>
-                <li>
-                    <img src="user_profilepictures/Bailey.jpg">
-                    <p>Bailey</p>
-                    <a href="#" class="isFollowing">Unfollow</a>
-                </li>
+                <?php foreach($userFollowers as $follower): ?>
+                    <li>
+                        <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><img src="<?php echo $follower['profile_picture'] ?>"></a>
+                        <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><p><?php echo(htmlspecialchars($follower['username'])); ?></p></a>
+                        
+                        <?php if (User::isFollowing($userId, $follower['id'])):?>
+                            <a href="#"> Follow </a>
+                        <?php else: ?>
+                            <a href="#" class="isFollowing"> Unfollow </a>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
         
         <div id="followingTab" class="tab" style="display:none">
             <ul>
-                <li>
-                    <img src="user_profilepictures/Ellen.jpg">
-                    <p>Ellen</p>
-                    <a href="#" class="isFollowing">Unfollow</a>
-                </li>
-                <li>
-                    <img src="user_profilepictures/Amelie.jpg">
-                    <p>Amelie</p>
-                    <a href="#" class="isFollowing">Unfollow</a>
-                </li>
-                <li>
-                    <img src="user_profilepictures/Bailey.jpg">
-                    <p>Bailey</p>
-                    <a href="#" class="isFollowing">Unfollow</a>
-                </li>
+                <?php foreach($userFollowing as $follower): ?>
+                    <li>
+                        <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><img src="<?php echo $follower['profile_picture'] ?>"></a>
+                        <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><p><?php echo(htmlspecialchars($follower['username'])); ?></p></a>
+                        
+                        <?php if (User::isFollowing($userId, $follower['id'])):?>
+                            <a href="#"> Follow </a>
+                        <?php else: ?>
+                            <a href="#" class="isFollowing"> Unfollow </a>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </section>  

@@ -192,10 +192,21 @@ body {
     transition: 0.2s;
 }
 
+.tab li #profileLink{
+    color: white;
+    margin: 0;
+    transition: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
 .tab li a:hover{
-    content: "Follow";
     background-color: rgb(255, 255, 255);
     box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.39);
+}
+.tab li #profileLink:hover{
+    border-color: transparent;
+    box-shadow: none;
 }
 
 .tab .isFollowing{
