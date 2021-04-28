@@ -2,15 +2,6 @@
 <?php include_once('isloggedin.inc.php');?>
 
 <?php
-
-<<<<<<< HEAD
-// get email, username and biography to set current value
-=======
-/*$user = new User();
-$user_edit = $_SESSION["userid"];
-*/
-
->>>>>>> 3d06a061c22bf74dfb6e35916cc18271e5ee75ec
 $userId = $_SESSION['userid'];
 
 $email = User::getEmailById($userId);
@@ -19,8 +10,6 @@ $biography = User::getBioById($userId);
 $picture = User::getPictureById($userId);
 
 // edit image or delete image
-
-
 $user = new User();
 if (isset($_POST['imageEdit'])) {
     

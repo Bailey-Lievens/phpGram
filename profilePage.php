@@ -32,6 +32,8 @@
                 <h1 id="username_header"><?php echo(htmlspecialchars($username));?></h1>
                 <?php if($_SESSION["username"] === $_GET["user"]): ?>
                     <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
+                <?php else: ?>
+                    <a href="#"class="followButton"> Follow </a>
                 <?php endif; ?>
             </div>
         </div>
