@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 21, 2021 at 02:54 PM
+-- Generation Time: Apr 28, 2021 at 01:21 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -18,9 +18,35 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---git a
+--
 -- Database: `testdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `followers`
+--
+
+CREATE TABLE `followers` (
+  `id` int(255) NOT NULL,
+  `userId` int(255) NOT NULL,
+  `followingId` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `followers`
+--
+
+INSERT INTO `followers` (`id`, `userId`, `followingId`) VALUES
+(3, 13, 11),
+(4, 23, 11),
+(6, 500, 500),
+(7, 69, 80),
+(32, 11, 12),
+(34, 11, 13),
+(48, 11, 1),
+(49, 11, 23);
 
 -- --------------------------------------------------------
 
@@ -62,7 +88,9 @@ INSERT INTO `posts` (`id`, `user_id`, `description`, `picture`, `date`) VALUES
 (185, 23, 'sporty', 'post_uploads/ameliegosiau_post_20210420170904.jpg', '2021-04-20 17:09:04'),
 (186, 23, 'diner', 'post_uploads/ameliegosiau_post_20210420170934.jpg', '2021-04-20 17:09:34'),
 (187, 23, 'celebration', 'post_uploads/ameliegosiau_post_20210420171023.jpg', '2021-04-20 17:10:23'),
-(189, 23, 'arts an crafts', 'post_uploads/ameliegosiau_post_20210420171201.jpg', '2021-04-20 17:12:01');
+(189, 23, 'arts an crafts', 'post_uploads/ameliegosiau_post_20210420171201.jpg', '2021-04-20 17:12:01'),
+(190, 11, 'Went skating with the lads #skate #kickflip', 'post_uploads/11_post_20210424192610.jpg', '2021-04-24 19:26:10'),
+(191, 11, 'This is crazy #crazy #life', 'post_uploads/11_post_20210428094416.jpg', '2021-04-28 09:44:16');
 
 -- --------------------------------------------------------
 
@@ -88,7 +116,12 @@ INSERT INTO `tags` (`id`, `tag_name`) VALUES
 (6, '#help'),
 (7, '#heee'),
 (8, '#sdf'),
-(9, '#sd,f');
+(9, '#sd,f'),
+(10, '#skate'),
+(11, '#FlipKick'),
+(12, '#kickflip'),
+(13, '#crazy'),
+(14, '#life');
 
 -- --------------------------------------------------------
 
@@ -112,7 +145,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `biography`, `profile_picture`) VALUES
 (1, 'Bailey', 'Lievens', 'Email', 'Lowkey kinda sus', 'user_profilepictures/Bailey.jpg'),
 (6, 'Bailey2', 'password', 'b@lievens.be', 'test bio Bailey', 'user_profilepictures/default.jpg'),
-(11, 'ellen', '$2y$12$ZgHR/QaqzcruCktLjzhaB.cfSeLKSEiHjNLkM1rlOf63itxWq2YDi', 'ellen', 'test bio ellen', 'user_profilepictures/Ellen.jpg'),
+(11, 'ellen', '$2y$12$ZgHR/QaqzcruCktLjzhaB.cfSeLKSEiHjNLkM1rlOf63itxWq2YDi', 'ellen@ellen.ellen', 'test bio ellenaasdfsdf', 'user_profilepictures/Ellen.jpg'),
 (12, 'test', '$2y$12$p5l.riMYDIRDZdQZYpZnf.tA6Bl338YdLPHxpw.5.lPCt3C2v25bG', 'test@test.be', 'test bio test', 'user_profilepictures/default.jpg'),
 (13, 'elleeeeeeen2', '$2y$12$lW8p4dLcXGm2rW3HMQIRLeej60lGViKaJjszi1Ar/wfe4HKt/vtwC', 'ellen@gmail.be', NULL, 'user_profilepictures/default.jpg'),
 (14, 'EllenTheVelo', '$2y$12$Dwbw.5MKeUHPQPdpZeA8Muh21Sh1mE6N7dK69V0T3qLv1WfNfDl6G', 'Ellen@gm.com', NULL, 'user_profilepictures/default.jpg'),
@@ -122,6 +155,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `biography`, `profil
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `followers`
+--
+ALTER TABLE `followers`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `posts`
@@ -146,16 +185,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `followers`
+--
+ALTER TABLE `followers`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
 
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
