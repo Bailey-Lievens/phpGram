@@ -7,6 +7,9 @@
     $profilePicture = User::getPictureById($userId);
 
     $userPosts = Post::getPostsById($userId);
+
+    $userFollowing = User::getFollowingById($userId);
+    $userFollowers = User::getFollowersById($userId);
 ?>
 
 <!DOCTYPE html>

@@ -170,6 +170,7 @@ body {
     box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.39);
 }
 
+/*Add this for following buttons*/
 .isFollowing{
     background-color: rgba(255, 255, 255, 0.13);
     border: solid white 2px;

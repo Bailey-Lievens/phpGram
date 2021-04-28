@@ -147,6 +147,24 @@
             return $picture["profile_picture"];
         }
 
+        public static function getFollowersById($userId){
+            $conn = Database::getConnection(); 
+            $query = $conn->prepare("SELECT users.username, users.profile_picture FROM users INNER JOIN followers ON followers.userId = users.id WHERE followers.followingId = :userId");
+            $query->bindValue(":userId", $userId);
+            $query->execute();
+            $followers = $query->fetchAll();
+            return $followers;
+        }
+
+        public static function getFollowingById($userId){
+            $conn = Database::getConnection(); 
+            $query = $conn->prepare("SELECT users.username, users.profile_picture FROM users INNER JOIN followers ON followers.followingId = users.id WHERE followers.userId = :userId");
+            $query->bindValue(":userId", $userId);
+            $query->execute();
+            $following = $query->fetchAll();
+            return $following;
+        }
+
         public function save(){
             $conn = Database::getConnection();
             $query = $conn->prepare("INSERT INTO users (username, password, email) VALUES (:username, :password, :email)");
