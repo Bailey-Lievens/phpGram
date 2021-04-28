@@ -3,7 +3,8 @@
 
         $input = $_POST["searchInput"];
 
-        $conn = new PDO("mysql:host=localhost:8889;dbname=testdb", "root", "root");
+        $conn = new PDO("mysql:host=localhost:8889;dbname=testdb", "root", "root"); //Should work with autoloader
+        //$conn = Database::getConnection();
         if ($input[0] != '#') {
             $query = $conn->prepare("SELECT username, profile_picture FROM users WHERE username LIKE CONCAT( '%', :input, '%') LIMIT 5");
         } else {

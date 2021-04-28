@@ -37,9 +37,9 @@
                     <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
                 <?php else: ?>
                     <?php if(User::isFollowing($_SESSION['userid'] , $userId)):?>
-                        <a href="#"class="followButton"> Follow </a>
+                        <a href="#"class="followButton" data-user="<?php echo($userId); ?>" data-following="false"> Follow </a>
                     <?php else: ?>
-                        <a href="#"class="followButton isFollowing"> Unfollow </a>
+                        <a href="#"class="followButton isFollowing" data-user="<?php echo($userId); ?>" data-following="true"> Unfollow </a>
                     <?php endif; ?>
                 <?php endif; ?>
             </div>
@@ -72,9 +72,9 @@
                         <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><p><?php echo(htmlspecialchars($follower['username'])); ?></p></a>
                         
                         <?php if (User::isFollowing($userId, $follower['id'])):?>
-                            <a href="#"> Follow </a>
+                            <a href="#" class="followButton" data-user="<?php echo($follower['id']); ?>" data-following="false"> Follow </a>
                         <?php else: ?>
-                            <a href="#" class="isFollowing"> Unfollow </a>
+                            <a href="#" class="isFollowing followButton" data-user="<?php echo($follower['id']); ?>" data-following="true"> Unfollow </a>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
@@ -89,9 +89,9 @@
                         <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><p><?php echo(htmlspecialchars($follower['username'])); ?></p></a>
                         
                         <?php if (User::isFollowing($userId, $follower['id'])):?>
-                            <a href="#"> Follow </a>
+                            <a href="#" class="followButton" data-user="<?php echo($follower['id']); ?>" data-following="false"> Follow </a>
                         <?php else: ?>
-                            <a href="#" class="isFollowing"> Unfollow </a>
+                            <a href="#" class="followButton isFollowing" data-user="<?php echo($follower['id']); ?>" data-following="true"> Unfollow </a>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
@@ -101,6 +101,7 @@
 
     <?php include_once("footer.inc.php")?> 
     <script src="js/tabs.js"></script>
+    <script src="js/follow.js"></script>
 </body>
 </html>
     
