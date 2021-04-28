@@ -16,6 +16,11 @@
 
             move_uploaded_file($fileTmpName, $uploadPath);
 
+            //create the image to resize from the previously stored image
+            $imageToResize = imagecreatefromjpeg("post_uploads/".$fileName);
+            imagejpeg($imageToResize, 'post_uploads/'.$fileName, $fileSaveQuality);
+            imageDestroy($imageToResize);
+
             $post = new Post();
             $post->setUserId($userId);
             $post->setDescription($_POST['description']);
