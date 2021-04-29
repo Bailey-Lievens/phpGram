@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 28, 2021 at 01:21 PM
+-- Generation Time: Apr 29, 2021 at 12:22 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -43,10 +43,33 @@ INSERT INTO `followers` (`id`, `userId`, `followingId`) VALUES
 (4, 23, 11),
 (6, 500, 500),
 (7, 69, 80),
-(32, 11, 12),
-(34, 11, 13),
-(48, 11, 1),
-(49, 11, 23);
+(50, 11, 1),
+(51, 11, 14),
+(52, 11, 23),
+(53, 11, 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `likes`
+--
+
+CREATE TABLE `likes` (
+  `id` int(11) NOT NULL,
+  `post_id` int(255) NOT NULL,
+  `liked_by_user_id` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Dumping data for table `likes`
+--
+
+INSERT INTO `likes` (`id`, `post_id`, `liked_by_user_id`) VALUES
+(8, 187, 11),
+(9, 185, 11),
+(10, 184, 11),
+(11, 183, 11),
+(13, 189, 11);
 
 -- --------------------------------------------------------
 
@@ -163,6 +186,12 @@ ALTER TABLE `followers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
@@ -188,7 +217,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT for table `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `posts`
