@@ -1,38 +1,34 @@
 var likeButtons = document.getElementsByClassName("btnAddLike");
 var buttonLength = likeButtons.length;
-var clickedUserId;
 var clickedButton;
 
 function like(e){
-    clickedButton = e.path[0].attributes[1].nodeValue; // post_id
+    clickedPost = e.path[0].attributes[2].nodeValue; // post_id
     userHasLiked = e.path[0].attributes[3].nodeValue; // user al geliked of niet
-
-    console.log("userHasLiked " + userHasLiked);
-    console.log("clickedButton " + clickedButton);
+    clickedButton = e.path[0]; 
     
     var formData = new FormData();
 
-    formData.append("clickedButton", clickedButton);
+    formData.append("clickedPost", clickedPost);
     formData.append("userHasLiked", userHasLiked);
 
-    fetch("./ajax/likes.php", {
+    fetch("./ajax/likes.php", { // documentatie van internet halen
         method: "POST",
         body:formData
     })
         .then(response => response.json())
         .then(result => {
             console.log(result);
-            /*if(result != null){
+            if(result != null){
                 if(result["action"] == "Unlike"){
-                    clickedButton.classList.remove("isLiked");
                     clickedButton.setAttribute("data-liked", "false");
                     clickedButton.innerHTML = "Like";
                 } else {
-                    clickedButton.classList.add("isLiked");
                     clickedButton.setAttribute("data-liked", "true");
                     clickedButton.innerHTML = "Unlike";
                 }
-            }*/
+            }
+            
         })
         .catch(error => {
             console.error("Error:", error);
