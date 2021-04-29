@@ -1,12 +1,45 @@
+var likeButtons = document.getElementsByClassName("btnAddLike");
+var buttonLength = likeButtons.length;
+var clickedUserId;
+var clickedButton;
+
 function like(e){
+    clickedButton = e.path[0].attributes[1].nodeValue; // post_id
+    userHasLiked = e.path[0].attributes[3].nodeValue; // user al geliked of niet
+
+    console.log("userHasLiked " + userHasLiked);
+    console.log("clickedButton " + clickedButton);
+    
+    var formData = new FormData();
+
+    formData.append("clickedButton", clickedButton);
+    formData.append("userHasLiked", userHasLiked);
+
+    fetch("./ajax/likes.php", {
+        method: "POST",
+        body:formData
+    })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            /*if(result != null){
+                if(result["action"] == "Unlike"){
+                    clickedButton.classList.remove("isLiked");
+                    clickedButton.setAttribute("data-liked", "false");
+                    clickedButton.innerHTML = "Like";
+                } else {
+                    clickedButton.classList.add("isLiked");
+                    clickedButton.setAttribute("data-liked", "true");
+                    clickedButton.innerHTML = "Unlike";
+                }
+            }*/
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        })    
     e.preventDefault();
-    console.log("ok");
-
-    console.log(document.querySelector(".btnAddLike"));
-    // postid?
-
-    // like naar database (AJAX)
-
-    // antwoord ok?
 }
 
+for(i=0; i<buttonLength; i++){
+    likeButtons[i].onclick = like;
+}

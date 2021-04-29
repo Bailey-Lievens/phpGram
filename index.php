@@ -72,7 +72,11 @@
             <p><?php echo htmlspecialchars($post['description']) ?></p>
         </div>
         <section>
-            <a href="#" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" onclick="like(event)"> like</a>
+            <?php if(User::isLiked($_SESSION['userid'] , $post['id'])):?>
+                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="true">unlike</a>
+            <?php else: ?>
+                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="false">like</a>
+            <?php endif; ?>
             <a href="">react</a>
         </section>
     </section>
