@@ -1,11 +1,12 @@
+<?php include_once("../core/autoload.php"); ?>
+
 <?php
     if(!empty($_POST)){
         session_start();
         $clickedButton = $_POST["clickedButton"]; // geliked of niet
         $userHasLiked = $_POST["userHasLiked"]; // post_id
 
-        $conn = new PDO("mysql:host=localhost:8889;dbname=testdb", "root", "root"); //Should work with autoloader
-        //$conn = Database::getConnection();
+        $conn = Database::getConnection();
 
         if ($clickedButton == "true") {
             $query = $conn->prepare("DELETE FROM likes WHERE post_id = :postId and  liked_by_user_id = :user");

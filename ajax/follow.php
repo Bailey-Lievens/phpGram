@@ -1,11 +1,11 @@
+<?php include_once("../core/autoload.php"); ?>
 <?php
     if(!empty($_POST)){
         session_start();
         $userId = $_POST["userId"];
         $isFollowing = $_POST["isFollowing"];
 
-        $conn = new PDO("mysql:host=localhost:8889;dbname=testdb", "root", "root"); //Should work with autoloader
-        //$conn = Database::getConnection();
+        $conn = Database::getConnection();
 
         if ($isFollowing == "true") {
             $query = $conn->prepare("DELETE FROM followers WHERE userId = :user and followingId = :following");

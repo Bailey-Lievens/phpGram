@@ -22,17 +22,6 @@ function like(e){
         .then(response => response.json())
         .then(result => {
             console.log(result);
-            /*if(result != null){
-                if(result["action"] == "Unlike"){
-                    clickedButton.classList.remove("isLiked");
-                    clickedButton.setAttribute("data-liked", "false");
-                    clickedButton.innerHTML = "Like";
-                } else {
-                    clickedButton.classList.add("isLiked");
-                    clickedButton.setAttribute("data-liked", "true");
-                    clickedButton.innerHTML = "Unlike";
-                }
-            }*/
         })
         .catch(error => {
             console.error("Error:", error);
