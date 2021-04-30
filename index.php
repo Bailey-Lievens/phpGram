@@ -3,7 +3,6 @@
 <?php include_once('posting.inc.php');?>
 <?php
     $posts = Post::getPostsFromFollowing($_SESSION['userid']);
-    // SELECT count(*) FROM `likes` WHERE post_id = '187';
 ?>
 
 <!DOCTYPE html>
