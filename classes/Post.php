@@ -174,7 +174,7 @@
             return $posts;
         }
 
-        public static function amountLikes($postId) {
+        public static function getAmountLikes($postId) {
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT count(*) as likes FROM `likes` WHERE post_id = :postId");
             $query->bindValue(":postId", $postId);

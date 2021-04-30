@@ -59,6 +59,7 @@
         </section>
     </form>
 
+    <?php $counter = 0; ?> <!-- counter to know which span we're in -->
     <?php foreach($posts as $post):?>
 
     <section class="post">
@@ -74,18 +75,19 @@
         </div>
         <section>
             <?php if(User::isLiked($_SESSION['userid'] , $post['id'])):?>
-                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="true" data-likes="<?php echo Post::amountLikes($post['id']) ?>">unlike</a>
+                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="true" data-span="<?php echo $counter; ?>" >unlike</a>
             <?php else: ?>
-                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="false" data-likes="<?php echo Post::amountLikes($post['id']) ?>">like</a>
+                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="false" data-span="<?php echo $counter; ?>" >like</a>
             <?php endif; ?>
             <a href="">react</a>
-            <?php if(Post::amountLikes($post['id']) == 1): ?>
-        <p id="amountLikes"><span class="countLikes"><?php echo Post::amountLikes($post['id']) ?></span> like</p>
+            <?php if(Post::getAmountLikes($post['id']) == 1): ?>
+        <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> like</p>
             <?php else: ?>
-        <p id="amountLikes"><span class="countLikes"><?php echo Post::amountLikes($post['id']) ?></span> likes</p>
+        <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> likes</p>
             <?php endif; ?>
         </section>
     </section>
+    <?php $counter++; ?>
     <?php endforeach; ?>
 
     <a href="#" id="loadMore" class="loadMore">load more</a>
