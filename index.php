@@ -82,7 +82,7 @@
     </section>
     <?php endforeach; ?>
 
-    <a href="#" class="loadMore">load more</a>
+    <a href="#" id="loadMore" class="loadMore">load more</a>
     <?php include_once("footer.inc.php")?>
     <script src="js/newPost.js"></script>    
     <script src="js/likes.js"></script>  

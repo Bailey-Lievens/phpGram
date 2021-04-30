@@ -4,6 +4,7 @@
         private $description;
         private $picture;
         private $date;
+        private $click;
 
         public function setUserid($userid){
             $this->userid = $userid;
@@ -39,6 +40,18 @@
         public function getDate(){
             return $this->date;
         }
+
+        public function getClick()
+        {
+             return $this->click;
+        }
+
+        public function setClick($click)
+        {
+             $this->click = $click *20;
+            //HIER NOG MAAL 20 ;
+            return $this;
+  }
 
         public function submitPost(){
             $conn = Database::getConnection();
@@ -160,6 +173,8 @@
             $posts = $query->fetchAll();
             return $posts;
         }
+
+       
         
     }
 ?>

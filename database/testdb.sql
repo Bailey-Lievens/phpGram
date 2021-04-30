@@ -1,22 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 29, 2021 at 12:22 PM
--- Server version: 5.7.24
--- PHP Version: 7.2.14
+-- Generation Time: Apr 30, 2021 at 05:15 AM
+-- Server version: 5.7.32
+-- PHP Version: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `testdb`
@@ -46,7 +38,9 @@ INSERT INTO `followers` (`id`, `userId`, `followingId`) VALUES
 (50, 11, 1),
 (51, 11, 14),
 (52, 11, 23),
-(53, 11, 12);
+(53, 11, 12),
+(54, 27, 23),
+(55, 27, 11);
 
 -- --------------------------------------------------------
 
@@ -100,20 +94,34 @@ INSERT INTO `posts` (`id`, `user_id`, `description`, `picture`, `date`) VALUES
 (174, 11, 'test', 'post_uploads/ellen_post_20210418091635.jpg', '2021-04-18 09:16:35'),
 (175, 6, 'test2', 'post_uploads/ellen_post_20210418091818.jpg', '2021-04-18 09:18:18'),
 (176, 6, 'test2', 'post_uploads/ellen_post_20210418091818.jpg', '2021-04-18 09:18:18'),
-(177, 23, 'Wallflower #foodporn', 'post_uploads/ameliegosiau_post_20210420170323.jpg', '2021-04-20 17:03:23'),
-(178, 23, 'yellow', 'post_uploads/ameliegosiau_post_20210420170414.jpg', '2021-04-20 17:04:14'),
-(179, 23, 'citrus', 'post_uploads/ameliegosiau_post_20210420170443.jpg', '2021-04-20 17:04:43'),
-(180, 23, 'green yellow', 'post_uploads/ameliegosiau_post_20210420170509.jpg', '2021-04-20 17:05:09'),
-(181, 23, 'dancer', 'post_uploads/ameliegosiau_post_20210420170542.jpg', '2021-04-20 17:05:42'),
-(182, 23, 'paint', 'post_uploads/ameliegosiau_post_20210420170744.jpg', '2021-04-20 17:07:44'),
-(183, 23, 'foodie', 'post_uploads/ameliegosiau_post_20210420170803.jpg', '2021-04-20 17:08:03'),
-(184, 23, 'happy', 'post_uploads/ameliegosiau_post_20210420170832.jpg', '2021-04-20 17:08:32'),
-(185, 23, 'sporty', 'post_uploads/ameliegosiau_post_20210420170904.jpg', '2021-04-20 17:09:04'),
-(186, 23, 'diner', 'post_uploads/ameliegosiau_post_20210420170934.jpg', '2021-04-20 17:09:34'),
-(187, 23, 'celebration', 'post_uploads/ameliegosiau_post_20210420171023.jpg', '2021-04-20 17:10:23'),
-(189, 23, 'arts an crafts', 'post_uploads/ameliegosiau_post_20210420171201.jpg', '2021-04-20 17:12:01'),
+(177, 23, 'Wallflower #foodporn', 'post_uploads/23_post_20210420170323.jpg', '2021-04-20 17:03:23'),
+(178, 23, 'yellow', 'post_uploads/23_post_20210420170414.jpg', '2021-04-20 17:04:14'),
+(179, 23, 'citrus', 'post_uploads/23_post_20210420170443.jpg', '2021-04-20 17:04:43'),
+(180, 23, 'green yellow', 'post_uploads/23_post_20210420170509.jpg', '2021-04-20 17:05:09'),
+(181, 23, 'dancer', 'post_uploads/23_post_20210420170542.jpg', '2021-04-20 17:05:42'),
+(182, 23, 'paint', 'post_uploads/23_post_20210420170744.jpg', '2021-04-20 17:07:44'),
+(183, 23, 'foodie', 'post_uploads/23_post_20210420170803.jpg', '2021-04-20 17:08:03'),
+(184, 23, 'happy', 'post_uploads/23_post_20210420170832.jpg', '2021-04-20 17:08:32'),
+(185, 23, 'sport club #photography ', 'post_uploads/23_post_20210420170904.jpg', '2021-04-20 17:09:04'),
+(186, 23, 'diner at 6 o\'clock #photography', 'post_uploads/23_post_20210420170934.jpg', '2021-04-20 17:09:34'),
+(187, 23, 'late night celebration #photography #art #colors #night', 'post_uploads/23_post_20210420171023.jpg', '2021-04-20 17:10:23'),
+(189, 23, 'arts an crafts', 'post_uploads/23_post_20210420171201.jpg', '2021-04-20 17:12:01'),
 (190, 11, 'Went skating with the lads #skate #kickflip', 'post_uploads/11_post_20210424192610.jpg', '2021-04-24 19:26:10'),
-(191, 11, 'This is crazy #crazy #life', 'post_uploads/11_post_20210428094416.jpg', '2021-04-28 09:44:16');
+(191, 11, 'This is crazy #crazy #life', 'post_uploads/11_post_20210428094416.jpg', '2021-04-28 09:44:16'),
+(200, 11, 'abstract flowers #modern #art #blue #yellow #earthtones', 'post_uploads/11_post_20210429190543.jpg', '2021-04-27 19:05:49'),
+(202, 11, 'Hallway #drawing #modern #art #yellow #black #white', 'post_uploads/11_post_20210429190928.jpg', '2021-04-27 19:09:31'),
+(203, 11, 'Girl face \r\n#modern #art #drawing #blue #pink #yellow', 'post_uploads/11_post_20210429191212.jpg', '2021-04-27 19:12:14'),
+(204, 23, 'Waves #blue #painting #black', 'post_uploads/23_post_20210429192712.jpg', '2021-04-27 19:27:14'),
+(205, 23, 'splashes of color #paint #movement', 'post_uploads/23_post_20210429192820.jpg', '2021-04-27 19:28:28'),
+(206, 23, 'rainbow on the wall \r\n#blue #pink #yellow #orange #purple #green #red', 'post_uploads/23_post_20210429192938.jpg', '2021-04-27 19:29:43'),
+(207, 23, 'pink and blue skies #blue #pink #splash', 'post_uploads/23_post_20210429193238.jpg', '2021-04-27 19:32:44'),
+(208, 23, 'brightest pink #splash #pink #bright', 'post_uploads/23_post_20210429193322.jpg', '2021-04-27 19:33:28'),
+(209, 23, 'pink and white swirl #splash #pink #white', 'post_uploads/23_post_20210429193624.jpg', '2021-04-27 19:36:29'),
+(210, 23, 'lava \r\n#painting #splash #red #black', 'post_uploads/23_post_20210429193726.jpg', '2021-04-27 19:37:32'),
+(211, 23, 'lava swirl #black #red ', 'post_uploads/23_post_20210429193806.jpg', '2021-04-27 19:38:13'),
+(212, 23, 'stripes #painting #red #white ', 'post_uploads/23_post_20210429193843.jpg', '2021-04-27 19:38:51'),
+(213, 23, 'decorative wall art #texture #art #wall #floor', 'post_uploads/23_post_20210429194153.jpg', '2021-04-27 19:41:57'),
+(214, 23, 'textures #wall #floor #grey ', 'post_uploads/23_post_20210429194715.jpg', '2021-04-27 19:47:21');
 
 -- --------------------------------------------------------
 
@@ -145,6 +153,23 @@ INSERT INTO `tags` (`id`, `tag_name`) VALUES
 (12, '#kickflip'),
 (13, '#crazy'),
 (14, '#life');
+(15, '#modern');
+(16, '#art');
+(17, '#blue');
+(18, '#photography');
+(19, '#colors');
+(20, '#yellow');
+(21, '#green');
+(22, '#purple');
+(23, '#black');
+(24, '#white');
+(25, '#red');
+(26, '#pink');
+(27, '#orange');
+(28, '#splash');
+(29, '#texture');
+
+
 
 -- --------------------------------------------------------
 
@@ -173,7 +198,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `biography`, `profil
 (13, 'elleeeeeeen2', '$2y$12$lW8p4dLcXGm2rW3HMQIRLeej60lGViKaJjszi1Ar/wfe4HKt/vtwC', 'ellen@gmail.be', NULL, 'user_profilepictures/default.jpg'),
 (14, 'EllenTheVelo', '$2y$12$Dwbw.5MKeUHPQPdpZeA8Muh21Sh1mE6N7dK69V0T3qLv1WfNfDl6G', 'Ellen@gm.com', NULL, 'user_profilepictures/default.jpg'),
 (23, 'ameliegosiau', '$2y$12$3k1CEUngV5m7ZQivtRYwveqyiBK7fNizRRNJFYOEqQ0zI4TYmuHo6', 'amelie.gosiau@hotmail.com', NULL, 'user_profilepictures/Amelie.jpg'),
-(26, 'amelie', '$2y$12$lUc2pFwepVtlG1kmz/C8leUNR9pkS/0YamYLa9ZHMHC33J1XSzRP6', 'amelie.gosiau@hotmail.com2', 'testt', 'user_profilepictures/default.jpg');
+(26, 'amelie', '$2y$12$lUc2pFwepVtlG1kmz/C8leUNR9pkS/0YamYLa9ZHMHC33J1XSzRP6', 'amelie.gosiau@hotmail.com2', 'testt', 'user_profilepictures/default.jpg'),
+(27, 'ameliegosiau1', '$2y$12$ZWmH4Ct3Mg4E//.unYWLrejKNwDEmKlNJVwMZuKIld1c60S80uBFi', 'amelie.gosiau@hotmail.com1', NULL, 'user_profilepictures/default.jpg');
 
 --
 -- Indexes for dumped tables
@@ -217,7 +243,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `likes`
@@ -229,7 +255,7 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 
 --
 -- AUTO_INCREMENT for table `tags`
@@ -241,9 +267,4 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
