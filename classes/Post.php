@@ -4,6 +4,7 @@
         private $description;
         private $picture;
         private $date;
+        private $click;
 
         public function setUserid($userid){
             $this->userid = $userid;
@@ -39,6 +40,18 @@
         public function getDate(){
             return $this->date;
         }
+
+        public function getClick()
+        {
+             return $this->click;
+        }
+
+        public function setClick($click)
+        {
+             $this->click = $click *20;
+            //HIER NOG MAAL 20 ;
+            return $this;
+  }
 
         public function submitPost(){
             $conn = Database::getConnection();
@@ -159,6 +172,15 @@
             $query->execute();
             $posts = $query->fetchAll();
             return $posts;
+        }
+
+        public static function amountLikes($postId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT count(*) as likes FROM `likes` WHERE post_id = :postId");
+            $query->bindValue(":postId", $postId);
+            $query->execute();
+            $likes = $query->fetch();
+            return $likes["likes"];
         }
         
     }

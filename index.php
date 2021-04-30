@@ -3,6 +3,7 @@
 <?php include_once('posting.inc.php');?>
 <?php
     $posts = Post::getPostsFromFollowing($_SESSION['userid']);
+    // SELECT count(*) FROM `likes` WHERE post_id = '187';
 ?>
 
 <!DOCTYPE html>
@@ -73,16 +74,21 @@
         </div>
         <section>
             <?php if(User::isLiked($_SESSION['userid'] , $post['id'])):?>
-                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="true">unlike</a>
+                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="true" data-likes="<?php echo Post::amountLikes($post['id']) ?>">unlike</a>
             <?php else: ?>
-                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="false">like</a>
+                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="false" data-likes="<?php echo Post::amountLikes($post['id']) ?>">like</a>
             <?php endif; ?>
             <a href="">react</a>
+            <?php if(Post::amountLikes($post['id']) == 1): ?>
+        <p id="amountLikes"><span class="countLikes"><?php echo Post::amountLikes($post['id']) ?></span> like</p>
+            <?php else: ?>
+        <p id="amountLikes"><span class="countLikes"><?php echo Post::amountLikes($post['id']) ?></span> likes</p>
+            <?php endif; ?>
         </section>
     </section>
     <?php endforeach; ?>
 
-    <a href="#" class="loadMore">load more</a>
+    <a href="#" id="loadMore" class="loadMore">load more</a>
     <?php include_once("footer.inc.php")?>
     <script src="js/newPost.js"></script>    
     <script src="js/likes.js"></script>  

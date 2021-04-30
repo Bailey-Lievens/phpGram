@@ -198,3 +198,13 @@ body {
     color: #BA2EAA;
 }
 
+#amountLikes {
+    transform: rotate(-90deg);
+    transform-origin: left;
+    font-size: 4em;
+    margin-left: 0.7em;
+    margin-top: 0.5em;
+    text-align: right;
+}
+
+

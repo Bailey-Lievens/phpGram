@@ -128,8 +128,12 @@ if(!empty($_POST)){
             </div>
         <?php endif;?>
         <div>
-            <label for="password">New password</label>
+            <label for="password">Old password</label>
             <input type="password" id="email" name="password">
+        </div>
+        <div>
+            <label for="password">New password</label>
+            <input type="newpassword" id="email" name="newpassword" >
         </div>
 
         <div class="submitBtn">
