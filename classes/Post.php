@@ -174,7 +174,14 @@
             return $posts;
         }
 
-       
+        public static function amountLikes($postId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT count(*) as likes FROM `likes` WHERE post_id = :postId");
+            $query->bindValue(":postId", $postId);
+            $query->execute();
+            $likes = $query->fetch();
+            return $likes["likes"];
+        }
         
     }
 ?>
