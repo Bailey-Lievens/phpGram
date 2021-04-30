@@ -10,7 +10,7 @@
             $fileName = $userId."_post_".date("YmdHis").".jpg";
             $fileTmpName  = $_FILES['inputPicturePost']['tmp_name'];
 
-            $fileSaveQuality = 80; 
+            $fileSaveQuality = 60; 
 
             $uploadPath = $currentDirectory . $uploadDirectory . $fileName; 
 
