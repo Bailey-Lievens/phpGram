@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <link rel="icon" href="images/favico.ico">
 
+    <link rel="stylesheet" href="css/instacss.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
     </style> 
@@ -46,8 +48,15 @@
                 <div>
                     <div id="imageEditWrapper">
                         <label id="inputLabel" for="inputPicturePost">
-                            <img id="imagePreview" for="inputPicturePost" src="images/upload.png" alt="uploadImage">
+                            <figure id="imageWrapper">
+                                <img id="imagePreview" for="inputPicturePost" src="images/upload.png" alt="uploadImage">
+                            </figure>                        
                         </label>
+                        <div id="filterWrapper" style="display: none;">
+                            <img class="cycle cycleLeft" src="images/cycleLeft.png" alt="cycleLeftButton">
+                            <p id="filterName">No filter selected</p>
+                            <img class="cycle cycleRight" src="images/cycleRight.png" alt="cycleRightButton">
+                        </div>
                     </div>
                     <input type="file" name="inputPicturePost" id="inputPicturePost" accept="image/png, image/jpeg"/>
                 </div>
