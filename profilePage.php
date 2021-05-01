@@ -17,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo($user_info["username"]); ?></title>
+    <title><?php echo($username); ?></title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/profilePage.css">
     <link rel="icon" href="images/favico.ico">

@@ -43,7 +43,7 @@
         </section>
     <?php endif;?>
 
-    <form action="#" method="POST" enctype="multipart/form-data">
+    <form action="#" method="POST" enctype="multipart/form-data" onsubmit="bakeFilter()">
         <section id="newPost">
                 <div>
                     <div id="imageEditWrapper">
@@ -65,6 +65,8 @@
                     <label for="description">Description</label>
                     <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"></textarea>
                 </div>
+
+                <input type="hidden" id="bakedImgSrc" name="bakedImgSrc"></input>
 
                 <button type="submit" name="submit" class="submitNewPost">post</button>
                     
