@@ -75,8 +75,6 @@ if(!empty($_POST)){
             <img id="profilePicturePreview" src=<?php echo $picture ?> alt="profilePicture">
             
             <label id="inputLabel" for="inputImageFile">Change profile picture</label>
-            
-            
         </div>
         <input type="file" name="profileImage" id="inputImageFile" accept="image/png, image/jpeg"/>
     </div>

@@ -44,12 +44,17 @@
     <form action="#" method="POST" enctype="multipart/form-data">
         <section id="newPost">
                 <div>
-                    <label for="description">Description</label>
-                    <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"></textarea>
+                    <div id="imageEditWrapper">
+                        <label id="inputLabel" for="inputPicturePost">
+                            <img id="imagePreview" for="inputPicturePost" src="images/upload.png" alt="uploadImage">
+                        </label>
+                    </div>
+                    <input type="file" name="inputPicturePost" id="inputPicturePost" accept="image/png, image/jpeg"/>
                 </div>
 
                 <div>
-                    <input type="file" name="inputPicturePost" id="inputPicturePost" accept="image/png, image/jpeg"/>
+                    <label for="description">Description</label>
+                    <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"></textarea>
                 </div>
 
                 <button type="submit" name="submit" class="submitNewPost">post</button>
@@ -93,6 +98,7 @@
     <?php include_once("footer.inc.php")?>
     <script src="js/newPost.js"></script>    
     <script src="js/likes.js"></script>  
+    <script src="js/postPreview.js"></script>
 </body>
 </html>
     
