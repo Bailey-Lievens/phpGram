@@ -166,9 +166,6 @@ body {
     margin-right: 5em;
 }
 
-.post section a:nth-child(1) {
-    margin-left: 5em;
-}
 
 .post section a:nth-child(2) {
     background-color: #8729FE;
@@ -176,13 +173,16 @@ body {
     border: 2px solid #8729FE;  
     border-radius: 10px;  
     margin-left: 3px;
+    font-size: 1em;
 }
 
 .post section a {
+    font-weight: bold;
+    font-size: 1.25em;
     text-decoration: none;
     color: white;
     background-color: none;
-    margin-left: 1em;
+    margin-left: 4em;
 }
 
 .post section .unlike {
@@ -223,14 +223,21 @@ body {
     margin-right: 0.5em;
 }
 
+.listComments ul li:first-child {
+    font-weight: bold;
+}
+
 .listComments ul li:nth-child(2) {
     float: right;
     margin-right: 5em;
+    font-size: 0.9em;
 }
 
 .listComments ul li:last-child {
     margin-top: 10px;
     margin-right: 5em;
+    font-size: 0.8em;
+    display: grid;
 }
 
 .loadMore {

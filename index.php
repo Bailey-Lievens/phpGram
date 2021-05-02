@@ -60,6 +60,7 @@
 
     <?php $counter = 0; ?> <!-- counter to know which span we're in -->
     <?php foreach($posts as $post):?>
+    
 
     <section class="post">
         <header>
@@ -85,31 +86,37 @@
             <?php endif; ?>
             <div class="comment">
                 <input type="text" placeholder="Add a comment">
-                <a href="" class="reactBtn">comment</a>
+                <a href="" class="commentBtn" data-postid="<?php echo $post['id'] ?>" >comment</a>
             </div>
+            
             <ul class="listComments">
-                <ul>
-                    <li>username</li>
-                    <li>2 min ago</li>
-                    <br>
-                    <li>extreme long comment blablajbfb ueiebjnzef hurbzjd aedbeu zjdnoe hubzjd ubifzndvbzhfjne bncdbhbjb</li>
-                </ul>
-                <ul>
-                    <li>username</li>
-                    <li>2 min ago</li>
-                    <br>
-                    <li>comment</li>
-                </ul>
+                <?php $comments = Post::getComments($post['id'])?>
+                <?php if(!empty($comments)): ?>
+                <?php foreach ($comments as $comment): ?>
+                    <ul>
+                        <li><?php echo User::getUsernameById($comment['user_id']); ?></li>
+                        <li><?php echo Post::timeSincePost($comment['date']); ?></li>
+                        <li><?php echo $comment['comment']; ?></li>
+                    </ul>
+                <?php endforeach; ?>
+                <?php else: ?>
+                    <ul>
+                        <li>No comments yet</li> 
+                    </ul>                   
+                <?php endif; ?>
             </ul>
+            
         </section>
     </section>
     <?php $counter++; ?>
     <?php endforeach; ?>
 
+
     <a href="#" id="loadMore" class="loadMore">load more</a>
     <?php include_once("footer.inc.php")?>
     <script src="js/newPost.js"></script>    
     <script src="js/likes.js"></script>  
+    <script src="js/comment.js"></script>  
 </body>
 </html>
     

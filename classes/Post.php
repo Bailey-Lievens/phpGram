@@ -183,5 +183,13 @@
             return $likes["likes"];
         }
         
+        public static function getComments($postId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT * FROM `comments` WHERE post_id = :postId");
+            $query->bindValue(":postId", $postId);
+            $query->execute();
+            $comments = $query->fetchAll();
+            return $comments;
+        }
     }
 ?>
