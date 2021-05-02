@@ -1,3 +1,4 @@
+<?php include_once('isloggedin.inc.php');?>
 <link rel="stylesheet" type="text/css" href="css/navigation.css"/>
 <header>
     <div id="logoSearchWrapper">

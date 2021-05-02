@@ -1,3 +1,4 @@
+<?php include_once('isloggedin.inc.php');?>
 <?php
     $userId = User::getUserIdByName($_SESSION['username']);
 
