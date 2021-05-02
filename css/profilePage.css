@@ -123,6 +123,20 @@ body {
     height: 25%;
 }
 
+.deletePost {
+    fill: white;
+    border-radius: 20%;
+    height: 1.5em;
+    width: 1.5em;
+    margin-left: -3em;
+    margin-right: 1.5em;
+    margin-top: 1.5em;
+}
+
+.deletePost:hover {
+    fill: red;
+}
+
 #followersTab ul{
     list-style-type: none;
 }
