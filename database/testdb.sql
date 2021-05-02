@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 30, 2021 at 07:53 AM
+-- Generation Time: May 02, 2021 at 11:34 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `testdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `comment` varchar(150) COLLATE utf8mb4_bin NOT NULL,
+  `date` datetime NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `post_id`, `comment`, `date`, `user_id`) VALUES
+(1, 214, 'wow cool picture!', '2021-05-02 14:42:28', 1),
+(2, 213, 'wow another cool picture!', '2021-05-01 15:00:01', 26);
 
 -- --------------------------------------------------------
 
@@ -71,7 +93,10 @@ INSERT INTO `likes` (`id`, `post_id`, `liked_by_user_id`) VALUES
 (9, 185, 11),
 (10, 184, 11),
 (11, 183, 11),
-(13, 189, 11);
+(13, 189, 11),
+(14, 211, 11),
+(61, 212, 11),
+(92, 214, 11);
 
 -- --------------------------------------------------------
 
@@ -215,6 +240,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `biography`, `profil
 --
 
 --
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `followers`
 --
 ALTER TABLE `followers`
@@ -249,6 +280,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
@@ -258,7 +295,7 @@ ALTER TABLE `followers`
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `posts`

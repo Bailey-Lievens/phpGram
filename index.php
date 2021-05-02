@@ -74,16 +74,33 @@
         </div>
         <section>
             <?php if(User::isLiked($_SESSION['userid'] , $post['id'])):?>
-                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="true" data-span="<?php echo $counter; ?>" >unlike</a>
+                <a href="" class="btnAddLike unlike" data-postid="<?php echo $post['id'] ?>" data-liked="true" data-span="<?php echo $counter; ?>" >unlike</a>
             <?php else: ?>
-                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="false" data-span="<?php echo $counter; ?>" >like</a>
+                <a href="" class="btnAddLike like" data-postid="<?php echo $post['id'] ?>" data-liked="false" data-span="<?php echo $counter; ?>" >like</a>
             <?php endif; ?>
-            <a href="">react</a>
             <?php if(Post::getAmountLikes($post['id']) == 1): ?>
         <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> like</p>
             <?php else: ?>
         <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> likes</p>
             <?php endif; ?>
+            <div class="comment">
+                <input type="text" placeholder="Add a comment">
+                <a href="" class="reactBtn">comment</a>
+            </div>
+            <ul class="listComments">
+                <ul>
+                    <li>username</li>
+                    <li>2 min ago</li>
+                    <br>
+                    <li>extreme long comment blablajbfb ueiebjnzef hurbzjd aedbeu zjdnoe hubzjd ubifzndvbzhfjne bncdbhbjb</li>
+                </ul>
+                <ul>
+                    <li>username</li>
+                    <li>2 min ago</li>
+                    <br>
+                    <li>comment</li>
+                </ul>
+            </ul>
         </section>
     </section>
     <?php $counter++; ?>
