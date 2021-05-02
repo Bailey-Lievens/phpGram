@@ -4,8 +4,8 @@
 
     if(!empty($_POST)){
         session_start();
-        $postId = $_POST["postId"]; // post_id
-        $commentText = $_POST["commentText"]; // text comment
+        $postId = htmlspecialchars($_POST["postId"]); // post_id
+        $commentText = htmlspecialchars($_POST["commentText"]); // text comment
 
         $conn = Database::getConnection();
 
