@@ -64,7 +64,7 @@
             <a class="tabName active" onclick="openTab(event, 'postsTab')">Posts</a>
             <a class="tabName" onclick="openTab(event, 'followersTab')">Followers</a>
             <a class="tabName" onclick="openTab(event, 'followingTab')">Following</a>
-            <?php if($_SESSION["username"] === $_GET["user"]): ?>
+            <?php if($_SESSION["username"] === $_GET["user"] && User::isPrivate($userId)): ?>
                 <a class="tabName" onclick="openTab(event, 'requestsTab')">Requests</a>
             <?php endif; ?>   
         </div>
@@ -123,7 +123,7 @@
             </ul>
         </div>
 
-        <?php if($_SESSION["username"] === $_GET["user"]): ?>
+        <?php if($_SESSION["username"] === $_GET["user"] && User::isPrivate($userId)): ?>
         <div id="requestsTab" class="tab" style="display:none">
             <ul>
                 <?php foreach($requests as $request): ?>
