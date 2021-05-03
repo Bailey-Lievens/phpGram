@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 03, 2021 at 12:57 PM
+-- Generation Time: May 03, 2021 at 01:32 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -56,7 +56,8 @@ INSERT INTO `comments` (`id`, `post_id`, `comment`, `date`, `user_id`) VALUES
 (100, 213, 'test again', '2021-05-02 18:14:41', 11),
 (101, 213, 'last test', '2021-05-02 18:14:47', 11),
 (102, 213, 'sixth comment', '2021-05-02 18:14:56', 11),
-(103, 212, 'test', '2021-05-03 12:03:49', 11);
+(103, 212, 'test', '2021-05-03 12:03:49', 11),
+(104, 214, 'Very dark ;-;', '2021-05-03 13:31:09', 11);
 
 -- --------------------------------------------------------
 
@@ -170,8 +171,7 @@ INSERT INTO `posts` (`id`, `user_id`, `description`, `filter`, `picture`, `date`
 (219, 11, 'Kawaii girl by meee #kawaii', NULL, 'post_uploads/11_post_20210501112456.jpg', '2021-05-01 11:24:57'),
 (226, 11, 'Yooooo als dit werkt tho #amongus #filters', NULL, 'post_uploads/11_post_20210501160935.jpg', '2021-05-01 16:09:35'),
 (233, 11, 'earlybird', 'earlybird', 'post_uploads/11_post_20210503113833.jpg', '2021-05-03 11:38:33'),
-(234, 11, 'Ellen is sus', 'lofi', 'post_uploads/11_post_20210503122433.jpg', '2021-05-03 12:24:33'),
-(235, 11, 'test #foodporn', 'inkwell', 'post_uploads/11_post_20210503124858.jpg', '2021-05-03 12:48:58');
+(234, 11, 'Ellen is sus', 'lofi', 'post_uploads/11_post_20210503122433.jpg', '2021-05-03 12:24:33');
 
 -- --------------------------------------------------------
 
@@ -304,7 +304,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `followers`
@@ -316,7 +316,7 @@ ALTER TABLE `followers`
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `posts`

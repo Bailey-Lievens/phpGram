@@ -169,7 +169,7 @@
         //Returns all posts posted by the given userId
         public static function getPostsById($userId, $amount = 20){
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT picture, filter FROM posts WHERE user_id = :userId ORDER BY posts.date DESC LIMIT ".$amount."");
+            $query = $conn->prepare("SELECT picture, filter, id FROM posts WHERE user_id = :userId ORDER BY posts.date DESC LIMIT ".$amount."");
             $query->bindValue(":userId", $userId);
             $query->execute();
             $posts = $query->fetchAll();
@@ -195,5 +195,13 @@
             return $likes["likes"];
         }
         
+        public static function getComments($postId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT * FROM `comments` WHERE post_id = :postId ORDER BY date DESC LIMIT 3");
+            $query->bindValue(":postId", $postId);
+            $query->execute();
+            $comments = $query->fetchAll();
+            return $comments;
+        }
     }
 ?>

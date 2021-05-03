@@ -1,3 +1,4 @@
+<?php include_once('isloggedin.inc.php');?>
 <?php
     $userId = $_SESSION['userid'];
 

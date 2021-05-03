@@ -75,6 +75,7 @@
 
     <?php $counter = 0; ?> <!-- counter to know which span we're in -->
     <?php foreach($posts as $post):?>
+    
 
     <section class="post">
         <header>
@@ -97,26 +98,49 @@
         </div>
         <section>
             <?php if(User::isLiked($_SESSION['userid'] , $post['id'])):?>
-                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="true" data-span="<?php echo $counter; ?>" >unlike</a>
+                <a href="" class="btnAddLike unlike" data-postid="<?php echo $post['id'] ?>" data-liked="true" data-span="<?php echo $counter; ?>" >unlike</a>
             <?php else: ?>
-                <a href="" class="btnAddLike" data-postid="<?php echo $post['id'] ?>" data-liked="false" data-span="<?php echo $counter; ?>" >like</a>
+                <a href="" class="btnAddLike like" data-postid="<?php echo $post['id'] ?>" data-liked="false" data-span="<?php echo $counter; ?>" >like</a>
             <?php endif; ?>
-            <a href="">react</a>
             <?php if(Post::getAmountLikes($post['id']) == 1): ?>
         <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> like</p>
             <?php else: ?>
         <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> likes</p>
             <?php endif; ?>
+            <div class="comment">
+                <input type="text" placeholder="Add a comment">
+                <a href="" class="commentBtn" data-postid="<?php echo $post['id'] ?>" >comment</a>
+            </div>
+            
+            <ul class="listComments">
+                <?php $comments = Post::getComments($post['id'])?>
+                <?php if(!empty($comments)): ?>
+                <?php foreach ($comments as $comment): ?>
+                    <ul>
+                        <li><?php echo User::getUsernameById($comment['user_id']); ?></li>
+                        <li><?php echo Post::timeSincePost($comment['date']); ?></li>
+                        <li><?php echo $comment['comment']; ?></li>
+                    </ul>
+                <?php endforeach; ?>
+                <?php else: ?>
+                    <ul>
+                        <li>No comments yet</li> 
+                    </ul>                   
+                <?php endif; ?>
+            </ul>
+            
         </section>
     </section>
     <?php $counter++; ?>
     <?php endforeach; ?>
+
 
     <a href="#" id="loadMore" class="loadMore">load more</a>
     <?php include_once("footer.inc.php")?>
     <script src="js/newPost.js"></script>    
     <script src="js/likes.js"></script>  
     <script src="js/postPreview.js"></script>
+    <script src="js/comment.js"></script>  
 </body>
 </html>
     

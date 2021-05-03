@@ -2,6 +2,7 @@ var likeButtons = document.getElementsByClassName("btnAddLike");
 var buttonLength = likeButtons.length;
 var amountLike = document.getElementsByClassName("countLikes");
 var likeLength = amountLike.length;
+var clickedPost;
 var clickedButton;
 
 function like(e){
@@ -25,9 +26,11 @@ function like(e){
                 if(result["action"] == "Unlike"){
                     clickedButton.setAttribute("data-liked", "false");
                     clickedButton.innerHTML = "like";
+                    clickedButton.style.color = "green";
                 } else {
                     clickedButton.setAttribute("data-liked", "true");
                     clickedButton.innerHTML = "unlike";
+                    clickedButton.style.color = "red";
                 }
                 currentSpan.innerHTML = result["likes"];
             }
