@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 03, 2021 at 01:32 PM
+-- Generation Time: May 03, 2021 at 04:33 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -57,7 +57,9 @@ INSERT INTO `comments` (`id`, `post_id`, `comment`, `date`, `user_id`) VALUES
 (101, 213, 'last test', '2021-05-02 18:14:47', 11),
 (102, 213, 'sixth comment', '2021-05-02 18:14:56', 11),
 (103, 212, 'test', '2021-05-03 12:03:49', 11),
-(104, 214, 'Very dark ;-;', '2021-05-03 13:31:09', 11);
+(104, 214, 'Very dark ;-;', '2021-05-03 13:31:09', 11),
+(105, 213, 'comment', '2021-05-03 16:17:33', 11),
+(106, 23, 'test', '2021-05-03 16:22:01', 11);
 
 -- --------------------------------------------------------
 
@@ -80,12 +82,12 @@ INSERT INTO `followers` (`id`, `userId`, `followingId`) VALUES
 (4, 23, 11),
 (6, 500, 500),
 (7, 69, 80),
-(50, 11, 1),
 (51, 11, 14),
 (52, 11, 23),
 (53, 11, 12),
 (54, 27, 23),
-(55, 27, 11);
+(55, 27, 11),
+(63, 12, 11);
 
 -- --------------------------------------------------------
 
@@ -108,7 +110,8 @@ INSERT INTO `likes` (`id`, `post_id`, `liked_by_user_id`) VALUES
 (9, 185, 11),
 (10, 184, 11),
 (11, 183, 11),
-(13, 189, 11);
+(13, 189, 11),
+(17, 177, 11);
 
 -- --------------------------------------------------------
 
@@ -168,10 +171,27 @@ INSERT INTO `posts` (`id`, `user_id`, `description`, `filter`, `picture`, `date`
 (215, 11, 'test \'DROP DATABASE testdb\'', NULL, 'post_uploads/11_post_20210430075135.jpg', '2021-04-30 07:51:35'),
 (216, 11, 'd \'DROP DATABASE;\'', NULL, 'post_uploads/11_post_20210430075227.jpg', '2021-04-30 07:52:27'),
 (217, 11, 'test \'DROP DATABASE testdb;\'', NULL, 'post_uploads/11_post_20210430075255.jpg', '2021-04-30 07:52:55'),
-(219, 11, 'Kawaii girl by meee #kawaii', NULL, 'post_uploads/11_post_20210501112456.jpg', '2021-05-01 11:24:57'),
-(226, 11, 'Yooooo als dit werkt tho #amongus #filters', NULL, 'post_uploads/11_post_20210501160935.jpg', '2021-05-01 16:09:35'),
-(233, 11, 'earlybird', 'earlybird', 'post_uploads/11_post_20210503113833.jpg', '2021-05-03 11:38:33'),
-(234, 11, 'Ellen is sus', 'lofi', 'post_uploads/11_post_20210503122433.jpg', '2021-05-03 12:24:33');
+(233, 11, 'earlybird', 'earlybird', 'post_uploads/11_post_20210503113833.jpg', '2021-05-03 11:38:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requests`
+--
+
+CREATE TABLE `requests` (
+  `id` int(11) NOT NULL,
+  `requester_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`id`, `requester_id`, `receiver_id`) VALUES
+(14, 1, 11),
+(15, 12, 11);
 
 -- --------------------------------------------------------
 
@@ -247,7 +267,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `biography`, `profile_picture`) VALUES
 (1, 'Bailey', 'Lievens', 'Email', 'Lowkey kinda sus', 'user_profilepictures/Bailey.jpg'),
 (6, 'Bailey2', 'password', 'b@lievens.be', 'test bio Bailey', 'user_profilepictures/default.jpg'),
-(11, 'ellen', '$2y$12$ZgHR/QaqzcruCktLjzhaB.cfSeLKSEiHjNLkM1rlOf63itxWq2YDi', 'ellen@ellen.ellen', 'test bio ellenaasdfsdf', 'user_profilepictures/Ellen.jpg'),
+(11, 'ellen', '$2y$12$ZgHR/QaqzcruCktLjzhaB.cfSeLKSEiHjNLkM1rlOf63itxWq2YDi', 'ellen@ellen.ellen', 'test bio ellen', 'user_profilepictures/Ellen.jpg'),
 (12, 'test', '$2y$12$p5l.riMYDIRDZdQZYpZnf.tA6Bl338YdLPHxpw.5.lPCt3C2v25bG', 'test@test.be', 'test bio test', 'user_profilepictures/default.jpg'),
 (13, 'elleeeeeeen2', '$2y$12$lW8p4dLcXGm2rW3HMQIRLeej60lGViKaJjszi1Ar/wfe4HKt/vtwC', 'ellen@gmail.be', NULL, 'user_profilepictures/default.jpg'),
 (14, 'EllenTheVelo', '$2y$12$Dwbw.5MKeUHPQPdpZeA8Muh21Sh1mE6N7dK69V0T3qLv1WfNfDl6G', 'Ellen@gm.com', NULL, 'user_profilepictures/default.jpg'),
@@ -285,6 +305,12 @@ ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tags`
 --
 ALTER TABLE `tags`
@@ -304,25 +330,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=236;
+
+--
+-- AUTO_INCREMENT for table `requests`
+--
+ALTER TABLE `requests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tags`
