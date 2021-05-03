@@ -181,7 +181,7 @@ body {
     font-size: 1.2em;
 }
 
-.followButton{
+.followButton , .requestButton{
     text-decoration: none;
     color: black;
 
@@ -193,7 +193,7 @@ body {
     transition: 0.2s;
 }
 
-.followButton:hover{
+.followButton:hover , .requestButton:hover {
     background-color: rgb(255, 255, 255);
     box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.39);
 }
@@ -226,12 +226,12 @@ body {
 }
 
 /*Add this for following buttons*/
-.isFollowing{
+.isFollowing, .isRequested{
     background-color: rgba(255, 255, 255, 0.13);
     border: solid white 2px;
 }
 
-.isFollowing:hover{
+.isFollowing:hover , .isRequested:hover{
     background-color: rgba(248, 0, 0, 0.644);
 }
 

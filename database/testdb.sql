@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 03, 2021 at 04:39 PM
+-- Generation Time: May 03, 2021 at 06:45 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -82,12 +82,11 @@ INSERT INTO `followers` (`id`, `userId`, `followingId`) VALUES
 (4, 23, 11),
 (6, 500, 500),
 (7, 69, 80),
-(51, 11, 14),
 (52, 11, 23),
-(53, 11, 12),
 (54, 27, 23),
 (55, 27, 11),
-(63, 12, 11);
+(63, 12, 11),
+(72, 29, 11);
 
 -- --------------------------------------------------------
 
@@ -191,7 +190,8 @@ CREATE TABLE `requests` (
 
 INSERT INTO `requests` (`id`, `requester_id`, `receiver_id`) VALUES
 (14, 1, 11),
-(15, 12, 11);
+(15, 12, 11),
+(16, 11, 6);
 
 -- --------------------------------------------------------
 
@@ -275,7 +275,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `biography`, `profil
 (23, 'ameliegosiau', '$2y$12$3k1CEUngV5m7ZQivtRYwveqyiBK7fNizRRNJFYOEqQ0zI4TYmuHo6', 'amelie.gosiau@hotmail.com', NULL, 'user_profilepictures/Amelie.jpg', 0),
 (26, 'amelie', '$2y$12$lUc2pFwepVtlG1kmz/C8leUNR9pkS/0YamYLa9ZHMHC33J1XSzRP6', 'amelie.gosiau@hotmail.com2', 'testt', 'user_profilepictures/default.jpg', 0),
 (27, 'ameliegosiau1', '$2y$12$ZWmH4Ct3Mg4E//.unYWLrejKNwDEmKlNJVwMZuKIld1c60S80uBFi', 'amelie.gosiau@hotmail.com1', NULL, 'user_profilepictures/default.jpg', 0),
-(28, 'kmfnskmjd', '$2y$12$.De6TkYIK/AZcnMSFh4vHe0DJ6yw1ieUda0k.9UtbG1C6Qpha3Weq', 'sdfsdf@.ksdf', NULL, 'user_profilepictures/default.jpg', 0);
+(28, 'kmfnskmjd', '$2y$12$.De6TkYIK/AZcnMSFh4vHe0DJ6yw1ieUda0k.9UtbG1C6Qpha3Weq', 'sdfsdf@.ksdf', NULL, 'user_profilepictures/default.jpg', 0),
+(29, 'wachtwoordisellen', '$2y$12$ZgHR/QaqzcruCktLjzhaB.cfSeLKSEiHjNLkM1rlOf63itxWq2YDi', 'ellen@ellen.be', 'test bio ellen 2', 'user_profilepictures/Ellen.jpg', 1);
 
 --
 -- Indexes for dumped tables
@@ -337,7 +338,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `likes`
@@ -355,7 +356,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tags`
@@ -367,7 +368,7 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
