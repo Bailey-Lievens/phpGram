@@ -109,7 +109,7 @@ body {
     flex-wrap: wrap;
 }
 
-#postsTab #postImg {
+#postsTab .postImg {
     display: block;
     height: 10em;
     width: 2em;
@@ -121,20 +121,27 @@ body {
     width: 100px;
     margin: 10px;
     height: 25%;
+    z-index: -1;
 }
 
-.deletePost {
-    fill: white;
-    border-radius: 20%;
-    height: 1.5em;
-    width: 1.5em;
+#postsTab .deletePost img {
+    width: 2em;
     margin-left: -3em;
-    margin-right: 1.5em;
-    margin-top: 1.5em;
+    height: 3em;
+    z-index: 9;
 }
 
-.deletePost:hover {
-    fill: red;
+#postsTab .deletePost img:hover {
+    transform: scale(1.2);
+}
+
+#postsTab .deletePost {
+    width: 0;
+    height: 0;
+}
+
+#postsTab .hideImg {
+    display: none;
 }
 
 #followersTab ul{

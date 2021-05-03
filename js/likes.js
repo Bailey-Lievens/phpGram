@@ -2,6 +2,7 @@ var likeButtons = document.getElementsByClassName("btnAddLike");
 var buttonLength = likeButtons.length;
 var amountLike = document.getElementsByClassName("countLikes");
 var likeLength = amountLike.length;
+var clickedPost;
 var clickedButton;
 
 function like(e){

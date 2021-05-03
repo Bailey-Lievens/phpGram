@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 02, 2021 at 11:34 AM
+-- Generation Time: May 03, 2021 at 09:52 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -42,7 +42,20 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`id`, `post_id`, `comment`, `date`, `user_id`) VALUES
 (1, 214, 'wow cool picture!', '2021-05-02 14:42:28', 1),
-(2, 213, 'wow another cool picture!', '2021-05-01 15:00:01', 26);
+(2, 213, 'wow another cool picture!', '2021-05-01 15:00:01', 26),
+(3, 214, 'wow super cool picture!', '2021-05-02 14:42:28', 11),
+(4, 212, 'this is another comment', '2021-05-02 12:06:10', 11),
+(92, 213, 'cool!', '2021-05-02 17:16:34', 11),
+(93, 211, 'nice!', '2021-05-02 17:17:32', 11),
+(94, 212, 'cool!', '2021-05-02 17:17:42', 11),
+(95, 212, 'cool!', '2021-05-02 17:19:32', 11),
+(96, 210, 'super cool!', '2021-05-02 17:19:58', 11),
+(97, 214, 'wow', '2021-05-02 18:02:07', 11),
+(98, 214, 'cool', '2021-05-02 18:03:18', 11),
+(99, 213, 'test', '2021-05-02 18:14:37', 11),
+(100, 213, 'test again', '2021-05-02 18:14:41', 11),
+(101, 213, 'last test', '2021-05-02 18:14:47', 11),
+(102, 213, 'sixth comment', '2021-05-02 18:14:56', 11);
 
 -- --------------------------------------------------------
 
@@ -96,7 +109,8 @@ INSERT INTO `likes` (`id`, `post_id`, `liked_by_user_id`) VALUES
 (13, 189, 11),
 (14, 211, 11),
 (61, 212, 11),
-(92, 214, 11);
+(102, 213, 11),
+(103, 214, 11);
 
 -- --------------------------------------------------------
 
@@ -117,16 +131,6 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `description`, `picture`, `date`) VALUES
-(166, 11, 'test #foodporn', 'post_uploads/ellen_post_20210418091635.jpg', '2021-04-18 09:16:35'),
-(167, 1, 'test1', 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03'),
-(168, 6, 'test2', 'post_uploads/ellen_post_20210418091818.jpg', '2021-04-18 09:18:18'),
-(169, 1, 'test1', 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03'),
-(170, 1, 'test1', 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03'),
-(171, 11, 'test', 'post_uploads/ellen_post_20210418091635.jpg', '2021-04-18 09:16:35'),
-(172, 1, 'test1', 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03'),
-(174, 11, 'test', 'post_uploads/ellen_post_20210418091635.jpg', '2021-04-18 09:16:35'),
-(175, 6, 'test2', 'post_uploads/ellen_post_20210418091818.jpg', '2021-04-18 09:18:18'),
-(176, 6, 'test2', 'post_uploads/ellen_post_20210418091818.jpg', '2021-04-18 09:18:18'),
 (177, 23, 'Wallflower #foodporn', 'post_uploads/23_post_20210420170323.jpg', '2021-04-20 17:03:23'),
 (178, 23, 'yellow', 'post_uploads/23_post_20210420170414.jpg', '2021-04-20 17:04:14'),
 (179, 23, 'citrus', 'post_uploads/23_post_20210420170443.jpg', '2021-04-20 17:04:43'),
@@ -139,11 +143,6 @@ INSERT INTO `posts` (`id`, `user_id`, `description`, `picture`, `date`) VALUES
 (186, 23, 'diner at 6 o\'clock #photography', 'post_uploads/23_post_20210420170934.jpg', '2021-04-20 17:09:34'),
 (187, 23, 'late night celebration #photography #art #colors #night', 'post_uploads/23_post_20210420171023.jpg', '2021-04-20 17:10:23'),
 (189, 23, 'arts an crafts', 'post_uploads/23_post_20210420171201.jpg', '2021-04-20 17:12:01'),
-(190, 11, 'Went skating with the lads #skate #kickflip', 'post_uploads/11_post_20210424192610.jpg', '2021-04-24 19:26:10'),
-(191, 11, 'This is crazy #crazy #life', 'post_uploads/11_post_20210428094416.jpg', '2021-04-28 09:44:16'),
-(200, 11, 'abstract flowers #modern #art #blue #yellow #earthtones', 'post_uploads/11_post_20210429190543.jpg', '2021-04-27 19:05:49'),
-(202, 11, 'Hallway #drawing #modern #art #yellow #black #white', 'post_uploads/11_post_20210429190928.jpg', '2021-04-27 19:09:31'),
-(203, 11, 'Girl face \r\n#modern #art #drawing #blue #pink #yellow', 'post_uploads/11_post_20210429191212.jpg', '2021-04-27 19:12:14'),
 (204, 23, 'Waves #blue #painting #black', 'post_uploads/23_post_20210429192712.jpg', '2021-04-27 19:27:14'),
 (205, 23, 'splashes of color #paint #movement', 'post_uploads/23_post_20210429192820.jpg', '2021-04-27 19:28:28'),
 (206, 23, 'rainbow on the wall \r\n#blue #pink #yellow #orange #purple #green #red', 'post_uploads/23_post_20210429192938.jpg', '2021-04-27 19:29:43'),
@@ -155,9 +154,8 @@ INSERT INTO `posts` (`id`, `user_id`, `description`, `picture`, `date`) VALUES
 (212, 23, 'stripes #painting #red #white ', 'post_uploads/23_post_20210429193843.jpg', '2021-04-27 19:38:51'),
 (213, 23, 'decorative wall art #texture #art #wall #floor', 'post_uploads/23_post_20210429194153.jpg', '2021-04-27 19:41:57'),
 (214, 23, 'textures #wall #floor #grey ', 'post_uploads/23_post_20210429194715.jpg', '2021-04-27 19:47:21'),
-(215, 11, 'test \'DROP DATABASE testdb\'', 'post_uploads/11_post_20210430075135.jpg', '2021-04-30 07:51:35'),
-(216, 11, 'd \'DROP DATABASE;\'', 'post_uploads/11_post_20210430075227.jpg', '2021-04-30 07:52:27'),
-(217, 11, 'test \'DROP DATABASE testdb;\'', 'post_uploads/11_post_20210430075255.jpg', '2021-04-30 07:52:55');
+(241, 11, 'ée\"ze\'rtr', 'post_uploads/11_post_20210503095139.jpg', '2021-05-03 09:51:39'),
+(242, 11, 'zdertre', 'post_uploads/11_post_20210503095153.jpg', '2021-05-03 09:51:53');
 
 -- --------------------------------------------------------
 
@@ -227,7 +225,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `biography`, `profile_picture`) VALUES
 (1, 'Bailey', 'Lievens', 'Email', 'Lowkey kinda sus', 'user_profilepictures/Bailey.jpg'),
 (6, 'Bailey2', 'password', 'b@lievens.be', 'test bio Bailey', 'user_profilepictures/default.jpg'),
-(11, 'ellen', '$2y$12$ZgHR/QaqzcruCktLjzhaB.cfSeLKSEiHjNLkM1rlOf63itxWq2YDi', 'ellen@ellen.ellen', 'test bio ellenaasdfsdf', 'user_profilepictures/Ellen.jpg'),
+(11, 'ellen', '$2y$12$ZgHR/QaqzcruCktLjzhaB.cfSeLKSEiHjNLkM1rlOf63itxWq2YDi', 'ellen@ellen.ellen', 'test bio ellenaa', 'user_profilepictures/Ellen.jpg'),
 (12, 'test', '$2y$12$p5l.riMYDIRDZdQZYpZnf.tA6Bl338YdLPHxpw.5.lPCt3C2v25bG', 'test@test.be', 'test bio test', 'user_profilepictures/default.jpg'),
 (13, 'elleeeeeeen2', '$2y$12$lW8p4dLcXGm2rW3HMQIRLeej60lGViKaJjszi1Ar/wfe4HKt/vtwC', 'ellen@gmail.be', NULL, 'user_profilepictures/default.jpg'),
 (14, 'EllenTheVelo', '$2y$12$Dwbw.5MKeUHPQPdpZeA8Muh21Sh1mE6N7dK69V0T3qLv1WfNfDl6G', 'Ellen@gm.com', NULL, 'user_profilepictures/default.jpg'),
@@ -283,7 +281,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `followers`
@@ -295,13 +293,13 @@ ALTER TABLE `followers`
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
 -- AUTO_INCREMENT for table `tags`
