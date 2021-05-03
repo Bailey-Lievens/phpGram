@@ -350,6 +350,33 @@
                 return True;
             }
         }
+
+        public static function hasRequests($currentUser) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT * FROM requests WHERE receiver_id = :receiver_id");
+
+            $query->bindValue(":receiver_id", $currentUser);            
+            $query->execute();
+            $result = $query->fetchAll();
+
+            return $result;
+        }
+
+        public static function followUser($userId, $requesterId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("INSERT INTO requests(`requester_id`, `receiver_id`) VALUES (:userId, :requesterId)");
+
+            $query->bindValue(":userId", $userId);  
+            $query->bindValue(":requesterId", $requesterId);             
+            $query->execute();
+            $result = $query->fetchAll();
+
+            if(!$result){
+                return False;
+            } else {
+                return True;
+            }
+        }
     }
 ?>
     

@@ -10,6 +10,8 @@
 
     $userFollowing = User::getFollowingById($userId);
     $userFollowers = User::getFollowersById($userId);
+
+    $requests = User::hasRequests($_SESSION['userid']);
 ?>
 
 <!DOCTYPE html>
@@ -122,13 +124,15 @@
         <?php if($_SESSION["username"] === $_GET["user"]): ?>
         <div id="requestsTab" class="tab" style="display:none">
             <ul>
-                <li>
-                    <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars("username"));?>"><img src="images/doggo.jpg"></a>
-                    <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars("username"));?>"><p><?php echo(htmlspecialchars("username")); ?></p></a>    
-                
-                    <a href="#" class="acceptButton" data-user="<?php echo("username"); ?>" data-accept="true"> Accept </a>
-                    <a href="#" class="declineButton" data-user="<?php echo("username"); ?>" data-accept="false"> Decline </a> 
-                </li>
+                <?php foreach($requests as $request): ?>
+                    <li>
+                        <a id="profileLink" href="profilePage.php?user=<?php echo htmlspecialchars(User::getUsernameById($request["requester_id"])) ;?>"><img src="<?php echo User::getPictureById($request["requester_id"]); ?>"></a>
+                        <a id="profileLink" href="profilePage.php?user=<?php echo htmlspecialchars(User::getUsernameById($request["requester_id"])) ;?>"><p><?php echo htmlspecialchars(User::getUsernameById($request["requester_id"])); ?></p></a>    
+                    
+                        <a href="" class="acceptButton" data-requester="<?php echo $request["requester_id"]; ?>"> Accept </a>
+                        <a href="" class="declineButton" data-requester="<?php echo $request["requester_id"]; ?>"> Decline </a> 
+                    </li>
+                <?php endforeach; ?>    
             </ul>
         </div>
         <?php endif; ?>
@@ -138,6 +142,7 @@
     <script src="js/tabs.js"></script>
     <script src="js/follow.js"></script>
     <script src="js/deletePost.js"></script>
+    <script src="js/requests.js"></script>
 </body>
 </html>
     
