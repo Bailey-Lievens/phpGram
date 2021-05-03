@@ -56,6 +56,7 @@
             <a class="tabName active" onclick="openTab(event, 'postsTab')">Posts</a>
             <a class="tabName" onclick="openTab(event, 'followersTab')">Followers</a>
             <a class="tabName" onclick="openTab(event, 'followingTab')">Following</a>
+            <a class="tabName" onclick="openTab(event, 'requestsTab')">Requests</a>
         </div>
 
         <div id="postsTab" class="tab">
@@ -98,6 +99,18 @@
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
+            </ul>
+        </div>
+
+        <div id="requestsTab" class="tab" style="display:none">
+            <ul>
+                <li>
+                    <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars("username"));?>"><img src="images/doggo.jpg"></a>
+                    <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars("username"));?>"><p><?php echo(htmlspecialchars("username")); ?></p></a>    
+                
+                    <a href="#" class="acceptButton" data-user="<?php echo("username"); ?>" data-accept="true"> Accept </a>
+                    <a href="#" class="declineButton" data-user="<?php echo("username"); ?>" data-accept="false"> Decline </a> 
+                </li>
             </ul>
         </div>
     </section>  

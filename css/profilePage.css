@@ -191,6 +191,33 @@ body {
     box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.39);
 }
 
+#requestsTab ul li .acceptButton:hover {
+    background-color: green;
+    color: white;
+}
+
+#requestsTab ul li .acceptButton {
+    margin-left: 7em;
+    border: 2px solid green;
+    color: green;
+    background-color: rgba(255, 255, 255, 0.13);
+}
+
+#requestsTab ul li .declineButton:hover {
+    background-color: red;
+    color: white;
+}
+
+#requestsTab ul li .declineButton {
+    border: 2px solid red;
+    color: red;
+    background-color: rgba(255, 255, 255, 0.13);
+}
+
+#requestsTab ul li {
+    padding: 0 9em 0 0;
+}
+
 /*Add this for following buttons*/
 .isFollowing{
     background-color: rgba(255, 255, 255, 0.13);
