@@ -1,7 +1,6 @@
 var imageInput = document.querySelector("#inputPicturePost");
 var uploadedImage = document.querySelector("#imagePreview");
 var filterWrapper = document.querySelector("#filterWrapper");
-var canvas;
 
 //Show image in preview spot
 imageInput.addEventListener("change", function(event){
@@ -15,6 +14,7 @@ var filterName = document.querySelector("#filterName");
 var imageWrapper = document.querySelector("#imageWrapper");
 var btnSubmit = document.querySelector(".submitNewPost");
 var imgSrc = document.querySelector("#chosenFilter");
+var userLocation = document.querySelector("#userLocation");
 
 var availableFilters = ["No filter selected", "_1977", "aden", "brannan", "brooklyn",
                         "clarendon", "earlybird", "gingham", "hudson",
@@ -54,7 +54,7 @@ btnCycleRight.addEventListener("click", function(event){
     filterName.innerHTML = availableFilters[currentFilter];
 })
 
-function setFilter(){
+function setPostInfo(){
     if(currentFilter != 0){
         imgSrc.setAttribute("value", availableFilters[currentFilter]);
     }

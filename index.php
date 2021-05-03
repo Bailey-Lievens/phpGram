@@ -42,7 +42,7 @@
         </section>
     <?php endif;?>
 
-    <form action="#" method="POST" enctype="multipart/form-data" onsubmit="setFilter()">
+    <form id="postForm" action="#" method="POST" enctype="multipart/form-data" onsubmit="submitPost(event)">
         <section id="newPost">
                 <div>
                     <div id="imageEditWrapper">
@@ -66,8 +66,10 @@
                 </div>
 
                 <input type="hidden" id="chosenFilter" name="chosenFilter"></input>
+                <input type="hidden" id="userCity" name="userCity"></input>
+                <input type="hidden" id="userCountry" name="userCountry"></input>
 
-                <button type="submit" name="submit" class="submitNewPost">post</button>
+                <button type="submit" name="btnSubmit" class="submitNewPost">post</button>
                     
                 <p class="cancelBtn">cancel</p>
         </section>
@@ -139,8 +141,7 @@
     <?php include_once("footer.inc.php")?>
     <script src="js/newPost.js"></script>    
     <script src="js/likes.js"></script>  
-    <script src="js/postPreview.js"></script>
-    <script src="js/comment.js"></script>  
+    <script src="js/comment.js"></script>
 </body>
 </html>
     

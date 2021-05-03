@@ -2,7 +2,7 @@
 <?php
     $userId = $_SESSION['userid'];
 
-    if(isset($_POST['submit'])) {
+    if(!empty($_POST)) {
         try {
 
             $currentDirectory = getcwd();
@@ -16,8 +16,10 @@
             $post->setDescription($_POST['description']);
             $post->setFilter($_POST['chosenFilter']);
             $post->setPicture($fileName); 
-            $post->setDate(date("Y-m-d H:i:s"));  
-            $post->submitPost();
+            $post->setDate(date("Y-m-d H:i:s"));
+            $post->setCity($_POST["userCity"]);
+            $post->setCountry($_POST["userCountry"]);
+            $post->submitPost();            
 
             $fileSaveQuality = 60; 
 

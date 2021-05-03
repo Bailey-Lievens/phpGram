@@ -5,6 +5,8 @@
         private $filter = null;
         private $picture;
         private $date;
+        private $city = null;
+        private $country = null;
         private $click;
 
         public function setUserid($userid){
@@ -52,6 +54,26 @@
             return $this->date;
         }
 
+        public function setCity($city){
+            if ($city != "") {
+                $this->city = $city;
+            }
+        }
+
+        public function getCity(){
+            return $this->city;
+        }
+
+        public function setCountry($country){
+            if ($country != "") {
+                $this->country = $country;
+            }
+        }
+
+        public function getCountry(){
+            return $this->country;
+        }
+
         public function getClick()
         {
              return $this->click;
@@ -66,13 +88,15 @@
 
         public function submitPost(){
             $conn = Database::getConnection();
-            $query = $conn->prepare("INSERT INTO posts (user_id, description, filter, picture, date) VALUES (:userid, :description, :filter, :picture, :date)");
+            $query = $conn->prepare("INSERT INTO posts (user_id, description, filter, picture, date, city, country) VALUES (:userid, :description, :filter, :picture, :date, :city, :country)");
 
             $query->bindValue(":userid", $this->userid);
             $query->bindValue(":description", $this->description);
             $query->bindValue(":filter", $this->filter);
-            $query->bindValue(":picture", $this->picture);     
-            $query->bindValue(":date", $this->date);  
+            $query->bindValue(":picture", $this->picture);
+            $query->bindValue(":date", $this->date);
+            $query->bindValue(":city", $this->city);
+            $query->bindValue(":country", $this->country);
 
             $r = $query->execute();
             return $r; 
