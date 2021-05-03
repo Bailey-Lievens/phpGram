@@ -159,7 +159,7 @@
         //If no amount is specified it returns 20
         public static function getPostsByTag($tag, $amount = 20){
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :tag, '%') ORDER BY date DESC LIMIT ".$amount."");
+            $query = $conn->prepare("SELECT users.username,users.profile_picture, users.id, posts.description, posts.filter, posts.picture, posts.date, posts.id FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :tag, '%') ORDER BY date DESC LIMIT ".$amount."");
             $query->bindValue(":tag","#".$tag);
             $query->execute();
             $posts = $query->fetchAll();

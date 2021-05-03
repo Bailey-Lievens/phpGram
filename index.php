@@ -75,7 +75,6 @@
 
     <?php $counter = 0; ?> <!-- counter to know which span we're in -->
     <?php foreach($posts as $post):?>
-    
 
     <section class="post">
         <header>
