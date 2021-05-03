@@ -155,10 +155,16 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1em;
+    margin-top: 0em;
     height: 20em;
     width: 20em;
     object-fit: cover;
+}
+
+.post div figure {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .post div p {
@@ -242,8 +248,4 @@ body {
     justify-content: space-between;
 
     width: 100%;
-}
-
-.filtersss{
-    filter: brightness(50%);
 }

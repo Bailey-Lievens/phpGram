@@ -14,7 +14,7 @@ var btnCycleRight = document.querySelector(".cycleRight");
 var filterName = document.querySelector("#filterName");
 var imageWrapper = document.querySelector("#imageWrapper");
 var btnSubmit = document.querySelector(".submitNewPost");
-var imgSrc = document.querySelector("#bakedImgSrc");
+var imgSrc = document.querySelector("#chosenFilter");
 
 var availableFilters = ["No filter selected", "_1977", "aden", "brannan", "brooklyn",
                         "clarendon", "earlybird", "gingham", "hudson",
@@ -54,24 +54,8 @@ btnCycleRight.addEventListener("click", function(event){
     filterName.innerHTML = availableFilters[currentFilter];
 })
 
-function bakeFilter(){
-    console.log("bake");
-
-    //Create canvas which we'll render our image to
-    canvas = document.createElement('canvas');
-    canvas.id = "canvasImage";
-    canvas.width = uploadedImage.width;
-    canvas.height = uploadedImage.height;
-
-    var ctx = canvas.getContext("2d");
-
-    //Get filter values from parent element
-    ctx.filter = getComputedStyle(imageWrapper).getPropertyValue('filter');
-    ctx.drawImage(uploadedImage, 0, 0, canvas.width, canvas.height);
-
-    //Our image with baked in filters in base64
-    var imageBase64 = canvas.toDataURL("image/jpeg");
-
-    //Before letting the form post we set the hidden input field to the baked img value
-    imgSrc.setAttribute("value", imageBase64);
+function setFilter(){
+    if(currentFilter != 0){
+        imgSrc.setAttribute("value", availableFilters[currentFilter]);
+    }
 }

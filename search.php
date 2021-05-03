@@ -7,7 +7,7 @@
         header("Location: index.php");
     }
 
-    $posts = Post::getPostsByTag($_GET[q]);
+    $posts = Post::getPostsByTag($_GET["q"]);
 ?>
 
 <!DOCTYPE html>
@@ -16,10 +16,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>#<?php echo $_GET[q]?> </title>
+    <title>#<?php echo $_GET["q"]?> </title>
 
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/search.css">
+    <link rel="stylesheet" href="css/instacss.css">
     <link rel="icon" href="images/favico.ico">
 
     <style>
@@ -33,7 +34,7 @@
 
         <section id="tag_title_section">
             
-            <h1 id="tag_title">#<?php echo $_GET[q]?></h1>
+            <h1 id="tag_title">#<?php echo $_GET["q"]?></h1>
             <h3><span id="amount_posts"><?php echo count($posts)?></span> 
                 <?php if (count($posts) != 1) {
                     echo("posts");
@@ -53,7 +54,15 @@
                     <a href="#">...</a>
                 </header>
                 <div>
-                <img src="<?php echo($post["picture"]) ?>" <?php echo("alt='profilePicture_".$post["picture"]."'")?>>
+                    <?php if($post['filter'] != null):?>
+                        <figure class="<?php echo($post['filter'])?>">
+                            <img src="<?php echo($post['picture'])?>">
+                        </figure>
+                    <?php else: ?>
+                        <figure>
+                            <img src="<?php echo($post['picture'])?>">
+                        </figure>
+                    <?php endif; ?>
                     <?php echo("<p>". htmlspecialchars($post["description"]) ."</p>")?> 
                 </div>
                 <section>

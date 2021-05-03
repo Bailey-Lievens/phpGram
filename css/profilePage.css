@@ -112,15 +112,9 @@ body {
 #postsTab #postImg {
     display: block;
     height: 10em;
-    width: 2em;
+    width: 10em;
     object-fit: cover;
-}
-
-#postsTab img{
-    flex: 1 1 25%;
-    width: 100px;
-    margin: 10px;
-    height: 25%;
+    padding: 0;
 }
 
 #followersTab ul{
@@ -242,7 +236,7 @@ body {
     }
 }
 
-@media (min-width: 1400px){
+@media (min-width: 1300px){
     #tabs{
         width: 50%;
         margin-left: 25%;

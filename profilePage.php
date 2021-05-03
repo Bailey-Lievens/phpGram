@@ -20,6 +20,7 @@
     <title><?php echo($username); ?></title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/profilePage.css">
+    <link rel="stylesheet" href="css/instacss.css">
     <link rel="icon" href="images/favico.ico">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
@@ -60,7 +61,15 @@
 
         <div id="postsTab" class="tab">
             <?php foreach($userPosts as $post): ?>
-                <img id="postImg" src="<?php echo $post['picture'] ?>">
+                <?php if($post['filter'] != null):?>
+                    <figure class="<?php echo($post['filter'])?>">
+                        <img id="postImg" src="<?php echo($post['picture'])?>">
+                    </figure>
+                <?php else: ?>
+                    <figure>
+                        <img id="postImg" src="<?php echo($post['picture'])?>">
+                    </figure>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
         

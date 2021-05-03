@@ -15,9 +15,8 @@
 
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
-    <link rel="icon" href="images/favico.ico">
-
     <link rel="stylesheet" href="css/instacss.css">
+    <link rel="icon" href="images/favico.ico">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
@@ -43,7 +42,7 @@
         </section>
     <?php endif;?>
 
-    <form action="#" method="POST" enctype="multipart/form-data" onsubmit="bakeFilter()">
+    <form action="#" method="POST" enctype="multipart/form-data" onsubmit="setFilter()">
         <section id="newPost">
                 <div>
                     <div id="imageEditWrapper">
@@ -66,7 +65,7 @@
                     <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"></textarea>
                 </div>
 
-                <input type="hidden" id="bakedImgSrc" name="bakedImgSrc"></input>
+                <input type="hidden" id="chosenFilter" name="chosenFilter"></input>
 
                 <button type="submit" name="submit" class="submitNewPost">post</button>
                     
@@ -85,7 +84,15 @@
             <a href="#">...</a>
         </header>
         <div>
-            <img src="<?php echo $post['picture'] ?>" alt="postPicture">
+            <?php if($post['filter'] != null):?>
+                <figure class="<?php echo($post['filter'])?>">
+                    <img src="<?php echo($post['picture'])?>">
+                </figure>
+            <?php else: ?>
+                <figure>
+                    <img src="<?php echo($post['picture'])?>">
+                </figure>
+            <?php endif; ?>
             <p><?php echo htmlspecialchars($post['description']) ?></p>
         </div>
         <section>
