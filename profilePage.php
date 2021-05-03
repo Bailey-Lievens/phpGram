@@ -56,7 +56,9 @@
             <a class="tabName active" onclick="openTab(event, 'postsTab')">Posts</a>
             <a class="tabName" onclick="openTab(event, 'followersTab')">Followers</a>
             <a class="tabName" onclick="openTab(event, 'followingTab')">Following</a>
-            <a class="tabName" onclick="openTab(event, 'requestsTab')">Requests</a>
+            <?php if($_SESSION["username"] === $_GET["user"]): ?>
+                <a class="tabName" onclick="openTab(event, 'requestsTab')">Requests</a>
+            <?php endif; ?>   
         </div>
 
         <div id="postsTab" class="tab">
@@ -102,6 +104,7 @@
             </ul>
         </div>
 
+        <?php if($_SESSION["username"] === $_GET["user"]): ?>
         <div id="requestsTab" class="tab" style="display:none">
             <ul>
                 <li>
@@ -113,6 +116,7 @@
                 </li>
             </ul>
         </div>
+        <?php endif; ?>
     </section>  
 
     <?php include_once("footer.inc.php")?> 
