@@ -5,29 +5,22 @@
     if(!empty($_POST)){
         session_start();
         $clickedPost = $_POST["clickedPost"]; // post_id
-        $userHasLiked = $_POST["userHasLiked"]; // geliked of niet
 
         $conn = Database::getConnection();
 
-        if ($userHasLiked == "true") {
-            $query = $conn->prepare("DELETE FROM likes WHERE post_id = :postId and  liked_by_user_id = :user");
-            $action = "Unlike";
-        } else {
-            $query = $conn->prepare("INSERT INTO likes(`post_id`, `liked_by_user_id`) VALUES (:postId, :user)");
-            $action = "Like";
-        }
+        if ($clickedPost) {
+            $query = $conn->prepare("DELETE FROM posts WHERE id = :postId and user_id = :user");
+            $action = "delete";
+        } else {}
 
         $query->bindValue(":postId", $clickedPost);
         $query->bindValue(":user", $_SESSION["userid"]);
         $result = $query->execute();
-        
-        $likes = Post::getAmountLikes($clickedPost);
 
         if($result){
             $response = [
                 "action" => $action,
-                "status" => "Success",
-                "likes" => $likes
+                "status" => "Success"
             ];
         }
         

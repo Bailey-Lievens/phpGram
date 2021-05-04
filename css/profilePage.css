@@ -123,22 +123,43 @@ body {
   width: 7em;
 }
 
-.loadMore:hover {
-  background-color: white;
-  color: #ba2eaa;
-}
-#postsTab #postImg {
-  display: block;
-  height: 10em;
-  width: 2em;
-  object-fit: cover;
+#postsTab .postImg {
+    display: block;
+    height: 10em;
+    width: 10em;
+    object-fit: cover;
+    margin: 0;
 }
 
-#postsTab img {
-  flex: 1 1 25%;
-  width: 100px;
-  margin: 10px;
-  height: 25%;
+#postsTab img{
+    flex: 1 1 25%;
+    width: 100px;
+    margin: 10px;
+    height: 25%;
+    z-index: -1;
+}
+
+#postsTab .deletePost img {
+    width: 2em;
+    margin-left: -3em;
+    height: 3em;
+    z-index: 9999;
+    position: relative;
+    left: -24px;
+    top: 6px;
+}
+
+#postsTab .deletePost img:hover {
+    transform: scale(1.2);
+}
+
+#postsTab .deletePost {
+    width: 0;
+    height: 0;
+}
+
+#postsTab .hideImg {
+    display: none;
 }
 
 #followersTab ul {
@@ -160,13 +181,15 @@ body {
   margin-bottom: 1em;
 }
 
-.tab li img {
-  /*Profile picture in list*/
-  clip-path: polygon(15% 0, 100% 0%, 84% 100%, 0% 100%);
-  width: 80px;
-  height: 80px;
-  position: relative;
-  left: -10px;
+.tab li img{ /*Profile picture in list*/
+    clip-path: polygon(15% 0, 100% 0%, 84% 100%, 0% 100%);
+    display: block;
+    box-sizing: border-box;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    left: -10px;
+    object-fit: cover;
 }
 
 .tab li p {
@@ -174,9 +197,9 @@ body {
   font-size: 1.2em;
 }
 
-.followButton {
-  text-decoration: none;
-  color: black;
+.followButton , .requestButton{
+    text-decoration: none;
+    color: black;
 
   background-color: rgba(255, 255, 255, 0.692);
   border-radius: 10px;
@@ -186,19 +209,46 @@ body {
   transition: 0.2s;
 }
 
-.followButton:hover {
-  background-color: rgb(255, 255, 255);
-  box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.39);
+.followButton:hover , .requestButton:hover {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.39);
+}
+
+#requestsTab ul li .acceptButton:hover {
+    background-color: green;
+    color: white;
+}
+
+#requestsTab ul li .acceptButton {
+    margin-left: 7em;
+    border: 2px solid green;
+    color: green;
+    background-color: rgba(255, 255, 255, 0.13);
+}
+
+#requestsTab ul li .declineButton:hover {
+    background-color: red;
+    color: white;
+}
+
+#requestsTab ul li .declineButton {
+    border: 2px solid red;
+    color: red;
+    background-color: rgba(255, 255, 255, 0.13);
+}
+
+#requestsTab ul li {
+    padding: 0 9em 0 0;
 }
 
 /*Add this for following buttons*/
-.isFollowing {
-  background-color: rgba(255, 255, 255, 0.13);
-  border: solid white 2px;
+.isFollowing, .isRequested{
+    background-color: rgba(255, 255, 255, 0.13);
+    border: solid white 2px;
 }
 
-.isFollowing:hover {
-  background-color: rgba(248, 0, 0, 0.644);
+.isFollowing:hover , .isRequested:hover{
+    background-color: rgba(248, 0, 0, 0.644);
 }
 
 .tab li a {
@@ -264,12 +314,12 @@ body {
   }
 }
 
-@media (min-width: 1400px) {
-  #tabs {
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 25%;
-  }
+@media (min-width: 1300px){
+    #tabs{
+        width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;
+    }
 
   #account_info {
     width: 50%;

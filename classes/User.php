@@ -165,8 +165,8 @@
             return $following;
         }
 
-        //Returns true if the user is following the given user
-        //Returns false if the user is not following the given user
+        //Returns false if the user is following the given user
+        //Returns true if the user is not following the given user
         public static function isFollowing($currentUser, $userToCheck){
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT followers.id FROM followers WHERE followers.userId = :currentUser AND followers.followingId = :userToCheck");
@@ -345,6 +345,48 @@
             $result = $query->fetch();
 
             if(!$result){
+                return False;
+            } else {
+                return True;
+            }
+        }
+
+        public static function hasRequests($currentUser) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT * FROM requests WHERE receiver_id = :receiver_id");
+
+            $query->bindValue(":receiver_id", $currentUser);            
+            $query->execute();
+            $result = $query->fetchAll();
+
+            return $result;
+        }
+
+        public static function followUser($userId, $requesterId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("INSERT INTO requests(`requester_id`, `receiver_id`) VALUES (:userId, :requesterId)");
+
+            $query->bindValue(":userId", $userId);  
+            $query->bindValue(":requesterId", $requesterId);             
+            $query->execute();
+            $result = $query->fetchAll();
+
+            if(!$result){
+                return False;
+            } else {
+                return True;
+            }
+        }
+
+        public static function isPrivate($userId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT private FROM users WHERE id = :userId");
+
+            $query->bindValue(":userId", $userId);            
+            $query->execute();
+            $result = $query->fetch();
+
+            if($result['private'] === "0"){ // als het profiel niet private (=0) is, return false
                 return False;
             } else {
                 return True;

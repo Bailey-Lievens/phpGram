@@ -2,20 +2,18 @@
 <?php
     if(!empty($_POST)){
         session_start();
-        $userId = $_POST["userId"];
-        $isFollowing = $_POST["isFollowing"];
+        $clickedUserId = $_POST["clickedUserId"];
 
         $conn = Database::getConnection();
 
-        if ($isFollowing == "true") {
-            $query = $conn->prepare("DELETE FROM followers WHERE userId = :user and followingId = :following");
-            $action = "Unfollow";
-        } else {
-            $query = $conn->prepare("INSERT INTO followers(`userId`, `followingId`) VALUES (:user, :following)");
-            $action = "Follow";
-        }
+        if ($clickedUserId) {
+            $query = $conn->prepare("DELETE FROM `requests` WHERE `requester_id` = :clickedUserId AND `receiver_id` = :user;");
+            $action = "declined";
+        } else {}
+
+        $query->bindValue(":clickedUserId", $clickedUserId);
         $query->bindValue(":user", $_SESSION['userid']);
-        $query->bindValue(":following", $userId);
+
         $result = $query->execute();
 
         if($result){

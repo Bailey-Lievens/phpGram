@@ -1,8 +1,6 @@
 document.querySelector("#newPost").style.display = "none";
 
 document.querySelector(".new").addEventListener("click", function(e){
-    console.log("ok")
-
     if(!open){
         document.querySelector("#newPost").style.display = "block";
         open = true;
