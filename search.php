@@ -79,11 +79,11 @@
                 <a href="" class="btnAddLike like" data-postid="<?php echo $post['id'] ?>" data-liked="false"
                     data-span="<?php echo $counter; ?>">like</a>
                 <?php endif; ?>
-                <?php if(Post::getAmountLikes($post['id']) == 1): ?>
-                <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> like
+                <?php if(Like::getAmountLikes($post['id']) == 1): ?>
+                <p id="amountLikes"><span class="countLikes"><?php echo Like::getAmountLikes($post['id']) ?></span> like
                 </p>
                 <?php else: ?>
-                <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span>
+                <p id="amountLikes"><span class="countLikes"><?php echo Like::getAmountLikes($post['id']) ?></span>
                     likes</p>
                 <?php endif; ?>
                 <div class="comment">

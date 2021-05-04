@@ -27,7 +27,7 @@ function request(e){
                 } else {
                     clickedButton.classList.add("isRequested");
                     clickedButton.setAttribute("data-requested", "true");
-                    clickedButton.innerHTML = "Decline request";
+                    clickedButton.innerHTML = "Cancel request";
                 }
             }
         })

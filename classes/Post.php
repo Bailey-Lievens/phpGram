@@ -186,22 +186,15 @@
             return $posts;
         }
 
-        public static function getAmountLikes($postId) {
+        public static function deletePost($clickedPost){
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT count(*) as likes FROM `likes` WHERE post_id = :postId");
-            $query->bindValue(":postId", $postId);
-            $query->execute();
-            $likes = $query->fetch();
-            return $likes["likes"];
-        }
-        
-        public static function getComments($postId) {
-            $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT * FROM `comments` WHERE post_id = :postId ORDER BY date DESC LIMIT 3");
-            $query->bindValue(":postId", $postId);
-            $query->execute();
-            $comments = $query->fetchAll();
-            return $comments;
+            $query = $conn->prepare("DELETE FROM posts WHERE id = :postId and user_id = :user");
+            
+            $query->bindValue(":postId", $clickedPost);
+            $query->bindValue(":user", $_SESSION["userid"]);
+            $result = $query->execute();
+
+            return $result;
         }
     }
 ?>

@@ -101,10 +101,10 @@
             <?php else: ?>
                 <a href="" class="btnAddLike like" data-postid="<?php echo $post['id'] ?>" data-liked="false" data-span="<?php echo $counter; ?>" >like</a>
             <?php endif; ?>
-            <?php if(Post::getAmountLikes($post['id']) == 1): ?>
-        <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> like</p>
+            <?php if(Like::getAmountLikes($post['id']) == 1): ?>
+        <p id="amountLikes"><span class="countLikes"><?php echo Like::getAmountLikes($post['id']) ?></span> like</p>
             <?php else: ?>
-        <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> likes</p>
+        <p id="amountLikes"><span class="countLikes"><?php echo Like::getAmountLikes($post['id']) ?></span> likes</p>
             <?php endif; ?>
             <div class="comment">
                 <input type="text" placeholder="Add a comment">
@@ -112,7 +112,7 @@
             </div>
             
             <ul class="listComments">
-                <?php $comments = Post::getComments($post['id'])?>
+                <?php $comments = Comment::getComments($post['id'])?>
                 <?php if(!empty($comments)): ?>
                 <?php foreach ($comments as $comment): ?>
                     <ul>

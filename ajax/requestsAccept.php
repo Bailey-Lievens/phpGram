@@ -7,19 +7,10 @@
         $conn = Database::getConnection();
 
         if ($clickedUserId) {
-            $query = $conn->prepare("INSERT INTO followers(`userId`, `followingId`) VALUES (:clickedUserId, :user)");
-            $query1 = $conn->prepare("DELETE FROM `requests` WHERE `requester_id` = :clickedUserId AND `receiver_id` = :user;");
+            $result = User::acceptFollowRequest($clickedUserId);
+            $result1 = User::deleteFollowRequest($clickedUserId);
             $action = "accepted";
         } else {}
-
-        $query->bindValue(":clickedUserId", $clickedUserId);
-        $query->bindValue(":user", $_SESSION['userid']);
-
-        $query1->bindValue(":clickedUserId", $clickedUserId);
-        $query1->bindValue(":user", $_SESSION['userid']);
-
-        $result = $query->execute();
-        $result1 = $query1->execute();
 
         if($result && $result1){
             $response = [

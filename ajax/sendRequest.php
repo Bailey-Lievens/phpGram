@@ -8,15 +8,12 @@
         $conn = Database::getConnection();
 
         if ($isRequested == "true") {
-            $query = $conn->prepare("DELETE FROM `requests` WHERE `requester_id` = :user AND `receiver_id` = :clickedUserId;");
+            $result = User::cancelFollowRequest($clickedUserId);
             $action = "Decline";
         } else {
-            $query = $conn->prepare("INSERT INTO `requests` (`id`, `requester_id`, `receiver_id`) VALUES (NULL, :user, :clickedUserId);");
+            $result = User::sendFollowRequest($clickedUserId);
             $action = "Send";
         }
-        $query->bindValue(":user", $_SESSION['userid']);
-        $query->bindValue(":clickedUserId", $clickedUserId);
-        $result = $query->execute();
 
         if($result){
             $response = [
