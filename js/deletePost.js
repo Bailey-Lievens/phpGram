@@ -7,9 +7,14 @@ var imagePost;
 
 function deletePost(e){
     clickedPost = e.path[0].dataset.post; // post_id
-    binPost = e.path[1].attributes[1]; // get vuilbakje
+    binPost = e.path[0]; // get vuilbakje
     imagePost = e.path[0].parentElement.previousElementSibling; // get image
-    
+
+    console.log(e);
+    console.log(clickedPost);
+    console.log(binPost);
+    console.log(imagePost);
+
     var formData = new FormData();
 
     formData.append("clickedPost", clickedPost);
@@ -20,7 +25,8 @@ function deletePost(e){
     })
         .then(response => response.json())
         .then(result => {
-            binPost.nodeValue = "hideImg"; // nodeValue veranderens
+            console.log(result);
+            binPost.className = "hideImg"; // nodeValue veranderens
             imagePost.className = "hideImg"; // klasse toevoegen bij image
         })
         .catch(error => {

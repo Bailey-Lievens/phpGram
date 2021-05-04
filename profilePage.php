@@ -72,6 +72,7 @@
         <div id="postsTab" class="tab">
             <?php foreach($userPosts as $post): ?>
 
+                <div>
                 <?php if($post['filter'] != null):?>
                     <figure class="<?php echo($post['filter'])?>">
                         <img class="postImg" src="<?php echo($post['picture'])?>">
@@ -81,14 +82,15 @@
                         <img class="postImg" src="<?php echo($post['picture'])?>">
                     </figure>
                 <?php endif; ?>
+                </div>
 
                 <?php if($_SESSION["username"] === $_GET["user"]): ?>
-                    <a href="" class="deletePost " data-post="<?php echo $post['id']; ?>"><img src="images/svg.svg" alt="svg"></a>
+                    <a href="" class="deletePost "><img src="images/svg.svg" alt="svg" data-post="<?php echo $post['id']; ?>"></a>
                 <?php endif; ?>
 
             <?php endforeach; ?>
-            
-        </div>
+            </div>
+
         <form >
                 <input type="hidden" id="userId" name="userid" value=<?php echo $userId; ?>>
                 <input type="hidden" id="postsNum" name="postsNum" value=<?php echo count($userPosts ); ?>>
