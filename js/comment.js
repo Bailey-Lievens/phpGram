@@ -2,7 +2,7 @@ var commentBtns = document.getElementsByClassName("commentBtn");
 var buttonLength = commentBtns.length;
 
 function comment(e){
-    var postId = e.dataset.postid; // post_id
+    var postId = e.path[0].dataset.postid; // post_id
     var commentText = e.toElement.previousElementSibling.value; // comment text
     var ul = e.path[2].children[3]; // find ul where the comment must go
     var input = e.path[2].children[2].children[0]; // to see input

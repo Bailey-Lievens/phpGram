@@ -221,7 +221,7 @@ body {
 }
 
 .listComments ul {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .listComments ul li {
@@ -231,19 +231,20 @@ body {
 
 .listComments ul li:first-child {
     font-weight: bold;
+    color: #8729FE;
 }
 
 .listComments ul li:nth-child(2) {
     float: right;
     margin-right: 5em;
     font-size: 0.9em;
+    color: #8729FE;
 }
 
 .listComments ul li:last-child {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-right: 5em;
     font-size: 0.8em;
-    display: grid;
 }
 
 .loadMore {
