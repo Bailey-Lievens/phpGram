@@ -117,7 +117,7 @@
                 <?php if(!empty($comments)): ?>
                 <?php foreach ($comments as $comment): ?>
                     <ul>
-                        <li><?php echo User::getUsernameById($comment['user_id']); ?></li>
+                        <li><a href="profilePage.php?user=<?php echo User::getUsernameById($comment['user_id']);?>"><?php echo User::getUsernameById($comment['user_id']); ?></a></li>
                         <li><?php echo Post::timeSincePost($comment['date']); ?></li>
                         <li><?php echo $comment['comment']; ?></li>
                     </ul>

@@ -32,8 +32,9 @@ function comment(e){
 
             // for username
             var newLiUser = document.createElement('li');
-            newLiUser.innerHTML = result.user;
+            newLiUser.innerHTML = "<a href='profilePage" + "." + "php?user=" + result.user + "'>" + result.user + "</a>";
             newUl.appendChild(newLiUser);
+
             // for time
             var newLiTime = document.createElement('li');
             newLiTime.innerHTML = result.time;
