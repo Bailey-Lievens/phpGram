@@ -312,3 +312,22 @@ body {
 
     width: 100%;
 }
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ba2eaa; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #EE3454; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #8729FE; 
+}
