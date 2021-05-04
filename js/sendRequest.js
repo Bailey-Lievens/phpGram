@@ -4,8 +4,8 @@ var clickedUserId;
 var clickedButton;
 
 function request(e){
-    clickedUserId = e.path[0].attributes[2].nodeValue; // value from data-user
-    isRequested = e.path[0].attributes[3].nodeValue; // value from data-requested
+    clickedUserId = e.path[0].dataset.user; // value from data-user
+    isRequested = e.path[0].dataset.requested; // value from data-requested
     clickedButton = e.path[0]; // for changing innerHTML
 
     var formData = new FormData();

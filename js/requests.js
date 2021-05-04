@@ -5,9 +5,10 @@ var clickedUserId;
 var li;
 
 function accept(e){
-    clickedUserId = e.path[0].attributes[2].nodeValue // follower id -> data-requester
+    clickedUserId = e.path[0].dataset.requester; // follower id -> data-requester
     li = e.path[1]; // get the li to delete after 
 
+    console.log(clickedUserId);
     var formData = new FormData();
 
     formData.append("clickedUserId", clickedUserId);
@@ -27,7 +28,7 @@ function accept(e){
 }
 
 function decline(e) {
-    clickedUserId = e.path[0].attributes[2].nodeValue // follower id -> data-requester
+    clickedUserId = e.path[0].dataset.requester; // follower id -> data-requester
     li = e.path[1]; // get the li to delete after 
     
     var formData = new FormData();
