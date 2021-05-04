@@ -1,14 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 30, 2021 at 05:15 AM
--- Server version: 5.7.32
--- PHP Version: 7.4.12
+-- Generation Time: Apr 30, 2021 at 07:53 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `testdb`
@@ -102,7 +110,7 @@ INSERT INTO `posts` (`id`, `user_id`, `description`, `picture`, `date`) VALUES
 (182, 23, 'paint', 'post_uploads/23_post_20210420170744.jpg', '2021-04-20 17:07:44'),
 (183, 23, 'foodie', 'post_uploads/23_post_20210420170803.jpg', '2021-04-20 17:08:03'),
 (184, 23, 'happy', 'post_uploads/23_post_20210420170832.jpg', '2021-04-20 17:08:32'),
-(185, 23, 'sport club #photography ', 'post_uploads/23_post_20210420170904.jpg', '2021-04-20 17:09:04'),
+(185, 23, 'sport club\'s #photography ', 'post_uploads/23_post_20210420170904.jpg', '2021-04-20 17:09:04'),
 (186, 23, 'diner at 6 o\'clock #photography', 'post_uploads/23_post_20210420170934.jpg', '2021-04-20 17:09:34'),
 (187, 23, 'late night celebration #photography #art #colors #night', 'post_uploads/23_post_20210420171023.jpg', '2021-04-20 17:10:23'),
 (189, 23, 'arts an crafts', 'post_uploads/23_post_20210420171201.jpg', '2021-04-20 17:12:01'),
@@ -121,7 +129,10 @@ INSERT INTO `posts` (`id`, `user_id`, `description`, `picture`, `date`) VALUES
 (211, 23, 'lava swirl #black #red ', 'post_uploads/23_post_20210429193806.jpg', '2021-04-27 19:38:13'),
 (212, 23, 'stripes #painting #red #white ', 'post_uploads/23_post_20210429193843.jpg', '2021-04-27 19:38:51'),
 (213, 23, 'decorative wall art #texture #art #wall #floor', 'post_uploads/23_post_20210429194153.jpg', '2021-04-27 19:41:57'),
-(214, 23, 'textures #wall #floor #grey ', 'post_uploads/23_post_20210429194715.jpg', '2021-04-27 19:47:21');
+(214, 23, 'textures #wall #floor #grey ', 'post_uploads/23_post_20210429194715.jpg', '2021-04-27 19:47:21'),
+(215, 11, 'test \'DROP DATABASE testdb\'', 'post_uploads/11_post_20210430075135.jpg', '2021-04-30 07:51:35'),
+(216, 11, 'd \'DROP DATABASE;\'', 'post_uploads/11_post_20210430075227.jpg', '2021-04-30 07:52:27'),
+(217, 11, 'test \'DROP DATABASE testdb;\'', 'post_uploads/11_post_20210430075255.jpg', '2021-04-30 07:52:55');
 
 -- --------------------------------------------------------
 
@@ -152,24 +163,22 @@ INSERT INTO `tags` (`id`, `tag_name`) VALUES
 (11, '#FlipKick'),
 (12, '#kickflip'),
 (13, '#crazy'),
-(14, '#life');
-(15, '#modern');
-(16, '#art');
-(17, '#blue');
-(18, '#photography');
-(19, '#colors');
-(20, '#yellow');
-(21, '#green');
-(22, '#purple');
-(23, '#black');
-(24, '#white');
-(25, '#red');
-(26, '#pink');
-(27, '#orange');
-(28, '#splash');
+(14, '#life'),
+(15, '#modern'),
+(16, '#art'),
+(17, '#blue'),
+(18, '#photography'),
+(19, '#colors'),
+(20, '#yellow'),
+(21, '#green'),
+(22, '#purple'),
+(23, '#black'),
+(24, '#white'),
+(25, '#red'),
+(26, '#pink'),
+(27, '#orange'),
+(28, '#splash'),
 (29, '#texture');
-
-
 
 -- --------------------------------------------------------
 
@@ -255,16 +264,21 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
 
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

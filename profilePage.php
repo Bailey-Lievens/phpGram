@@ -62,8 +62,13 @@
             <?php foreach($userPosts as $post): ?>
                 <img id="postImg" src="<?php echo $post['picture'] ?>">
             <?php endforeach; ?>
+            
         </div>
-        
+        <form >
+                <input type="hidden" id="userId" name="userid" value=<?php echo $userId; ?>>
+                <input type="hidden" id="postsNum" name="postsNum" value=<?php echo count($userPosts ); ?>>
+                <button type="submit" id="loadMore"  class="loadMore">load more</button>
+            </form>
         <div id="followersTab" class="tab" style="display:none">
             <ul>
                 <?php foreach($userFollowers as $follower): ?>
@@ -102,6 +107,7 @@
     <?php include_once("footer.inc.php")?> 
     <script src="js/tabs.js"></script>
     <script src="js/follow.js"></script>
+    <script src="js/loadMoreProfile.js"></script>
 </body>
 </html>
     

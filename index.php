@@ -65,6 +65,7 @@
         <header>
             <img src="<?php echo($post['profile_picture'])?>" alt="profilePicture">
             <?php echo("<a href='profilePage.php?user=". htmlspecialchars($post["username"]) ."'> ". htmlspecialchars($post["username"]) ." </a>")?>
+            
             <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
             <a href="#">...</a>
         </header>
@@ -87,11 +88,16 @@
         </section>
     </section>
     <?php endforeach; ?>
-
-    <a href="#" id="loadMore" class="loadMore">load more</a>
+    <form >
+        <input type="hidden" id="userId" name="userid" value=<?php echo $_SESSION['userid']; ?>>
+        <input type="hidden" id="postsNum" name="postsNum" value=<?php echo count($posts); ?>>
+        <button type="submit" id="loadMore" class="loadMore">load more</button>
+    </form>
+    
     <?php include_once("footer.inc.php")?>
     <script src="js/newPost.js"></script>    
     <script src="js/likes.js"></script>  
+    <script src="js/loadMore.js"></script>
 </body>
 </html>
     
