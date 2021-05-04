@@ -422,6 +422,22 @@
             return $result;
         }
 
+        public static function isRequested($userId, $clickedUserId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT * FROM `requests` WHERE `requester_id` = :user AND `receiver_id` = :clickedUserId;");
+
+            $query->bindValue(":clickedUserId", $clickedUserId);
+            $query->bindValue(":user", $userId);           
+            $query->execute();
+            $result = $query->fetch();
+
+            if($result){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
 
     }
 ?>

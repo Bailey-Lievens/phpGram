@@ -41,7 +41,9 @@
                     <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
                 <?php else: ?>
 
-                    <?php if(User::isFollowing($_SESSION['userid'] , $userId) && User::isPrivate($userId)):?>
+                    <?php if(User::isFollowing($_SESSION['userid'] , $userId) && User::isPrivate($userId) && User::isRequested($_SESSION["userid"], $userId)):?>
+                        <a href="" class="requestButton isRequested" data-user="<?php echo($userId); ?>" data-requested="true">Cancel request</a>
+                    <?php elseif(User::isFollowing($_SESSION['userid'] , $userId) && User::isPrivate($userId)):?>
                         <a href=""class="requestButton" data-user="<?php echo($userId); ?>" data-requested="false"> Send request </a>
                     <?php elseif(!User::isFollowing($_SESSION['userid'] , $userId)): ?> 
                         <a href="#"class="followButton isFollowing" data-user="<?php echo($userId); ?>" data-following="true"> Unfollow </a>
@@ -103,10 +105,14 @@
                         <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><img src="<?php echo $follower['profile_picture'] ?>"></a>
                         <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><p><?php echo(htmlspecialchars($follower['username'])); ?></p></a>
                         
-                        <?php if (User::isFollowing($userId, $follower['id'])):?>
-                            <a href="#" class="followButton" data-user="<?php echo($follower['id']); ?>" data-following="false"> Follow </a>
+                        <?php if(User::isFollowing($_SESSION['userid'] , $follower['id']) && User::isPrivate($follower['id']) && User::isRequested($_SESSION["userid"], $follower['id'])):?>
+                        <a href="" class="requestButton isRequested" data-user="<?php echo($follower['id']); ?>" data-requested="true">Cancel request</a>
+                        <?php elseif(User::isFollowing($_SESSION['userid'] , $follower['id']) && User::isPrivate($follower['id'])):?>
+                            <a href=""class="requestButton" data-user="<?php echo($follower['id']); ?>" data-requested="false"> Send request </a>
+                        <?php elseif(!User::isFollowing($_SESSION['userid'] , $follower['id'])): ?> 
+                            <a href="#"class="followButton isFollowing" data-user="<?php echo($follower['id']); ?>" data-following="true"> Unfollow </a>
                         <?php else: ?>
-                            <a href="#" class="isFollowing followButton" data-user="<?php echo($follower['id']); ?>" data-following="true"> Unfollow </a>
+                            <a href="#"class="followButton" data-user="<?php echo($follower['id']); ?>" data-following="false"> Follow </a>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
