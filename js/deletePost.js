@@ -6,7 +6,7 @@ var binPost;
 var imagePost;
 
 function deletePost(e){
-    clickedPost = e.dataset.post; // post_id
+    clickedPost = e.path[0].dataset.post; // post_id
     binPost = e.path[1].attributes[1]; // get vuilbakje
     imagePost = e.path[0].parentElement.previousElementSibling; // get image
     

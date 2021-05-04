@@ -10,18 +10,14 @@
         $conn = Database::getConnection();
 
         if ($userHasLiked == "true") {
-            $query = $conn->prepare("DELETE FROM likes WHERE post_id = :postId and  liked_by_user_id = :user");
+            $result = Like::deleteLike($clickedPost);
             $action = "Unlike";
         } else {
-            $query = $conn->prepare("INSERT INTO likes(`post_id`, `liked_by_user_id`) VALUES (:postId, :user)");
+            $result = Like::addLike($clickedPost);
             $action = "Like";
         }
-
-        $query->bindValue(":postId", $clickedPost);
-        $query->bindValue(":user", $_SESSION["userid"]);
-        $result = $query->execute();
         
-        $likes = Post::getAmountLikes($clickedPost);
+        $likes = Like::getAmountLikes($clickedPost);
 
         if($result){
             $response = [

@@ -8,7 +8,6 @@ function accept(e){
     clickedUserId = e.path[0].dataset.requester; // follower id -> data-requester
     li = e.path[1]; // get the li to delete after 
 
-    console.log(clickedUserId);
     var formData = new FormData();
 
     formData.append("clickedUserId", clickedUserId);
@@ -41,7 +40,6 @@ function decline(e) {
     })
         .then(response => response.json())
         .then(result => {
-            console.log(result);
             li.style.display = "none"; // delete li
         })
         .catch(error => {

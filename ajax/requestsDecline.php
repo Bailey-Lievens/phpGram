@@ -7,14 +7,9 @@
         $conn = Database::getConnection();
 
         if ($clickedUserId) {
-            $query = $conn->prepare("DELETE FROM `requests` WHERE `requester_id` = :clickedUserId AND `receiver_id` = :user;");
+            $result = User::deleteFollowRequest($clickedUserId);
             $action = "declined";
         } else {}
-
-        $query->bindValue(":clickedUserId", $clickedUserId);
-        $query->bindValue(":user", $_SESSION['userid']);
-
-        $result = $query->execute();
 
         if($result){
             $response = [
