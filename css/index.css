@@ -200,7 +200,7 @@ body {
 
 .comment {
     margin-left: 5em;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     margin-top: -15em;
 }
 
@@ -223,6 +223,10 @@ body {
     margin-top: 15px;
 }
 
+.listComments ul:first-child {
+    margin-top: -1em;
+}
+
 .listComments ul li {
     display: inline-block;
     margin-right: 0.5em;
@@ -236,7 +240,7 @@ body {
 
 .listComments ul li:nth-child(2) {
     float: right;
-    margin-right: 5em;
+    margin-right: 0.5em;
     font-size: 0.9em;
     color: #8729FE;
 }
@@ -246,8 +250,6 @@ body {
     margin-right: 5em;
     font-size: 0.8em;
 }
-
-
 
 .loadMore {
   text-decoration: none;
@@ -313,21 +315,27 @@ body {
     width: 100%;
 }
 
-::-webkit-scrollbar {
-  width: 15px;
+.scrollDiv::-webkit-scrollbar {
+  width: 10px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
-  background: #ba2eaa; 
+.scrollDiv::-webkit-scrollbar-track {
+  background: #8729FE; 
 }
  
 /* Handle */
-::-webkit-scrollbar-thumb {
+.scrollDiv::-webkit-scrollbar-thumb {
   background: #EE3454; 
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #8729FE; 
+.scrollDiv::-webkit-scrollbar-thumb:hover {
+  background: #ba2eaa; 
+}
+
+.scrollDiv {
+  max-height: 10em;
+  margin-right: 4.8em;
+  overflow-y: scroll;
 }

@@ -16,7 +16,7 @@
         
         public static function getComments($postId) {
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT * FROM `comments` WHERE post_id = :postId ORDER BY date DESC LIMIT 3");
+            $query = $conn->prepare("SELECT * FROM `comments` WHERE post_id = :postId ORDER BY date DESC /*LIMIT 3*/");
             $query->bindValue(":postId", $postId);
             $query->execute();
             $comments = $query->fetchAll();
