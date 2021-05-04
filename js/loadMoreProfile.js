@@ -39,7 +39,7 @@ loadMoreButton.onclick = (e) => {
             post["picture"] +
             "?>' alt='postPicture'><p><?php echo htmlspecialchars(" +
             post["description"] +
-            ")?></p></div><section><?php if(User::isLiked($_SESSION['userid'] , " +
+            ")?></p></div><section><?php if(Like::isLiked($_SESSION['userid'] , " +
             post["id"] +
             "):?><a href='' class='btnAddLike' data-postid='<?php echo " +
             post["id"] +
