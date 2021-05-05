@@ -80,6 +80,9 @@
                     <img src="<?php echo($post['picture'])?>">
                 </figure>
                 <?php endif; ?>
+                <?php if($post['city'] != null):?>
+                    <p>📍<a class="btnLocation" href="search.php?type=city&q=<?php echo($post['city']);?>"><?php echo($post['city']);?></a>, <a class="btnLocation" href="search.php?type=country&q=<?php echo($post['country']);?>"><?php echo($post['country']);?></a></p>
+                <?php endif; ?>
                 <?php echo("<p>". htmlspecialchars($post["description"]) ."</p>")?>
             </div>
             <section>
@@ -116,9 +119,6 @@
                     <ul>
                         <li>No comments yet</li>
                     </ul>
-                    <?php endif; ?>
-                    <?php if($post['city'] != null):?>
-                        <p>📍<a class="btnLocation" href="search.php?type=city&q=<?php echo($post['city']);?>"><?php echo($post['city']);?></a>, <a class="btnLocation" href="search.php?type=country&q=<?php echo($post['country']);?>"><?php echo($post['country']);?></a></p>
                     <?php endif; ?>
                 </div>
             </section>
