@@ -7,7 +7,18 @@
         header("Location: index.php");
     }
 
-    $posts = Post::getPostsByTag($_GET["q"]);
+    //Set title and posts based on the type of search that has been requested 
+    if($_GET["type"] == "tag") {
+        $title = "#".$_GET["q"];
+        $posts = Post::getPostsByTag($_GET["q"]);
+    }else{
+        $title = "📍".ucfirst($_GET["q"]);
+        if($_GET["type"] == "city") {
+            $posts = Post::getPostsByCity(ucfirst($_GET["q"]));
+        }else{
+            $posts = Post::getPostsByCountry(ucfirst($_GET["q"]));
+        } 
+    }
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +27,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>#<?php echo $_GET["q"]?> </title>
+    <title><?php echo($title);?> </title>
 
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/search.css">
@@ -34,7 +45,7 @@
 
         <section id="tag_title_section">
             
-            <h1 id="tag_title">#<?php echo $_GET["q"]?></h1>
+            <h1 id="tag_title"><?php echo($title);?></h1>
             <h3><span id="amount_posts"><?php echo count($posts)?></span> 
                 <?php if (count($posts) != 1) {
                     echo("posts");
@@ -62,6 +73,9 @@
                         <figure>
                             <img src="<?php echo($post['picture'])?>">
                         </figure>
+                    <?php endif; ?>
+                    <?php if($post['city'] != null):?>
+                        <p>📍<a class="btnLocation" href="search.php?type=city&q=<?php echo($post['city']);?>"><?php echo($post['city']);?></a>, <a class="btnLocation" href="search.php?type=country&q=<?php echo($post['country']);?>"><?php echo($post['country']);?></a></p>
                     <?php endif; ?>
                     <?php echo("<p>". htmlspecialchars($post["description"]) ."</p>")?> 
                 </div>

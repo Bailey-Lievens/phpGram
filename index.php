@@ -73,7 +73,7 @@
                 <input type="hidden" id="userCity" name="userCity"></input>
                 <input type="hidden" id="userCountry" name="userCountry"></input>
 
-                <button type="submit" name="btnSubmit" class="submitNewPost">post</button> <!--Optie toevoegen dat de gebruiker kan kiezen of de locatie word gebruikt of niet checkbox?-->
+                <button type="submit" name="btnSubmit" class="submitNewPost">post</button>
                     
                 <p class="cancelBtn">cancel</p>
         </section>
@@ -100,6 +100,9 @@
                     <img src="<?php echo($post['picture'])?>">
                 </figure>
             <?php endif; ?>
+            <?php if($post['city'] != null):?>
+                <p>📍<a class="btnLocation" href="search.php?type=city&q=<?php echo($post['city']);?>"><?php echo($post['city']);?></a>, <a class="btnLocation" href="search.php?type=country&q=<?php echo($post['country']);?>"><?php echo($post['country']);?></a></p>
+            <?php endif; ?>
             <p><?php echo htmlspecialchars($post['description']) ?></p>
         </div>
         <section>
@@ -109,9 +112,9 @@
                 <a href="" class="btnAddLike like" data-postid="<?php echo $post['id'] ?>" data-liked="false" data-span="<?php echo $counter; ?>" >like</a>
             <?php endif; ?>
             <?php if(Post::getAmountLikes($post['id']) == 1): ?>
-        <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> like</p>
+                <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> like</p>
             <?php else: ?>
-        <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> likes</p>
+                <p id="amountLikes"><span class="countLikes"><?php echo Post::getAmountLikes($post['id']) ?></span> likes</p>
             <?php endif; ?>
             <div class="comment">
                 <input type="text" placeholder="Add a comment">

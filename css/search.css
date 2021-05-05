@@ -3,6 +3,14 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
+.btnLocation{
+    color: white;
+    transition: ease-in-out 0.1s;
+}
+.btnLocation:hover{
+    color:#8328F7;
+}
+
 .post {
     color: white;
     background-color: black;
@@ -11,7 +19,7 @@ body {
     margin-right: auto;
     margin-top: 2em;
     width: 30em;
-    height: 30em;
+    min-height: 30em;
     padding-bottom: 1em;
     box-shadow: -5px 10px #EE3454, 5px -10px #8729FE;
 }
