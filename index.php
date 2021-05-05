@@ -81,12 +81,12 @@
 
     <?php $counter = 0; ?> <!-- counter to know which span we're in -->
     <?php foreach($posts as $post):?>
-    
 
     <section class="post">
         <header>
             <img src="<?php echo($post['profile_picture'])?>" alt="profilePicture">
             <?php echo("<a href='profilePage.php?user=". htmlspecialchars($post["username"]) ."'> ". htmlspecialchars($post["username"]) ." </a>")?>
+            
             <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
             <a href="#">...</a>
         </header>
@@ -106,7 +106,7 @@
             <p><?php echo htmlspecialchars($post['description']) ?></p>
         </div>
         <section>
-            <?php if(User::isLiked($_SESSION['userid'] , $post['id'])):?>
+            <?php if(Like::isLiked($_SESSION['userid'] , $post['id'])):?>
                 <a href="" class="btnAddLike unlike" data-postid="<?php echo $post['id'] ?>" data-liked="true" data-span="<?php echo $counter; ?>" >unlike</a>
             <?php else: ?>
                 <a href="" class="btnAddLike like" data-postid="<?php echo $post['id'] ?>" data-liked="false" data-span="<?php echo $counter; ?>" >like</a>
@@ -121,15 +121,16 @@
                 <a href="" class="commentBtn" data-postid="<?php echo $post['id'] ?>" >comment</a>
             </div>
             
+            <div class="scrollDiv">
             <ul class="listComments">
-                <?php $comments = Post::getComments($post['id'])?>
+                <?php $comments = Comment::getComments($post['id'])?>
                 <?php if(!empty($comments)): ?>
                 <?php foreach ($comments as $comment): ?>
-                    <ul>
-                        <li><?php echo User::getUsernameById($comment['user_id']); ?></li>
-                        <li><?php echo Post::timeSincePost($comment['date']); ?></li>
-                        <li><?php echo $comment['comment']; ?></li>
-                    </ul>
+                        <ul>
+                            <li><a href="profilePage.php?user=<?php echo User::getUsernameById($comment['user_id']);?>"><?php echo User::getUsernameById($comment['user_id']); ?></a></li>
+                            <li><?php echo Post::timeSincePost($comment['date']); ?></li>
+                            <li><?php echo $comment['comment']; ?></li>
+                        </ul>
                 <?php endforeach; ?>
                 <?php else: ?>
                     <ul>
@@ -137,18 +138,24 @@
                     </ul>                   
                 <?php endif; ?>
             </ul>
+                    </div>
             
         </section>
     </section>
     <?php $counter++; ?>
     <?php endforeach; ?>
-
-
-    <a href="#" id="loadMore" class="loadMore">load more</a>
+    <form >
+        <input type="hidden" id="userId" name="userid" value=<?php echo $_SESSION['userid']; ?>>
+        <input type="hidden" id="postsNum" name="postsNum" value=<?php echo count($posts); ?>>
+        <button type="submit" id="loadMore" class="loadMore">load more</button>
+    </form>
+    
     <?php include_once("footer.inc.php")?>
     <script src="js/newPost.js"></script>    
     <script src="js/likes.js"></script>  
-    <script src="js/comment.js"></script>
+    <script src="js/loadMore.js"></script>
+    <script src="js/postPreview.js"></script>
+    <script src="js/comment.js"></script>  
 </body>
 </html>
     

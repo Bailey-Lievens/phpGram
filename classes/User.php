@@ -165,8 +165,8 @@
             return $following;
         }
 
-        //Returns true if the user is following the given user
-        //Returns false if the user is not following the given user
+        //Returns false if the user is following the given user
+        //Returns true if the user is not following the given user
         public static function isFollowing($currentUser, $userToCheck){
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT followers.id FROM followers WHERE followers.userId = :currentUser AND followers.followingId = :userToCheck");
@@ -176,21 +176,6 @@
             $result = $query->fetch();
 
             if(!$result){
-                return True;
-            } else {
-                return False;
-            }
-        }
-
-        public static function isLiked($currentUser, $postToCheck) {
-            $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT likes.id FROM likes WHERE likes.liked_by_user_id = :currentUser AND likes.post_id = :postToCheck");
-            $query->bindValue(":currentUser", $currentUser);            
-            $query->bindValue(":postToCheck", $postToCheck);
-            $query->execute();
-            $result = $query->fetch();
-
-            if($result){
                 return True;
             } else {
                 return False;
@@ -350,6 +335,110 @@
                 return True;
             }
         }
+
+        public static function hasRequests($currentUser) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT * FROM requests WHERE receiver_id = :receiver_id");
+
+            $query->bindValue(":receiver_id", $currentUser);            
+            $query->execute();
+            $result = $query->fetchAll();
+
+            return $result;
+        }
+
+        public static function followUser($userId, $requesterId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("INSERT INTO requests(`requester_id`, `receiver_id`) VALUES (:userId, :requesterId)");
+
+            $query->bindValue(":userId", $userId);  
+            $query->bindValue(":requesterId", $requesterId);             
+            $query->execute();
+            $result = $query->fetchAll();
+
+            if(!$result){
+                return False;
+            } else {
+                return True;
+            }
+        }
+
+        public static function isPrivate($userId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT private FROM users WHERE id = :userId");
+
+            $query->bindValue(":userId", $userId);            
+            $query->execute();
+            $result = $query->fetch();
+
+            if($result['private'] === "0"){ // als het profiel niet private (=0) is, return false
+                return False;
+            } else {
+                return True;
+            }
+        }
+
+        public static function acceptFollowRequest($clickedUserId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("INSERT INTO followers(`userId`, `followingId`) VALUES (:clickedUserId, :user)");
+
+            $query->bindValue(":clickedUserId", $clickedUserId);
+            $query->bindValue(":user", $_SESSION['userid']);           
+            $result = $query->execute();
+
+            return $result;
+        }
+
+        public static function deleteFollowRequest($clickedUserId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("DELETE FROM `requests` WHERE `requester_id` = :clickedUserId AND `receiver_id` = :user;");
+
+            $query->bindValue(":clickedUserId", $clickedUserId);
+            $query->bindValue(":user", $_SESSION['userid']);           
+            $result = $query->execute();
+
+            return $result;
+        }
+
+        public static function cancelFollowRequest($clickedUserId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("DELETE FROM `requests` WHERE `requester_id` = :user AND `receiver_id` = :clickedUserId;");
+
+            $query->bindValue(":clickedUserId", $clickedUserId);
+            $query->bindValue(":user", $_SESSION['userid']);           
+            $result = $query->execute();
+
+            return $result;
+        }
+
+        public static function sendFollowRequest($clickedUserId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("INSERT INTO `requests` (`id`, `requester_id`, `receiver_id`) VALUES (NULL, :user, :clickedUserId);");
+
+            $query->bindValue(":clickedUserId", $clickedUserId);
+            $query->bindValue(":user", $_SESSION['userid']);           
+            $result = $query->execute();
+
+            return $result;
+        }
+
+        public static function isRequested($userId, $clickedUserId) {
+            $conn = Database::getConnection();
+            $query = $conn->prepare("SELECT * FROM `requests` WHERE `requester_id` = :user AND `receiver_id` = :clickedUserId;");
+
+            $query->bindValue(":clickedUserId", $clickedUserId);
+            $query->bindValue(":user", $userId);           
+            $query->execute();
+            $result = $query->fetch();
+
+            if($result){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+
     }
 ?>
     

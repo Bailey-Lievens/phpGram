@@ -183,7 +183,7 @@
         //If no amount is specified it returns 20
         public static function getPostsByTag($tag, $amount = 20){
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :tag, '%') ORDER BY date DESC LIMIT ".$amount."");
+            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.city, posts.country, posts.id FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :tag, '%') ORDER BY date DESC LIMIT ".$amount."");
             $query->bindValue(":tag","#".$tag);
             $query->execute();
             $posts = $query->fetchAll();
@@ -191,7 +191,7 @@
         }
 
         //Returns all posts posted by the given userId
-        public static function getPostsById($userId, $amount = 20){
+        public static function getPostsById($userId, $amount = 5){
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT picture, filter, id FROM posts WHERE user_id = :userId ORDER BY posts.date DESC LIMIT ".$amount."");
             $query->bindValue(":userId", $userId);
@@ -213,7 +213,7 @@
         //Returns posts from the given city
         public static function getPostsByCity($city, $amount = 20){
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.city = :city ORDER BY date DESC LIMIT ".$amount."");
+            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.id, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.city = :city ORDER BY date DESC LIMIT ".$amount."");
             $query->bindValue(":city", $city);
             $query->execute();
             $posts = $query->fetchAll();
@@ -223,7 +223,7 @@
         //Returns posts from the given country
         public static function getPostsByCountry($country, $amount = 20){
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.country = :country ORDER BY date DESC LIMIT ".$amount."");
+            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.id, posts.date, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.country = :country ORDER BY date DESC LIMIT ".$amount."");
             $query->bindValue(":country", $country);
             $query->execute();
             $posts = $query->fetchAll();
@@ -239,13 +239,46 @@
             return $likes["likes"];
         }
         
-        public static function getComments($postId) {
-            $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT * FROM `comments` WHERE post_id = :postId ORDER BY date DESC LIMIT 3");
-            $query->bindValue(":postId", $postId);
-            $query->execute();
-            $comments = $query->fetchAll();
-            return $comments;
-        }
+ //load 20 more posts 
+    public function loadMore($userId, $amount = 20){
+        $conn = Database::getConnection();
+        $query=$conn->prepare("SELECT TOP 20 name, row_number() OVER (ORDER BY id) AS RN FROM Products
+        ORDER BY id)
+        SELECT 
+               MAX(CASE WHEN RN <=10 THEN name END) AS Col1,
+               MAX(CASE WHEN RN > 10 THEN name END) AS Col2
+        FROM T       
+        GROUP BY RN % 10");
+        
+        $query->bindValue(":userId", $userId);
+        $query->execute();
+        $posts = $query->fetchAll();
+        return $posts;
+      } 
+
+
+    //delete je eigen post
+    public static function deletePost($clickedPost){
+        $conn = Database::getConnection();
+        $query = $conn->prepare("DELETE FROM posts WHERE id = :postId and user_id = :user");
+
+        $query->bindValue(":postId", $clickedPost);
+        $query->bindValue(":user", $_SESSION["userid"]);
+        $result = $query->execute();
+
+        return $result;
+
     }
+        
+    public static function getComments($postId) {
+        $conn = Database::getConnection();
+        $query = $conn->prepare("SELECT * FROM `comments` WHERE post_id = :postId ORDER BY date DESC LIMIT 3");
+        $query->bindValue(":postId", $postId);
+        $query->execute();
+        $comments = $query->fetchAll();
+        return $comments;
+    }
+
+    }
+
 ?>

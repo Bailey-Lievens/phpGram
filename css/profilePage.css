@@ -1,112 +1,126 @@
-*{
-    font-family: 'Ubuntu', sans-serif;
+* {
+  font-family: "Ubuntu", sans-serif;
 }
 
 body {
-    background: linear-gradient(90deg, rgb(134, 41, 255) 0%, rgba(239,52,84,1) 100%);
-    margin-top: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(134, 41, 255) 0%,
+    rgba(239, 52, 84, 1) 100%
+  );
+  margin-top: 0;
 }
 
-#account_header{
-    display: flex;
-    flex-direction: row;
-    padding-left: 2em;
-    padding-right: 2em;
-    margin-top: 3em;
+#account_header {
+  display: flex;
+  flex-direction: row;
+  padding-left: 2em;
+  padding-right: 2em;
+  margin-top: 3em;
 }
-#profile_picture{
-    min-width: 100px;
-    max-width: 150px;
-    min-height: 100px;
-    max-height: 150px;
-    clip-path: polygon(15% 0, 100% 0%, 84% 100%, 0% 100%);
-    z-index: 95;
+#profile_picture {
+  min-width: 100px;
+  max-width: 150px;
+  min-height: 100px;
+  max-height: 150px;
+  clip-path: polygon(15% 0, 100% 0%, 84% 100%, 0% 100%);
+  z-index: 95;
 
-    margin-left: 1em;
-}
-
-#account_header div{
-    margin-left: 2em;
+  margin-left: 1em;
 }
 
-#edit_profile{
-    text-decoration: none;
-    color: whitesmoke;
-    transition: ease-in 0.1s;
+#account_header div {
+  margin-left: 2em;
 }
 
-#edit_profile:hover{
-    border-bottom: whitesmoke solid 2px;
-    padding-bottom: 0.3em;
+#edit_profile {
+  text-decoration: none;
+  color: whitesmoke;
+  transition: ease-in 0.1s;
 }
 
-#edit_profile:active{
-    box-shadow: 1px 6px 7px -5px;
+#edit_profile:hover {
+  border-bottom: whitesmoke solid 2px;
+  padding-bottom: 0.3em;
 }
 
-#biography{
-    background-color:  rgba(255, 255, 255, 0.24);
-    margin: 2.5em;
-    padding: 1em 2em 1em 2em;
-    margin-bottom: -1em;
-    margin-top: 5em;
-    position: relative;
-
-    top: -55px;
-    z-index: 20;
-
-    border-radius: 20px;
+#edit_profile:active {
+  box-shadow: 1px 6px 7px -5px;
 }
 
-#biography h2{
-    font-style: italic;
+#biography {
+  background-color: rgba(255, 255, 255, 0.24);
+  margin: 2.5em;
+  padding: 1em 2em 1em 2em;
+  margin-bottom: -1em;
+  margin-top: 5em;
+  position: relative;
+
+  top: -55px;
+  z-index: 20;
+
+  border-radius: 20px;
 }
 
-.tab{
-    justify-content: center;
+#biography h2 {
+  font-style: italic;
 }
 
-#tabBar{
-    display: flex;
-    justify-content: space-evenly;
-
-    border-bottom: white solid 2px;
+.tab {
+  justify-content: center;
 }
 
-.tabName{
-    border: none;
-    cursor: pointer;
-    color: white;
+#tabBar {
+  display: flex;
+  justify-content: space-evenly;
 
-    width: 10em;
-    text-align: center;
-    border-bottom: transparent solid 2px;
-    transition: 0.2s;
-
-    padding-top: 2em;
+  border-bottom: white solid 2px;
 }
 
-.tabName:hover{
-    border-bottom: whitesmoke solid 2px;
+.tabName {
+  border: none;
+  cursor: pointer;
+  color: white;
+
+  width: 10em;
+  text-align: center;
+  border-bottom: transparent solid 2px;
+  transition: 0.2s;
+
+  padding-top: 2em;
 }
 
-.active{
-    border-bottom: whitesmoke solid 2px;
+.tabName:hover {
+  border-bottom: whitesmoke solid 2px;
 }
 
-.tabName:active{
-    background-color:rgba(255, 255, 255, 0.24);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+.active {
+  border-bottom: whitesmoke solid 2px;
 }
 
-#postsTab{
-    padding: 2em;
-    padding-left: 0em;
-    padding-right: 0em;
-   
-    display: flex;
-    flex-wrap: wrap;
+.tabName:active {
+  background-color: rgba(255, 255, 255, 0.24);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#postsTab {
+  padding: 2em;
+  padding-left: 0em;
+  padding-right: 0em;
+  display: flex;
+  flex-wrap: wrap;
+}
+.loadMore {
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  background-color: transparent;
+  border: 2px solid white;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 2em auto 2em auto;
+  display: block;
+  width: 7em;
 }
 
 #postsTab .postImg {
@@ -148,22 +162,23 @@ body {
     display: none;
 }
 
-#followersTab ul{
-    list-style-type: none;
+#followersTab ul {
+  list-style-type: none;
 }
 
-.tab ul li{ /*List container*/
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.tab ul li {
+  /*List container*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    background-color:  rgba(255, 255, 255, 0.24);
-    border-radius: 8px;
-    color: white;
+  background-color: rgba(255, 255, 255, 0.24);
+  border-radius: 8px;
+  color: white;
 
-    width: 360px;
+  width: 360px;
 
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .tab li img{ /*Profile picture in list*/
@@ -177,23 +192,24 @@ body {
     object-fit: cover;
 }
 
-.tab li p{/*Name in list*/
-    font-size: 1.2em;
+.tab li p {
+  /*Name in list*/
+  font-size: 1.2em;
 }
 
-.followButton{
+.followButton , .requestButton{
     text-decoration: none;
     color: black;
 
-    background-color: rgba(255, 255, 255, 0.692);
-    border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.692);
+  border-radius: 10px;
 
-    padding: 1em;
-    margin-right: 1em;
-    transition: 0.2s;
+  padding: 1em;
+  margin-right: 1em;
+  transition: 0.2s;
 }
 
-.followButton:hover{
+.followButton:hover , .requestButton:hover {
     background-color: rgb(255, 255, 255);
     box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.39);
 }
@@ -226,75 +242,76 @@ body {
 }
 
 /*Add this for following buttons*/
-.isFollowing{
+.isFollowing, .isRequested{
     background-color: rgba(255, 255, 255, 0.13);
     border: solid white 2px;
 }
 
-.isFollowing:hover{
+.isFollowing:hover , .isRequested:hover{
     background-color: rgba(248, 0, 0, 0.644);
 }
 
-.tab li a{/*Follow button in list*/
-    text-decoration: none;
-    color: black;
+.tab li a {
+  /*Follow button in list*/
+  text-decoration: none;
+  color: black;
 
-    background-color: rgba(255, 255, 255, 0.692);
-    border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.692);
+  border-radius: 10px;
 
-    padding: 1em;
-    margin-right: 1em;
-    transition: 0.2s;
+  padding: 1em;
+  margin-right: 1em;
+  transition: 0.2s;
 }
 
-.tab li #profileLink{
-    color: white;
-    margin: 0;
-    transition: 0;
-    padding: 0;
-    background-color: transparent;
+.tab li #profileLink {
+  color: white;
+  margin: 0;
+  transition: 0;
+  padding: 0;
+  background-color: transparent;
 }
 
-.tab li a:hover{
-    background-color: rgb(255, 255, 255);
-    box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.39);
+.tab li a:hover {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.39);
 }
-.tab li #profileLink:hover{
-    border-color: transparent;
-    box-shadow: none;
-}
-
-.tab .isFollowing{
-    background-color: rgba(255, 255, 255, 0.13);
-    border: solid white 2px;
+.tab li #profileLink:hover {
+  border-color: transparent;
+  box-shadow: none;
 }
 
-.tab .isFollowing:hover{
-    background-color: rgba(248, 0, 0, 0.644);
+.tab .isFollowing {
+  background-color: rgba(255, 255, 255, 0.13);
+  border: solid white 2px;
 }
 
-.tab ul li:nth-child(even){
-    position: relative;
-    left: 4em;
+.tab .isFollowing:hover {
+  background-color: rgba(248, 0, 0, 0.644);
 }
 
-.hide{
-    display: none;
+.tab ul li:nth-child(even) {
+  position: relative;
+  left: 4em;
 }
 
-@media (min-width: 700px){
-    #tabs{
-        width: 70%;
-        margin-left: 15%;
-        margin-right: 15%;
-    }
+.hide {
+  display: none;
+}
 
-    #account_info{
-        width: 60%;
-        margin-left: 20%;
-        margin-right: 20%;
-        margin-top: 2em;
-    }
+@media (min-width: 700px) {
+  #tabs {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+
+  #account_info {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 2em;
+  }
 }
 
 @media (min-width: 1300px){
@@ -304,13 +321,13 @@ body {
         margin-right: 25%;
     }
 
-    #account_info{
-        width: 50%;
-        margin-left: 25%;
-        margin-right: 25%;
-    }
+  #account_info {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
 
-    #account_info{
-        margin-top: 2em;
-    }
+  #account_info {
+    margin-top: 2em;
+  }
 }

@@ -1,14 +1,14 @@
 <?php include_once("../core/autoload.php"); ?>
-
 <?php
-
     if(!empty($_POST)){
         session_start();
-        $clickedPost = $_POST["clickedPost"]; // post_id
+        $clickedUserId = $_POST["clickedUserId"];
 
-        if ($clickedPost) {
-            $result = Post::deletePost($clickedPost);
-            $action = "delete";
+        $conn = Database::getConnection();
+
+        if ($clickedUserId) {
+            $result = User::deleteFollowRequest($clickedUserId);
+            $action = "declined";
         } else {}
 
         if($result){

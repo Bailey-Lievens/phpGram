@@ -3,6 +3,7 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
+<<<<<<< HEAD
 .btnLocation{
     color: white;
     transition: ease-in-out 0.1s;
@@ -100,6 +101,8 @@ body {
     border-bottom: 2px solid #8729FE;
 }
 
+=======
+>>>>>>> 0b5ea6ca85b992c5e0835a43eed28a133fd46795
 #tag_title_section{
     display: flex;
     flex-direction: column;

@@ -10,6 +10,8 @@
 
     $userFollowing = User::getFollowingById($userId);
     $userFollowers = User::getFollowersById($userId);
+
+    $requests = User::hasRequests($_SESSION['userid']);
 ?>
 
 <!DOCTYPE html>
@@ -39,10 +41,14 @@
                     <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
                 <?php else: ?>
 
-                    <?php if(User::isFollowing($_SESSION['userid'] , $userId)):?>
-                        <a href="#"class="followButton" data-user="<?php echo($userId); ?>" data-following="false"> Follow </a>
-                    <?php else: ?>
+                    <?php if(User::isFollowing($_SESSION['userid'] , $userId) && User::isPrivate($userId) && User::isRequested($_SESSION["userid"], $userId)):?>
+                        <a href="" class="requestButton isRequested" data-user="<?php echo($userId); ?>" data-requested="true">Cancel request</a>
+                    <?php elseif(User::isFollowing($_SESSION['userid'] , $userId) && User::isPrivate($userId)):?>
+                        <a href=""class="requestButton" data-user="<?php echo($userId); ?>" data-requested="false"> Send request </a>
+                    <?php elseif(!User::isFollowing($_SESSION['userid'] , $userId)): ?> 
                         <a href="#"class="followButton isFollowing" data-user="<?php echo($userId); ?>" data-following="true"> Unfollow </a>
+                    <?php else: ?>
+                        <a href="#"class="followButton" data-user="<?php echo($userId); ?>" data-following="false"> Follow </a>
                     <?php endif; ?>
 
                 <?php endif; ?>
@@ -60,7 +66,7 @@
             <a class="tabName active" onclick="openTab(event, 'postsTab')">Posts</a>
             <a class="tabName" onclick="openTab(event, 'followersTab')">Followers</a>
             <a class="tabName" onclick="openTab(event, 'followingTab')">Following</a>
-            <?php if($_SESSION["username"] === $_GET["user"]): ?>
+            <?php if($_SESSION["username"] === $_GET["user"] && User::isPrivate($userId)): ?>
                 <a class="tabName" onclick="openTab(event, 'requestsTab')">Requests</a>
             <?php endif; ?>   
         </div>
@@ -68,6 +74,7 @@
         <div id="postsTab" class="tab">
             <?php foreach($userPosts as $post): ?>
 
+                <div>
                 <?php if($post['filter'] != null):?>
                     <figure class="<?php echo($post['filter'])?>">
                         <img class="postImg" src="<?php echo($post['picture'])?>">
@@ -77,14 +84,20 @@
                         <img class="postImg" src="<?php echo($post['picture'])?>">
                     </figure>
                 <?php endif; ?>
+                </div>
 
                 <?php if($_SESSION["username"] === $_GET["user"]): ?>
-                    <a href="" class="deletePost " data-post="<?php echo $post['id']; ?>"><img src="images/svg.svg" alt="svg"></a>
+                    <a href="" class="deletePost "><img src="images/svg.svg" alt="svg" data-post="<?php echo $post['id']; ?>"></a>
                 <?php endif; ?>
 
             <?php endforeach; ?>
-        </div>
-        
+            </div>
+
+        <form >
+                <input type="hidden" id="userId" name="userid" value=<?php echo $userId; ?>>
+                <input type="hidden" id="postsNum" name="postsNum" value=<?php echo count($userPosts ); ?>>
+                <button type="submit" id="loadMore"  class="loadMore">load more</button>
+            </form>
         <div id="followersTab" class="tab" style="display:none">
             <ul>
                 <?php foreach($userFollowers as $follower): ?>
@@ -92,10 +105,14 @@
                         <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><img src="<?php echo $follower['profile_picture'] ?>"></a>
                         <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><p><?php echo(htmlspecialchars($follower['username'])); ?></p></a>
                         
-                        <?php if (User::isFollowing($userId, $follower['id'])):?>
-                            <a href="#" class="followButton" data-user="<?php echo($follower['id']); ?>" data-following="false"> Follow </a>
+                        <?php if(User::isFollowing($_SESSION['userid'] , $follower['id']) && User::isPrivate($follower['id']) && User::isRequested($_SESSION["userid"], $follower['id'])):?>
+                        <a href="" class="requestButton isRequested" data-user="<?php echo($follower['id']); ?>" data-requested="true">Cancel request</a>
+                        <?php elseif(User::isFollowing($_SESSION['userid'] , $follower['id']) && User::isPrivate($follower['id'])):?>
+                            <a href=""class="requestButton" data-user="<?php echo($follower['id']); ?>" data-requested="false"> Send request </a>
+                        <?php elseif(!User::isFollowing($_SESSION['userid'] , $follower['id'])): ?> 
+                            <a href="#"class="followButton isFollowing" data-user="<?php echo($follower['id']); ?>" data-following="true"> Unfollow </a>
                         <?php else: ?>
-                            <a href="#" class="isFollowing followButton" data-user="<?php echo($follower['id']); ?>" data-following="true"> Unfollow </a>
+                            <a href="#"class="followButton" data-user="<?php echo($follower['id']); ?>" data-following="false"> Follow </a>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
@@ -109,26 +126,32 @@
                         <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><img src="<?php echo $follower['profile_picture'] ?>"></a>
                         <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><p><?php echo(htmlspecialchars($follower['username'])); ?></p></a>
                         
-                        <?php if (User::isFollowing($userId, $follower['id'])):?>
-                            <a href="#" class="followButton" data-user="<?php echo($follower['id']); ?>" data-following="false"> Follow </a>
+                        <?php if(User::isFollowing($_SESSION['userid'] , $follower['id']) && User::isPrivate($follower['id']) && User::isRequested($_SESSION["userid"], $follower['id'])):?>
+                        <a href="" class="requestButton isRequested" data-user="<?php echo($follower['id']); ?>" data-requested="true">Cancel request</a>
+                        <?php elseif(User::isFollowing($_SESSION['userid'] , $follower['id']) && User::isPrivate($follower['id'])):?>
+                            <a href=""class="requestButton" data-user="<?php echo($follower['id']); ?>" data-requested="false"> Send request </a>
+                        <?php elseif(!User::isFollowing($_SESSION['userid'] , $follower['id'])): ?> 
+                            <a href="#"class="followButton isFollowing" data-user="<?php echo($follower['id']); ?>" data-following="true"> Unfollow </a>
                         <?php else: ?>
-                            <a href="#" class="followButton isFollowing" data-user="<?php echo($follower['id']); ?>" data-following="true"> Unfollow </a>
+                            <a href="#"class="followButton" data-user="<?php echo($follower['id']); ?>" data-following="false"> Follow </a>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
             </ul>
         </div>
 
-        <?php if($_SESSION["username"] === $_GET["user"]): ?>
+        <?php if($_SESSION["username"] === $_GET["user"] && User::isPrivate($userId)): ?>
         <div id="requestsTab" class="tab" style="display:none">
             <ul>
-                <li>
-                    <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars("username"));?>"><img src="images/doggo.jpg"></a>
-                    <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars("username"));?>"><p><?php echo(htmlspecialchars("username")); ?></p></a>    
-                
-                    <a href="#" class="acceptButton" data-user="<?php echo("username"); ?>" data-accept="true"> Accept </a>
-                    <a href="#" class="declineButton" data-user="<?php echo("username"); ?>" data-accept="false"> Decline </a> 
-                </li>
+                <?php foreach($requests as $request): ?>
+                    <li>
+                        <a id="profileLink" href="profilePage.php?user=<?php echo htmlspecialchars(User::getUsernameById($request["requester_id"])) ;?>"><img src="<?php echo User::getPictureById($request["requester_id"]); ?>"></a>
+                        <a id="profileLink" href="profilePage.php?user=<?php echo htmlspecialchars(User::getUsernameById($request["requester_id"])) ;?>"><p><?php echo htmlspecialchars(User::getUsernameById($request["requester_id"])); ?></p></a>    
+                    
+                        <a href="" class="acceptButton" data-requester="<?php echo $request["requester_id"]; ?>"> Accept </a>
+                        <a href="" class="declineButton" data-requester="<?php echo $request["requester_id"]; ?>"> Decline </a> 
+                    </li>
+                <?php endforeach; ?>    
             </ul>
         </div>
         <?php endif; ?>
@@ -137,7 +160,10 @@
     <?php include_once("footer.inc.php")?> 
     <script src="js/tabs.js"></script>
     <script src="js/follow.js"></script>
+    <script src="js/loadMoreProfile.js"></script>
     <script src="js/deletePost.js"></script>
+    <script src="js/requests.js"></script>
+    <script src="js/sendRequest.js"></script>
 </body>
 </html>
     

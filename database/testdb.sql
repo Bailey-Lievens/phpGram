@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 03, 2021 at 05:20 PM
+-- Generation Time: May 05, 2021 at 01:05 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -57,7 +57,8 @@ INSERT INTO `comments` (`id`, `post_id`, `comment`, `date`, `user_id`) VALUES
 (101, 213, 'last test', '2021-05-02 18:14:47', 11),
 (102, 213, 'sixth comment', '2021-05-02 18:14:56', 11),
 (103, 212, 'test', '2021-05-03 12:03:49', 11),
-(104, 214, 'Very dark ;-;', '2021-05-03 13:31:09', 11);
+(104, 214, 'Very dark ;-;', '2021-05-03 13:31:09', 11),
+(105, 212, 'pwetty ', '2021-05-05 10:43:33', 11);
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,9 @@ INSERT INTO `likes` (`id`, `post_id`, `liked_by_user_id`) VALUES
 (9, 185, 11),
 (10, 184, 11),
 (11, 183, 11),
-(13, 189, 11);
+(13, 189, 11),
+(14, 214, 11),
+(15, 212, 11);
 
 -- --------------------------------------------------------
 
@@ -132,51 +135,48 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `description`, `filter`, `picture`, `date`, `city`, `country`) VALUES
-(167, 1, 'test1', NULL, 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03', '', ''),
-(168, 6, 'test2', NULL, 'post_uploads/ellen_post_20210418091818.jpg', '2021-04-18 09:18:18', '', ''),
-(169, 1, 'test1', NULL, 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03', '', ''),
-(170, 1, 'test1', NULL, 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03', '', ''),
-(172, 1, 'test1', NULL, 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03', '', ''),
-(175, 6, 'test2', NULL, 'post_uploads/ellen_post_20210418091818.jpg', '2021-04-18 09:18:18', '', ''),
-(176, 6, 'test2', NULL, 'post_uploads/ellen_post_20210418091818.jpg', '2021-04-18 09:18:18', '', ''),
-(177, 23, 'Wallflower #foodporn', NULL, 'post_uploads/23_post_20210420170323.jpg', '2021-04-20 17:03:23', '', ''),
-(178, 23, 'yellow', NULL, 'post_uploads/23_post_20210420170414.jpg', '2021-04-20 17:04:14', '', ''),
-(179, 23, 'citrus', NULL, 'post_uploads/23_post_20210420170443.jpg', '2021-04-20 17:04:43', '', ''),
-(180, 23, 'green yellow', NULL, 'post_uploads/23_post_20210420170509.jpg', '2021-04-20 17:05:09', '', ''),
-(181, 23, 'dancer', NULL, 'post_uploads/23_post_20210420170542.jpg', '2021-04-20 17:05:42', '', ''),
-(182, 23, 'paint', NULL, 'post_uploads/23_post_20210420170744.jpg', '2021-04-20 17:07:44', '', ''),
-(183, 23, 'foodie', NULL, 'post_uploads/23_post_20210420170803.jpg', '2021-04-20 17:08:03', '', ''),
-(184, 23, 'happy', NULL, 'post_uploads/23_post_20210420170832.jpg', '2021-04-20 17:08:32', '', ''),
-(185, 23, 'sport club\'s #photography ', NULL, 'post_uploads/23_post_20210420170904.jpg', '2021-04-20 17:09:04', '', ''),
-(186, 23, 'diner at 6 o\'clock #photography', NULL, 'post_uploads/23_post_20210420170934.jpg', '2021-04-20 17:09:34', '', ''),
-(187, 23, 'late night celebration #photography #art #colors #night', NULL, 'post_uploads/23_post_20210420171023.jpg', '2021-04-20 17:10:23', '', ''),
-(189, 23, 'arts an crafts', NULL, 'post_uploads/23_post_20210420171201.jpg', '2021-04-20 17:12:01', '', ''),
-(190, 11, 'Went skating with the lads #skate #kickflip', NULL, 'post_uploads/11_post_20210424192610.jpg', '2021-04-24 19:26:10', '', ''),
-(191, 11, 'This is crazy #crazy #life', NULL, 'post_uploads/11_post_20210428094416.jpg', '2021-04-28 09:44:16', '', ''),
-(200, 11, 'abstract flowers #modern #art #blue #yellow #earthtones', NULL, 'post_uploads/11_post_20210429190543.jpg', '2021-04-27 19:05:49', '', ''),
-(202, 11, 'Hallway #drawing #modern #art #yellow #black #white', NULL, 'post_uploads/11_post_20210429190928.jpg', '2021-04-27 19:09:31', '', ''),
-(203, 11, 'Girl face \r\n#modern #art #drawing #blue #pink #yellow', NULL, 'post_uploads/11_post_20210429191212.jpg', '2021-04-27 19:12:14', '', ''),
-(204, 23, 'Waves #blue #painting #black', NULL, 'post_uploads/23_post_20210429192712.jpg', '2021-04-27 19:27:14', '', ''),
-(205, 23, 'splashes of color #paint #movement', NULL, 'post_uploads/23_post_20210429192820.jpg', '2021-04-27 19:28:28', '', ''),
-(206, 23, 'rainbow on the wall \r\n#blue #pink #yellow #orange #purple #green #red', NULL, 'post_uploads/23_post_20210429192938.jpg', '2021-04-27 19:29:43', '', ''),
-(207, 23, 'pink and blue skies #blue #pink #splash', NULL, 'post_uploads/23_post_20210429193238.jpg', '2021-04-27 19:32:44', '', ''),
-(208, 23, 'brightest pink #splash #pink #bright', NULL, 'post_uploads/23_post_20210429193322.jpg', '2021-04-27 19:33:28', '', ''),
-(209, 23, 'pink and white swirl #splash #pink #white', NULL, 'post_uploads/23_post_20210429193624.jpg', '2021-04-27 19:36:29', '', ''),
-(210, 23, 'lava \r\n#painting #splash #red #black', NULL, 'post_uploads/23_post_20210429193726.jpg', '2021-04-27 19:37:32', '', ''),
-(211, 23, 'lava swirl #black #red ', NULL, 'post_uploads/23_post_20210429193806.jpg', '2021-04-27 19:38:13', '', ''),
-(212, 23, 'stripes #painting #red #white ', NULL, 'post_uploads/23_post_20210429193843.jpg', '2021-04-27 19:38:51', '', ''),
-(213, 23, 'decorative wall art #texture #art #wall #floor', NULL, 'post_uploads/23_post_20210429194153.jpg', '2021-04-27 19:41:57', '', ''),
-(214, 23, 'textures #wall #floor #grey #foodporn', 'moon', 'post_uploads/23_post_20210429194715.jpg', '2021-04-27 19:47:21', '', ''),
-(215, 11, 'test \'DROP DATABASE testdb\'', NULL, 'post_uploads/11_post_20210430075135.jpg', '2021-04-30 07:51:35', '', ''),
-(216, 11, 'd \'DROP DATABASE;\'', NULL, 'post_uploads/11_post_20210430075227.jpg', '2021-04-30 07:52:27', '', ''),
-(219, 11, 'Kawaii girl by meee #kawaii', NULL, 'post_uploads/11_post_20210501112456.jpg', '2021-05-01 11:24:57', '', ''),
-(226, 11, 'Yooooo als dit werkt tho #amongus #filters', NULL, 'post_uploads/11_post_20210501160935.jpg', '2021-05-01 16:09:35', '', ''),
-(233, 11, 'earlybird', 'earlybird', 'post_uploads/11_post_20210503113833.jpg', '2021-05-03 11:38:33', '', ''),
-(234, 11, 'Ellen is sus', 'lofi', 'post_uploads/11_post_20210503122433.jpg', '2021-05-03 12:24:33', '', ''),
-(236, 11, 'sus #foodporn', 'kelvin', 'post_uploads/11_post_20210503133701.jpg', '2021-05-03 13:37:01', '', ''),
-(237, 11, 'sus.jpg || check city/country', 'willow', 'post_uploads/11_post_20210503170621.jpg', '2021-05-03 17:06:21', 'Mechelen', 'Belgium'),
-(239, 11, 'Post with filter and no location access', 'willow', 'post_uploads/11_post_20210503171840.jpg', '2021-05-03 17:18:40', NULL, NULL),
-(240, 11, 'post with filter and location access', 'brannan', 'post_uploads/11_post_20210503171949.jpg', '2021-05-03 17:19:49', 'Mechelen', 'Belgium');
+(167, 1, 'test1', NULL, 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03', NULL, NULL),
+(168, 6, 'test2', NULL, 'post_uploads/ellen_post_20210418091818.jpg', '2021-04-18 09:18:18', NULL, NULL),
+(169, 1, 'test1', NULL, 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03', NULL, NULL),
+(170, 1, 'test1', NULL, 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03', 'Gent', 'Belgium'),
+(172, 1, 'test1', NULL, 'post_uploads/ellen_post_20210418091803.jpg', '2021-04-18 09:18:03', NULL, NULL),
+(175, 6, 'test2', NULL, 'post_uploads/ellen_post_20210418091818.jpg', '2021-04-18 09:18:18', NULL, NULL),
+(176, 6, 'test2', NULL, 'post_uploads/ellen_post_20210418091818.jpg', '2021-04-18 09:18:18', NULL, NULL),
+(177, 23, 'Wallflower #foodporn', NULL, 'post_uploads/23_post_20210420170323.jpg', '2021-04-20 17:03:23', NULL, NULL),
+(178, 23, 'yellow', NULL, 'post_uploads/23_post_20210420170414.jpg', '2021-04-20 17:04:14', NULL, NULL),
+(179, 23, 'citrus', NULL, 'post_uploads/23_post_20210420170443.jpg', '2021-04-20 17:04:43', NULL, NULL),
+(180, 23, 'green yellow', NULL, 'post_uploads/23_post_20210420170509.jpg', '2021-04-20 17:05:09', NULL, NULL),
+(181, 23, 'dancer', NULL, 'post_uploads/23_post_20210420170542.jpg', '2021-04-20 17:05:42', NULL, NULL),
+(182, 23, 'paint', NULL, 'post_uploads/23_post_20210420170744.jpg', '2021-04-20 17:07:44', NULL, NULL),
+(183, 23, 'foodie', NULL, 'post_uploads/23_post_20210420170803.jpg', '2021-04-20 17:08:03', NULL, NULL),
+(184, 23, 'happy', NULL, 'post_uploads/23_post_20210420170832.jpg', '2021-04-20 17:08:32', 'Gent', 'Belgium'),
+(185, 23, 'sport club\'s #photography ', NULL, 'post_uploads/23_post_20210420170904.jpg', '2021-04-20 17:09:04', NULL, NULL),
+(186, 23, 'diner at 6 o\'clock #photography', NULL, 'post_uploads/23_post_20210420170934.jpg', '2021-04-20 17:09:34', NULL, NULL),
+(187, 23, 'late night celebration #photography #art #colors #night', NULL, 'post_uploads/23_post_20210420171023.jpg', '2021-04-20 17:10:23', NULL, NULL),
+(189, 23, 'arts an crafts', NULL, 'post_uploads/23_post_20210420171201.jpg', '2021-04-20 17:12:01', NULL, NULL),
+(190, 11, 'Went skating with the lads #skate #kickflip', NULL, 'post_uploads/11_post_20210424192610.jpg', '2021-04-24 19:26:10', NULL, NULL),
+(191, 11, 'This is crazy #crazy #life', NULL, 'post_uploads/11_post_20210428094416.jpg', '2021-04-28 09:44:16', NULL, NULL),
+(200, 11, 'abstract flowers #modern #art #blue #yellow #earthtones', NULL, 'post_uploads/11_post_20210429190543.jpg', '2021-04-27 19:05:49', NULL, NULL),
+(202, 11, 'Hallway #drawing #modern #art #yellow #black #white', NULL, 'post_uploads/11_post_20210429190928.jpg', '2021-04-27 19:09:31', NULL, NULL),
+(203, 11, 'Girl face \r\n#modern #art #drawing #blue #pink #yellow', NULL, 'post_uploads/11_post_20210429191212.jpg', '2021-04-27 19:12:14', NULL, NULL),
+(204, 23, 'Waves #blue #painting #black', NULL, 'post_uploads/23_post_20210429192712.jpg', '2021-04-27 19:27:14', NULL, NULL),
+(205, 23, 'splashes of color #paint #movement', NULL, 'post_uploads/23_post_20210429192820.jpg', '2021-04-27 19:28:28', NULL, NULL),
+(206, 23, 'rainbow on the wall \r\n#blue #pink #yellow #orange #purple #green #red', NULL, 'post_uploads/23_post_20210429192938.jpg', '2021-04-27 19:29:43', NULL, NULL),
+(207, 23, 'pink and blue skies #blue #pink #splash', NULL, 'post_uploads/23_post_20210429193238.jpg', '2021-04-27 19:32:44', NULL, NULL),
+(208, 23, 'brightest pink #splash #pink #bright', NULL, 'post_uploads/23_post_20210429193322.jpg', '2021-04-27 19:33:28', NULL, NULL),
+(209, 23, 'pink and white swirl #splash #pink #white', NULL, 'post_uploads/23_post_20210429193624.jpg', '2021-04-27 19:36:29', NULL, NULL),
+(210, 23, 'lava \r\n#painting #splash #red #black', NULL, 'post_uploads/23_post_20210429193726.jpg', '2021-04-27 19:37:32', NULL, NULL),
+(211, 23, 'lava swirl #black #red ', NULL, 'post_uploads/23_post_20210429193806.jpg', '2021-04-27 19:38:13', NULL, NULL),
+(212, 23, 'stripes #painting #red #white ', NULL, 'post_uploads/23_post_20210429193843.jpg', '2021-04-27 19:38:51', NULL, NULL),
+(213, 23, 'decorative wall art #texture #art #wall #floor', NULL, 'post_uploads/23_post_20210429194153.jpg', '2021-04-27 19:41:57', NULL, NULL),
+(214, 23, 'textures #wall #floor #grey #foodporn', 'moon', 'post_uploads/23_post_20210429194715.jpg', '2021-04-27 19:47:21', NULL, NULL),
+(215, 11, 'test \'DROP DATABASE testdb\'', NULL, 'post_uploads/11_post_20210430075135.jpg', '2021-04-30 07:51:35', NULL, NULL),
+(216, 11, 'd \'DROP DATABASE;\'', NULL, 'post_uploads/11_post_20210430075227.jpg', '2021-04-30 07:52:27', NULL, NULL),
+(219, 11, 'Kawaii girl by meee #kawaii', NULL, 'post_uploads/11_post_20210501112456.jpg', '2021-05-01 11:24:57', NULL, NULL),
+(226, 11, 'Yooooo als dit werkt tho #amongus #filters', NULL, 'post_uploads/11_post_20210501160935.jpg', '2021-05-01 16:09:35', NULL, NULL),
+(234, 11, 'Ellen is sus', 'lofi', 'post_uploads/11_post_20210503122433.jpg', '2021-05-03 12:24:33', NULL, NULL),
+(244, 11, ';jhg', 'brannan', 'post_uploads/11_post_20210505103734.jpg', '2021-05-05 10:37:34', NULL, NULL),
+(249, 11, 'Yes very nice ', 'aden', 'post_uploads/11_post_20210505104441.jpg', '2021-05-05 10:44:41', 'Mechelen', 'Belgium');
 
 -- --------------------------------------------------------
 
@@ -309,7 +309,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `followers`
@@ -321,13 +321,13 @@ ALTER TABLE `followers`
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
 
 --
 -- AUTO_INCREMENT for table `tags`

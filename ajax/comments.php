@@ -7,18 +7,10 @@
         $postId = htmlspecialchars($_POST["postId"]); // post_id
         $commentText = htmlspecialchars($_POST["commentText"]); // text comment
 
-        $conn = Database::getConnection();
-
         if (!empty($commentText) && $commentText != " ") {
-            $query = $conn->prepare("INSERT INTO `comments` (`id`, `post_id`, `comment`, `date`, `user_id`) VALUES (NULL, :postId, :comment, :date, :userId);");
+            $result = Comment::setComment($postId, $commentText);
             $text = htmlspecialchars($commentText);
         } else {}
-
-        $query->bindValue(":postId", $postId);
-        $query->bindValue(":comment", $commentText);
-        $query->bindValue(":date", date("Y-m-d H:i:s"));
-        $query->bindValue(":userId", $_SESSION['userid']);
-        $result = $query->execute();
 
         if($result){
             $response = [

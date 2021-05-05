@@ -1,6 +1,10 @@
 body {
-    background: linear-gradient(90deg, rgb(134, 41, 255) 0%, rgba(239,52,84,1) 100%);
-    font-family: 'Ubuntu', sans-serif;
+  background: linear-gradient(
+    90deg,
+    rgb(134, 41, 255) 0%,
+    rgba(239, 52, 84, 1) 100%
+  );
+  font-family: "Ubuntu", sans-serif;
 }
 
 #locationCheck{
@@ -22,104 +26,103 @@ body {
 }
 
 .newPost div input {
-    background-color: red;
+  background-color: red;
 }
 
 .new {
-    color: white;
-    margin: 1em auto 1em auto;
-    display: block;
-    text-align: center;
-    width: 30em;
-    cursor: pointer;
+  color: white;
+  margin: 1em auto 1em auto;
+  display: block;
+  text-align: center;
+  width: 30em;
+  cursor: pointer;
 }
 
 .new:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-
 .congrats {
-    color: white;
-    display: block;
-    margin: 0 auto 1em auto;
-    padding: 0.1em;
-    background-color: green;
-    border-radius: 10px;
-    width: 30em;
-    text-align: center;
+  color: white;
+  display: block;
+  margin: 0 auto 1em auto;
+  padding: 0.1em;
+  background-color: green;
+  border-radius: 10px;
+  width: 30em;
+  text-align: center;
 }
 
 .red {
-    background-color: red;
+  background-color: red;
 }
 
 #newPost {
-    display: none;
-    margin: 0.5em auto 0.5em auto;
-    width: 30em;
-    color: white;
+  display: none;
+  margin: 0.5em auto 0.5em auto;
+  width: 30em;
+  color: white;
 }
 
 #description {
-    border: none;
-    padding: 10px 0px 10px 10px;
-    display: inline-block;
-    margin-top: 0.5em;
-    background-color: black;
-    opacity: .3;
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 7px 7px 25px -6px;
-    color: white;
-    resize: none;
+  border: none;
+  padding: 10px 0px 10px 10px;
+  display: inline-block;
+  margin-top: 0.5em;
+  background-color: black;
+  opacity: 0.3;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 7px 7px 25px -6px;
+  color: white;
+  resize: none;
 }
 
 .error p {
-    color: white;
-    background-color: red;
-    padding: 0.5em 0.5em 0.5em 0.5em;
-    border-radius: 10px;
-    margin-bottom: 1em;
-    text-align: center;
-    width: 29.6em;
+  color: white;
+  background-color: red;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  border-radius: 10px;
+  margin-bottom: 1em;
+  text-align: center;
+  width: 29.6em;
 }
 
 #inputPicturePost {
-    margin-top: 0.5em;
-    margin-bottom: 0.2em;
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
 }
 
 .submitNewPost {
-    color: white;
-    background-color: transparent;
-    display: inline-block;
-    cursor: pointer;
-    border: 2px solid white;
-    margin-top: 0.5em;
-    padding: 0.5em 1em 0.5em 1em;
-    text-align: center;
-    width: 9em;
+  color: white;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid white;
+  margin-top: 0.5em;
+  padding: 0.5em 1em 0.5em 1em;
+  text-align: center;
+  width: 9em;
 }
 
 .submitNewPost:hover {
-    background-color: white;
-    color: #8729FE;
+  background-color: white;
+  color: #8729fe;
 }
 
 .cancelBtn {
-    display: inline-block;
-    cursor: pointer;
-    border: 2px solid white;
-    margin-top: 0.5em;
-    padding: 0.5em 1em 0.5em 1em;
-    text-align: center;
-    width: 7em;
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid white;
+  margin-top: 0.5em;
+  padding: 0.5em 1em 0.5em 1em;
+  text-align: center;
+  width: 7em;
 }
 
 .cancelBtn:hover {
-    border: 2px solid red;
-    color: red;
+  border: 2px solid red;
+  color: red;
 }
 
 .post {
@@ -136,37 +139,33 @@ body {
 }
 
 .post header {
-    background-color: black;
-    margin: 0;
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-
+  background-color: black;
+  margin: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .post header img {
-    height: 3em;
-    width: 3em;
-    border-radius: 2em;
+  height: 3em;
+  width: 3em;
+  border-radius: 2em;
 }
 
-
 .post header a:nth-child(4) {
-    text-decoration: none;
-    color: white;
-    font-size: 1.5em;
-    margin-bottom: 0.5em;
-
+  text-decoration: none;
+  color: white;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 .post header a:nth-child(2) {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2em;
-    margin-right: 5em;
-    margin-left: -1em;
-    
+  text-decoration: none;
+  color: white;
+  font-size: 1.2em;
+  margin-right: 5em;
+  margin-left: -1em;
 }
 
 .post div img {
@@ -186,8 +185,8 @@ body {
 }
 
 .post div p {
-    margin-left: 5em;
-    margin-right: 5em;
+  margin-left: 5em;
+  margin-right: 5em;
 }
 
 
@@ -219,7 +218,7 @@ body {
 
 .comment {
     margin-left: 5em;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     margin-top: -15em;
 }
 
@@ -239,7 +238,11 @@ body {
 }
 
 .listComments ul {
-    margin-top: 10px;
+    margin-top: 15px;
+}
+
+.listComments ul:first-child {
+    margin-top: -1em;
 }
 
 .listComments ul li {
@@ -247,37 +250,40 @@ body {
     margin-right: 0.5em;
 }
 
-.listComments ul li:first-child {
+.listComments ul li a {
     font-weight: bold;
+    color: #8729FE;
+    margin-left: 0;
 }
 
 .listComments ul li:nth-child(2) {
     float: right;
-    margin-right: 5em;
+    margin-right: 1em;
     font-size: 0.9em;
+    color: #8729FE;
 }
 
 .listComments ul li:last-child {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-right: 5em;
     font-size: 0.8em;
-    display: grid;
 }
 
 .loadMore {
-    text-decoration: none;
-    text-align: center;
-    color: white;
-    border: 2px solid white;
-    padding: 0.5em 1em 0.5em 1em;
-    margin: 2em auto 2em auto;
-    display: block;
-    width: 7em;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  background-color: transparent;
+  border: 2px solid white;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 2em auto 2em auto;
+  display: block;
+  width: 7em;
 }
 
 .loadMore:hover {
-    background-color: white;
-    color: #BA2EAA;
+  background-color: white;
+  color: #ba2eaa;
 }
 
 #amountLikes {
@@ -325,4 +331,47 @@ body {
     justify-content: space-between;
 
     width: 100%;
+}
+
+.scrollDiv::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.scrollDiv::-webkit-scrollbar-track {
+  background: #8729FE; 
+  border-radius: 20em;
+}
+ 
+/* Handle */
+.scrollDiv::-webkit-scrollbar-thumb {
+  background: #EE3454; 
+  border-radius: 20em;
+}
+
+/* Handle on hover */
+.scrollDiv::-webkit-scrollbar-thumb:hover {
+  background: #ba2eaa; 
+}
+
+.scrollDiv {
+  max-height: 10em;
+  margin-right: 4.8em;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #8729FE; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #EE3454; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ba2eaa; 
 }
