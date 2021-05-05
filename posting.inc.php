@@ -4,7 +4,6 @@
 
     if(!empty($_POST)) {
         try {
-
             $currentDirectory = getcwd();
             $uploadDirectory = "/post_uploads/"; //Directory where posted image will be located
 
@@ -17,8 +16,10 @@
             $post->setFilter($_POST['chosenFilter']);
             $post->setPicture($fileName); 
             $post->setDate(date("Y-m-d H:i:s"));
-            $post->setCity($_POST["userCity"]);
-            $post->setCountry($_POST["userCountry"]);
+            if(isset($_POST["useLocation"])){
+                $post->setCity($_POST["userCity"]);
+                $post->setCountry($_POST["userCountry"]);
+            }
             $post->submitPost();            
 
             $fileSaveQuality = 60; 

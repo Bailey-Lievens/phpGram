@@ -3,6 +3,16 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
+#locationCheck{
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 0.5em;
+}
+#useLocation{
+    margin-top: 0.5em;
+}
+
 .newPost div input {
     background-color: red;
 }

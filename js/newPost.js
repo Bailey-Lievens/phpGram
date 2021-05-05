@@ -21,7 +21,6 @@ document.querySelector(".cancelBtn").addEventListener("click", function(e){
     }
 });
 
-
 var imageInput = document.querySelector("#inputPicturePost");
 var uploadedImage = document.querySelector("#imagePreview");
 var filterWrapper = document.querySelector("#filterWrapper");
@@ -37,7 +36,7 @@ var btnCycleRight = document.querySelector(".cycleRight");
 var filterName = document.querySelector("#filterName");
 var imageWrapper = document.querySelector("#imageWrapper");
 var btnSubmit = document.querySelector(".submitNewPost");
-var imgSrc = document.querySelector("#chosenFilter");
+var chosenFilter = document.querySelector("#chosenFilter");
 var userCity = document.querySelector("#userCity");
 var userCountry = document.querySelector("#userCountry");
 
@@ -89,7 +88,7 @@ function submitPost(e){
 
 function setPostInfo(location){
     if(currentFilter != 0){
-        imgSrc.setAttribute("value", availableFilters[currentFilter]);
+        chosenFilter.setAttribute("value", availableFilters[currentFilter]);
     }
 
     if(location != null){
@@ -103,8 +102,9 @@ function setPostInfo(location){
 function getLocation(position){
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
-    var apiKey = "dca050e63cc912c77b94aa67b48bb187";
+    var apiKey = "dca050e63cc912c77b94aa67b48bb187"; //De request via backend versturen is beter zodat de api key niet publiek staat
     
+    //Fetch is een meer moderne optie om hetzelfde te bereiken
     var request = new XMLHttpRequest();
     request.open("GET", "http://api.positionstack.com/v1/reverse?access_key="+apiKey+"&query="+latitude+","+longitude+"&limit=1");
     request.send();
@@ -115,6 +115,7 @@ function getLocation(position){
             setPostInfo(response);
         } else {
             response = request.statusText;
+            console.error(response);
             setPostInfo(null);
         }
     }

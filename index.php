@@ -60,6 +60,10 @@
                     <input type="file" name="inputPicturePost" id="inputPicturePost" accept="image/png, image/jpeg"/>
                 </div>
 
+                <div id="locationCheck">
+                    <label for="useLocation">Add your location to your post?</label>
+                    <input type="checkbox" id="useLocation" name="useLocation" value="true">
+                </div>
                 <div>
                     <label for="description">Description</label>
                     <textarea type="text" id="description" name="description" cols="10" rows="3" maxlength="100"></textarea>
@@ -69,7 +73,7 @@
                 <input type="hidden" id="userCity" name="userCity"></input>
                 <input type="hidden" id="userCountry" name="userCountry"></input>
 
-                <button type="submit" name="btnSubmit" class="submitNewPost">post</button>
+                <button type="submit" name="btnSubmit" class="submitNewPost">post</button> <!--Optie toevoegen dat de gebruiker kan kiezen of de locatie word gebruikt of niet checkbox?-->
                     
                 <p class="cancelBtn">cancel</p>
         </section>
