@@ -11,6 +11,10 @@ section{
     margin: 0px auto 0px auto;
 }
 
+.flex{
+    margin-top: 3em;
+}
+
 .imageEditWrapper{
     display: flex;
     align-items: center;
