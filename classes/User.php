@@ -1,4 +1,4 @@
-    <?php
+<?php
     class User{
 
         private $userId;
@@ -16,9 +16,12 @@
         const MIN_CAPITAL = 1; //Minimum amount of capital characters    
         const MAX_BIO = 350;  //Maximum amount of bio characters   
 
+        const COST_PASSWORD = 12; //Cost amount for password hashing
+
         public static function canLogin($username, $password) {
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT * FROM users WHERE username = :username");
+            
             $query->bindValue(":username", $username);
             $query->execute();
 
@@ -69,9 +72,11 @@
         public static function getUsernameById($userId){
             $conn = Database::getConnection(); 
             $query = $conn->prepare("SELECT username FROM users WHERE id = :userId");
+            
             $query->bindValue(":userId", $userId);
             $query->execute();
             $username = $query->fetch();
+            
             return $username["username"];
         }
 
@@ -79,7 +84,7 @@
             self::checkPassword($password);
             
             $options = [
-                'cost' => 12,
+                'cost' => self::COST_PASSWORD,
             ];
 
             $password = password_hash($password, PASSWORD_BCRYPT, $options);
@@ -95,15 +100,16 @@
         public static function getPasswordById($userId){
             $conn = Database::getConnection(); 
             $query = $conn->prepare("SELECT password FROM users WHERE id = :userId");
+            
             $query->bindValue(":userId", $userId);
             $query->execute();
             $password = $query->fetch();
+            
             return $password["password"];
         }
 
         public function setEmail($email){
             self::checkEmail($email);
-
             $this->email = $email;
         }
 
@@ -114,9 +120,11 @@
         public static function getEmailById($userId){
             $conn = Database::getConnection(); 
             $query = $conn->prepare("SELECT email FROM users WHERE id = :userId");
+            
             $query->bindValue(":userId", $userId);
             $query->execute();
             $email = $query->fetch();
+            
             return $email["email"];
         }
 
@@ -132,36 +140,44 @@
         public static function getBioById($userId){
             $conn = Database::getConnection(); 
             $query = $conn->prepare("SELECT biography FROM users WHERE id = :userId");
+            
             $query->bindValue(":userId", $userId);
             $query->execute();
             $bio = $query->fetch();
+            
             return $bio["biography"];
         }
 
         public static function getPictureById($userId){
             $conn = Database::getConnection(); 
             $query = $conn->prepare("SELECT profile_picture FROM users WHERE id = :userId");
+            
             $query->bindValue(":userId", $userId);
             $query->execute();
             $picture = $query->fetch();
+            
             return $picture["profile_picture"];
         }
 
         public static function getFollowersById($userId){
             $conn = Database::getConnection(); 
             $query = $conn->prepare("SELECT users.id, users.username, users.profile_picture FROM users INNER JOIN followers ON followers.userId = users.id WHERE followers.followingId = :userId");
+            
             $query->bindValue(":userId", $userId);
             $query->execute();
             $followers = $query->fetchAll();
+            
             return $followers;
         }
 
         public static function getFollowingById($userId){
             $conn = Database::getConnection(); 
             $query = $conn->prepare("SELECT users.id, users.username, users.profile_picture FROM users INNER JOIN followers ON followers.followingId = users.id WHERE followers.userId = :userId");
+            
             $query->bindValue(":userId", $userId);
             $query->execute();
             $following = $query->fetchAll();
+            
             return $following;
         }
 
@@ -170,6 +186,7 @@
         public static function isFollowing($currentUser, $userToCheck){
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT followers.id FROM followers WHERE followers.userId = :currentUser AND followers.followingId = :userToCheck");
+            
             $query->bindValue(":userToCheck", $userToCheck);
             $query->bindValue(":currentUser", $currentUser);            
             $query->execute();
@@ -188,8 +205,7 @@
             
             $query->bindValue(":username", $this->username);
             $query->bindValue(":password", $this->password);
-            $query->bindValue(":email", $this->email);  
-                
+            $query->bindValue(":email", $this->email);   
 
             $result=$query->execute();
             return $result;
@@ -225,15 +241,14 @@
             $conn = Database::getConnection();
             $query = $conn->prepare("UPDATE users SET password=:password WHERE id=:userId");
             
-            $hash = password_hash( $password, PASSWORD_DEFAULT);
+            $hash = password_hash($password, PASSWORD_DEFAULT);
             $password = $hash;
 
             $query->bindValue(":userId", $userId);
             $query->bindValue(":password", $password);
-            
             $result=$query->execute();
-            return $result;
             
+            return $result;
         }
 
         private function checkPassword($password){
@@ -441,13 +456,13 @@
         public static function getSearchResultsByInput($input){
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT username, profile_picture FROM users WHERE username LIKE CONCAT( '%', :input, '%') LIMIT 5");
+            
             $query->bindValue(":input", $input);
             $query->execute();
             $response = $query->fetchAll();
+            
             return $response;
         }
-
-
     }
 ?>
     

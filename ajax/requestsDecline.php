@@ -4,8 +4,6 @@
         session_start();
         $clickedUserId = $_POST["clickedUserId"];
 
-        $conn = Database::getConnection();
-
         if ($clickedUserId) {
             $result = User::deleteFollowRequest($clickedUserId);
             $action = "declined";
@@ -17,7 +15,6 @@
                 "status" => "Success"
             ];
         }
-        
         header("Content-Type: application/json");
         echo json_encode($response);
     }

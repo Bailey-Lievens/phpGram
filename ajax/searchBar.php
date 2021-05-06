@@ -1,6 +1,5 @@
 <?php include_once("../core/autoload.php"); ?>
-
-<?php //Code for the search function 
+<?php
     if(!empty($_POST)){
 
         $input = $_POST["searchInput"];
@@ -14,7 +13,6 @@
         if (empty($input)) {
             $response = null;
         }
-
         header("Content-Type: application/json");
         echo json_encode($response);
     }

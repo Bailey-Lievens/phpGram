@@ -5,8 +5,6 @@
         $clickedUserId = $_POST["clickedUserId"];
         $isRequested = $_POST["isRequested"];
 
-        $conn = Database::getConnection();
-
         if ($isRequested == "true") {
             $result = User::cancelFollowRequest($clickedUserId);
             $action = "Decline";
@@ -21,7 +19,6 @@
                 "status" => "Success"
             ];
         }
-        
         header("Content-Type: application/json");
         echo json_encode($response);
     }

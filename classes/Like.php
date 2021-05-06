@@ -4,6 +4,7 @@
         public static function isLiked($currentUser, $postToCheck) {
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT likes.id FROM likes WHERE likes.liked_by_user_id = :currentUser AND likes.post_id = :postToCheck");
+            
             $query->bindValue(":currentUser", $currentUser);            
             $query->bindValue(":postToCheck", $postToCheck);
             $query->execute();
@@ -48,7 +49,4 @@
             
             return $result;
         }
-
-        
-
     }
