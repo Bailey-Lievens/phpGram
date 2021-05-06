@@ -5,18 +5,13 @@
         $userId = $_POST["userId"];
         $isFollowing = $_POST["isFollowing"];
 
-        $conn = Database::getConnection();
-
         if ($isFollowing == "true") {
-            $query = $conn->prepare("DELETE FROM followers WHERE userId = :user and followingId = :following");
+            $result = Follower::removeFollower($_SESSION['userid'], $userId);
             $action = "Unfollow";
         } else {
-            $query = $conn->prepare("INSERT INTO followers(`userId`, `followingId`) VALUES (:user, :following)");
+            $result = Follower::addFollower($_SESSION['userid'], $userId);
             $action = "Follow";
         }
-        $query->bindValue(":user", $_SESSION['userid']);
-        $query->bindValue(":following", $userId);
-        $result = $query->execute();
 
         if($result){
             $response = [
