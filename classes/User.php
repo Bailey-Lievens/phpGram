@@ -383,7 +383,7 @@
             $query = $conn->prepare("INSERT INTO followers(`userId`, `followingId`) VALUES (:clickedUserId, :user)");
 
             $query->bindValue(":clickedUserId", $clickedUserId);
-            $query->bindValue(":user", $_SESSION['userid']);           
+            $query->bindValue(":user", $_SESSION['userId']);           
             $result = $query->execute();
 
             return $result;
@@ -394,7 +394,7 @@
             $query = $conn->prepare("DELETE FROM `requests` WHERE `requester_id` = :clickedUserId AND `receiver_id` = :user;");
 
             $query->bindValue(":clickedUserId", $clickedUserId);
-            $query->bindValue(":user", $_SESSION['userid']);           
+            $query->bindValue(":user", $_SESSION['userId']);           
             $result = $query->execute();
 
             return $result;
@@ -405,7 +405,7 @@
             $query = $conn->prepare("DELETE FROM `requests` WHERE `requester_id` = :user AND `receiver_id` = :clickedUserId;");
 
             $query->bindValue(":clickedUserId", $clickedUserId);
-            $query->bindValue(":user", $_SESSION['userid']);           
+            $query->bindValue(":user", $_SESSION['userId']);           
             $result = $query->execute();
 
             return $result;
@@ -416,7 +416,7 @@
             $query = $conn->prepare("INSERT INTO `requests` (`id`, `requester_id`, `receiver_id`) VALUES (NULL, :user, :clickedUserId);");
 
             $query->bindValue(":clickedUserId", $clickedUserId);
-            $query->bindValue(":user", $_SESSION['userid']);           
+            $query->bindValue(":user", $_SESSION['userId']);           
             $result = $query->execute();
 
             return $result;

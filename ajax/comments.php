@@ -14,7 +14,7 @@
 
         if($result){
             $response = [
-                "user" => User::getUsernameById($_SESSION['userid']),
+                "user" => User::getUsernameById($_SESSION['userId']),
                 "time" => Post::timeSincePost(date("Y-m-d H:i:s")),
                 "input" => $text,
                 "status" => "Success"

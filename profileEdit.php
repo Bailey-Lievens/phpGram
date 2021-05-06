@@ -1,8 +1,8 @@
 <?php include_once('core/autoload.php');?>
-<?php include_once('isloggedin.inc.php');?>
+<?php include_once('isloggedIn.inc.php');?>
 
 <?php
-$userId = $_SESSION['userid'];
+$userId = $_SESSION['userId'];
 
 $email = User::getEmailById($userId);
 $username = User::getUsernameById($userId);
@@ -43,7 +43,7 @@ if(!empty($_POST)){
         $user->setEmail($_POST["email"]);
         $user->setBio($_POST["biography"]);
         $user->update();
-        header("Location: profilePage.php?user=".$username);
+        header("Location: profilePage.php?user=". htmlspecialchars($username));
     } catch (\Throwable $e) {
         $error = $e->getMessage();
     }
@@ -84,7 +84,7 @@ if(!empty($_POST)){
     
     <input type="submit" name="deleteImage" id="submitBtn" value="Delete">
 
-         <a href="profilePage.php?user=<?php echo $_SESSION['username'] ?>" style="margin-left: 2em">Cancel</a>
+         <a href="profilePage.php?user=<?php echo htmlspecialchars($_SESSION['username']) ?>" style="margin-left: 2em">Cancel</a>
          
     </div>
 

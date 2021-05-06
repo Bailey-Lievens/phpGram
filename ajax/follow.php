@@ -6,10 +6,10 @@
         $isFollowing = $_POST["isFollowing"];
 
         if ($isFollowing == "true") {
-            $result = Follower::removeFollower($_SESSION['userid'], $userId);
+            $result = Follower::removeFollower($_SESSION['userId'], $userId);
             $action = "Unfollow";
         } else {
-            $result = Follower::addFollower($_SESSION['userid'], $userId);
+            $result = Follower::addFollower($_SESSION['userId'], $userId);
             $action = "Follow";
         }
 

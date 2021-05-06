@@ -10,7 +10,7 @@
         //$conn = Database::getConnection();
         if(isset($_POST['location']) && $_POST['location'] === "index"){
             $query_posts = $conn->prepare("SELECT DISTINCT users.username,users.profile_picture, posts.description, posts.picture, posts.date, posts.id FROM posts INNER JOIN users ON posts.user_id = users.id INNER JOIN followers ON users.id = followers.followingId WHERE followers.userId = :userId ORDER BY posts.date DESC LIMIT :postsNum , 20");
-            $query_posts->bindValue(":userId", $_SESSION['userid'] );
+            $query_posts->bindValue(":userId", $_SESSION['userId'] );
             $query_posts->bindValue(":postsNum", $postsNum, PDO::PARAM_INT );
             $query_posts->execute();
             $result = $query_posts->setFetchMode(PDO::FETCH_ASSOC);

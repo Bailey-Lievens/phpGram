@@ -1,6 +1,6 @@
 <?php
     class Post {
-        private $userid;
+        private $userId;
         private $description;
         private $filter = null;
         private $picture;
@@ -9,12 +9,12 @@
         private $country = null;
         private $click;
 
-        public function setUserid($userid){
-            $this->userid = $userid;
+        public function setUserid($userId){
+            $this->userId = $userId;
         }  
 
         public function getUserId(){
-            return $this->userid;
+            return $this->userId;
         }      
 
         public function setDescription($description){
@@ -88,9 +88,9 @@
 
         public function submitPost(){
             $conn = Database::getConnection();
-            $query = $conn->prepare("INSERT INTO posts (user_id, description, filter, picture, date, city, country) VALUES (:userid, :description, :filter, :picture, :date, :city, :country)");
+            $query = $conn->prepare("INSERT INTO posts (user_id, description, filter, picture, date, city, country) VALUES (:userId, :description, :filter, :picture, :date, :city, :country)");
 
-            $query->bindValue(":userid", $this->userid);
+            $query->bindValue(":userId", $this->userId);
             $query->bindValue(":description", $this->description);
             $query->bindValue(":filter", $this->filter);
             $query->bindValue(":picture", $this->picture);
@@ -263,7 +263,7 @@
         $query = $conn->prepare("DELETE FROM posts WHERE id = :postId and user_id = :user");
 
         $query->bindValue(":postId", $clickedPost);
-        $query->bindValue(":user", $_SESSION["userid"]);
+        $query->bindValue(":user", $_SESSION["userId"]);
         $result = $query->execute();
 
         return $result;

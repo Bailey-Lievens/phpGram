@@ -19,7 +19,6 @@
     }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,43 +36,42 @@
 <section class="flex">
 
     <div id="logo-container">
-    <img src="images/logo.png" alt="logo">
+        <img src="images/logo.png" alt="logo">
     </div>
 
     <form method="post" class="clearfix">
 
-    <h2>Create a new account</h2>
+        <h2>Create a new account</h2>
 
-    <?php if(isset($error)):?>
-        <div class="error" style="color: white;">
-        <?php echo $error;?></div>
-    <?php endif;?>
+        <?php if(isset($error)):?>
+            <div class="error" style="color: white;">
+            <?php echo $error;?></div>
+        <?php endif;?>
 
-    <div>
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username">
-    </div>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username">
+        </div>
 
-    <div>
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email">
-    </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email">
+        </div>
 
-    <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password">
-    </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+        </div>
 
-    <div class="submitBtn">
-	    <input type="submit" id="submitBtn" value="Sign up">	
-    </div>
+        <div class="submitBtn">
+            <input type="submit" id="submitBtn" value="Sign up">	
+        </div>
 
-    <div class="loginLink">
-        <a href="login.php">Already created an account? Log in here.</a>
-    </div>
+        <div class="loginLink">
+            <a href="login.php">Already created an account? Log in here.</a>
+        </div>
 
-</form>
-
+    </form>
 </section>
 
 </body>

@@ -8,7 +8,7 @@
             $query->bindValue(":postId", $postId);
             $query->bindValue(":comment", $commentText);
             $query->bindValue(":date", date("Y-m-d H:i:s"));
-            $query->bindValue(":userId", $_SESSION['userid']);
+            $query->bindValue(":userId", $_SESSION['userId']);
             $result = $query->execute();
 
             return $result;
