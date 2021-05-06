@@ -279,6 +279,14 @@
         return $comments;
     }
 
+    public static function getTagsByInput($input){
+        $conn = Database::getConnection();
+        $query = $conn->prepare("SELECT tag_name FROM tags WHERE tag_name LIKE CONCAT( '%', :input, '%') LIMIT 5");
+        $query->bindValue(":input", $input);
+        $query->execute();
+        $response = $query->fetchAll();
+        return $response;
     }
 
+    }
 ?>
