@@ -5,7 +5,12 @@
         $clickedPost = $_POST["clickedPost"]; // post_id
 
         if ($clickedPost) {
-            $result = Post::deletePost($clickedPost);
+            $post = new Post();
+            $post->setPostId($clickedPost);
+            $post->setUserId($_SESSION['userId']);
+
+            $result = $post->deletePost();
+
             $action = "delete";
         } else {}
 

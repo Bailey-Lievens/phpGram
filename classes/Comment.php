@@ -1,14 +1,55 @@
 <?php
     class Comment{
 
-        public static function insertComment($postId, $commentText){
+        private $commentText;
+        private $postId;
+        private $date;
+        private $userId;
+        
+        public function getCommentText() {
+            return $this->commentText;
+        }
+
+        public function setCommentText($commentText) {
+            $this->commentText = $commentText;
+            return $this;
+        }
+         
+        public function getPostId() {
+            return $this->postId;
+        }
+
+        public function setPostId($postId) {
+            $this->postId = $postId;
+            return $this;
+        }
+        
+        public function getDate() {
+            return $this->date;
+        }
+ 
+        public function setDate($date) {
+            $this->date = $date;
+            return $this;
+        }
+
+        public function getUserId() {
+            return $this->userId;
+        }
+
+        public function setUserId($userId) {
+            $this->userId = $userId;
+            return $this;
+        }
+
+        public function insertComment(){
             $conn = Database::getConnection();
             $query = $conn->prepare("INSERT INTO `comments` (`id`, `post_id`, `comment`, `date`, `user_id`) VALUES (NULL, :postId, :comment, :date, :userId);");
 
-            $query->bindValue(":postId", $postId);
-            $query->bindValue(":comment", $commentText);
-            $query->bindValue(":date", date("Y-m-d H:i:s"));
-            $query->bindValue(":userId", $_SESSION['userId']);
+            $query->bindValue(":postId", $this->getPostId());
+            $query->bindValue(":comment", $this->getCommentText());
+            $query->bindValue(":date", $this->getDate());
+            $query->bindValue(":userId", $this->getUserId());
             $result = $query->execute();
 
             return $result;
@@ -16,7 +57,7 @@
         
         public static function viewComments($postId) {
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT * FROM `comments` WHERE post_id = :postId ORDER BY date DESC /*LIMIT 3*/");
+            $query = $conn->prepare("SELECT * FROM `comments` WHERE post_id = :postId ORDER BY date DESC");
             
             $query->bindValue(":postId", $postId);
             $query->execute();
@@ -24,4 +65,5 @@
 
             return $comments;
         }
+        
     }

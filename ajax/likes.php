@@ -5,13 +5,21 @@
         $clickedPost = $_POST["clickedPost"]; // post_id
         $userHasLiked = $_POST["userHasLiked"]; // geliked of niet
 
-        $conn = Database::getConnection();
-
         if ($userHasLiked == "true") {
-            $result = Like::deleteLike($clickedPost);
+            $dislike = new Like();
+            $dislike->setPostid($clickedPost);
+            $dislike->setUserid($_SESSION['userId']);
+
+            $result = $dislike->deleteLike();
+
             $action = "Unlike";
         } else {
-            $result = Like::addLike($clickedPost);
+            $like = new Like();
+            $like->setPostid($clickedPost);
+            $like->setUserid($_SESSION['userId']);
+
+            $result = $like->addLike();
+
             $action = "Like";
         }
         

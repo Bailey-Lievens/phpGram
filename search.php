@@ -104,7 +104,7 @@
                     </div>
 
                     <ul class="listComments">
-                        <?php $comments = Comment::s($post['id'])?>
+                        <?php $comments = Comment::getComments($post['id'])?>
                         <?php if(!empty($comments)): ?>
                         <?php foreach ($comments as $comment): ?>
                         <ul>

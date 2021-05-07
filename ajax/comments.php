@@ -6,8 +6,15 @@
         $commentText = htmlspecialchars($_POST["commentText"]); // text comment
 
         if (!empty($commentText) && $commentText != " ") {
-            $result = Comment::insertComment($postId, $commentText);
-            $text = htmlspecialchars($commentText);
+            $comment = new Comment();
+            $comment->setCommentText($commentText);
+            $comment->setPostId($postId);
+            $comment->setDate(date("Y-m-d H:i:s"));
+            $comment->setUserId($_SESSION['userId']);
+
+            $result = $comment->insertComment();
+
+            $text = $comment->getCommentText();
         }
 
         if($result){
@@ -16,6 +23,10 @@
                 "time" => Post::timeSincePost(date("Y-m-d H:i:s")),
                 "input" => $text,
                 "status" => "Success"
+            ];
+        } else {
+            $response = [
+                "status" => "fail"
             ];
         }
         

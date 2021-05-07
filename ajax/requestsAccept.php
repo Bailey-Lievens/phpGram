@@ -5,8 +5,13 @@
         $clickedUserId = $_POST["clickedUserId"];
 
         if ($clickedUserId) {
-            $result = User::acceptFollowRequest($clickedUserId);
-            $result1 = User::deleteFollowRequest($clickedUserId);
+            $accept = new User();
+            $accept->setClickedUserId($clickedUserId);
+            $accept->setUserId($_SESSION['userId']);
+            
+            $result = $accept->acceptFollowRequest();            
+            $result1 = $accept->deleteFollowRequest();
+
             $action = "accepted";
         }
 

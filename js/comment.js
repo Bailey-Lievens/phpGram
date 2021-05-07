@@ -41,7 +41,7 @@ function comment(e){
             newUl.appendChild(newLiTime);
             // for text
             var newLiText = document.createElement('li');
-            newLiText.innerHTML = result.input;
+            newLiText.innerHTML = htmlspecialchars(result.input);
             newUl.appendChild(newLiText);
         })
         .catch(error => {

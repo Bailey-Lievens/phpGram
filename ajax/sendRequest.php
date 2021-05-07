@@ -6,10 +6,20 @@
         $isRequested = $_POST["isRequested"];
 
         if ($isRequested == "true") {
-            $result = User::cancelFollowRequest($clickedUserId);
+            $decline = new User();
+            $decline->setClickedUserId($clickedUserId);
+            $decline->setUserId($_SESSION['userId']);
+
+            $result = $decline->cancelFollowRequest();   
+
             $action = "Decline";
         } else {
-            $result = User::sendFollowRequest($clickedUserId);
+            $send = new User();
+            $send->setClickedUserId($clickedUserId);
+            $send->setUserId($_SESSION['userId']);
+
+            $result = $send->sendFollowRequest(); 
+
             $action = "Send";
         }
 

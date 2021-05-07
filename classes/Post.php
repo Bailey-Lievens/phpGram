@@ -8,6 +8,7 @@
         private $city = null;
         private $country = null;
         private $click;
+        private $postId;
 
         public function setUserid($userId){
             $this->userId = $userId;
@@ -81,6 +82,15 @@
         public function setClick($click){
             $this->click = $click *20;
             //HIER NOG MAAL 20 ;
+            return $this;
+        }
+
+        public function getPostId() {
+            return $this->postId;
+        }
+
+        public function setPostId($postId) {
+            $this->postId = $postId;
             return $this;
         }
 
@@ -269,12 +279,12 @@
 
 
         //delete je eigen post
-        public static function deletePost($clickedPost){
+        public function deletePost(){
             $conn = Database::getConnection();
             $query = $conn->prepare("DELETE FROM posts WHERE id = :postId and user_id = :user");
 
-            $query->bindValue(":postId", $clickedPost);
-            $query->bindValue(":user", $_SESSION["userId"]);
+            $query->bindValue(":postId", $this->getPostId());
+            $query->bindValue(":user", $this->getUserId());
             $result = $query->execute();
 
             return $result;
