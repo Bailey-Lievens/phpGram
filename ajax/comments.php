@@ -6,7 +6,7 @@
         $commentText = htmlspecialchars($_POST["commentText"]); // text comment
 
         if (!empty($commentText) && $commentText != " ") {
-            $result = Comment::setComment($postId, $commentText);
+            $result = Comment::insertComment($postId, $commentText);
             $text = htmlspecialchars($commentText);
         }
 

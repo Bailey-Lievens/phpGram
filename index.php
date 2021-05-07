@@ -123,13 +123,13 @@
                 
                 <div class="scrollDiv">
                     <ul class="listComments">
-                        <?php $comments = Comment::getComments($post['id'])?>
+                        <?php $comments = Comment::viewComments($post['id'])?>
                         <?php if(!empty($comments)): ?>
                             <?php foreach ($comments as $comment): ?>
                                     <ul>
                                         <li><a href="profilePage.php?user=<?php echo User::getUsernameById($comment['user_id']);?>"><?php echo User::getUsernameById($comment['user_id']); ?></a></li>
                                         <li><?php echo Post::timeSincePost($comment['date']); ?></li>
-                                        <li><?php echo $comment['comment']; ?></li>
+                                        <li><?php echo htmlspecialchars($comment['comment']); ?></li>
                                     </ul>
                             <?php endforeach; ?>
                         <?php else: ?>

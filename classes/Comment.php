@@ -1,7 +1,7 @@
 <?php
     class Comment{
 
-        public static function setComment($postId, $commentText){
+        public static function insertComment($postId, $commentText){
             $conn = Database::getConnection();
             $query = $conn->prepare("INSERT INTO `comments` (`id`, `post_id`, `comment`, `date`, `user_id`) VALUES (NULL, :postId, :comment, :date, :userId);");
 
@@ -14,7 +14,7 @@
             return $result;
         }
         
-        public static function getComments($postId) {
+        public static function viewComments($postId) {
             $conn = Database::getConnection();
             $query = $conn->prepare("SELECT * FROM `comments` WHERE post_id = :postId ORDER BY date DESC /*LIMIT 3*/");
             
