@@ -455,7 +455,7 @@
 
         public static function getSearchResultsByInput($input){
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT username, profile_picture FROM users WHERE username LIKE CONCAT( '%', :input, '%') LIMIT 5");
+            $query = $conn->prepare("SELECT id, username, profile_picture FROM users WHERE username LIKE CONCAT( '%', :input, '%') LIMIT 5");
             
             $query->bindValue(":input", $input);
             $query->execute();

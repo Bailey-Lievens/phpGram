@@ -61,7 +61,7 @@
                     </div>
                     <input type="file" name="inputPicturePost" id="inputPicturePost" accept="image/png, image/jpeg"/>
                 </div>
-
+                
                 <div id="locationCheck">
                     <label for="useLocation">Add your location to your post?</label>
                     <input type="checkbox" id="useLocation" name="useLocation" value="true">
@@ -86,7 +86,7 @@
         <section class="post">
             <header>
                 <img src="<?php echo($post['profile_picture'])?>" alt="profilePicture">
-                <?php echo("<a href='profilePage.php?user=". htmlspecialchars($post["username"]) ."'> ". htmlspecialchars($post["username"]) ." </a>")?>
+                <?php echo("<a href='profilePage.php?q=". $post["userId"] ."'> ". htmlspecialchars($post["username"]) ." </a>")?>
                 <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
                 <a href="#">...</a>
             </header>
@@ -127,9 +127,9 @@
                         <?php if(!empty($comments)): ?>
                             <?php foreach ($comments as $comment): ?>
                                     <ul>
-                                        <li><a href="profilePage.php?user=<?php echo User::getUsernameById($comment['user_id']);?>"><?php echo User::getUsernameById($comment['user_id']); ?></a></li>
-                                        <li><?php echo Post::timeSincePost($comment['date']); ?></li>
-                                        <li><?php echo $comment['comment']; ?></li>
+                                        <li><a href="profilePage.php?q=<?php echo($comment['user_id']);?>"> <?php echo(htmlspecialchars(User::getUsernameById($comment['user_id'])));?> </a></li>
+                                        <li><?php echo(Post::timeSincePost($comment['date'])); ?></li>
+                                        <li><?php echo(htmlspecialchars($comment['comment'])); ?></li>
                                     </ul>
                             <?php endforeach; ?>
                         <?php else: ?>

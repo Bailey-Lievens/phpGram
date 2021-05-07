@@ -27,14 +27,14 @@ if (isset($_POST['imageEdit'])) {
 
     $image =  "user_profilepictures/"  .$fileName;
     $user->updatePicture($userId, $image);
-    header('location: profilePage.php?user=' . $_SESSION['username']);
+    header('location: profilePage.php?q=' . $_SESSION['userId']);
 }
 
 if(isset($_POST['deleteImage'])){
     $image = "user_profilepictures/default.jpg";
     $user->updatePicture($userId, $image);
 
-    header('location: profilePage.php?user=' . $_SESSION['username']);
+    header('location: profilePage.php?q=' . $_SESSION['userId']);
 }
 
 if(!empty($_POST)){
@@ -43,7 +43,7 @@ if(!empty($_POST)){
         $user->setEmail($_POST["email"]);
         $user->setBio($_POST["biography"]);
         $user->update();
-        header("Location: profilePage.php?user=". htmlspecialchars($username));
+        header("Location: profilePage.php?q=". $_SESSION['userId']);
     } catch (\Throwable $e) {
         $error = $e->getMessage();
     }

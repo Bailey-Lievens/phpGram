@@ -1,7 +1,7 @@
 <?php include_once('core/autoload.php');?>
 <?php include_once('isloggedIn.inc.php');?>
 <?php
-    $userId = User::getUserIdByName($_GET['user']);
+    $userId = $_GET["q"];
     $username = User::getUsernameById($userId);
     $biography = User::getBioById($userId);
     $profilePicture = User::getPictureById($userId);
@@ -19,7 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo($username); ?></title>
+    <title><?php echo(htmlspecialchars($username)); ?></title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/profilePage.css">
     <link rel="stylesheet" href="css/instacss.css">
@@ -37,7 +37,7 @@
             <div>
                 <h1 id="username_header"><?php echo(htmlspecialchars($username));?></h1>
 
-                <?php if($_SESSION["username"] === $_GET["user"]): ?>
+                <?php if($_SESSION["userId"] === $_GET["q"]): ?>
                     <a id="edit_profile" href="profileEdit.php">⚙️ Edit profile</a>
                 <?php else: ?>
 
@@ -66,7 +66,7 @@
             <a class="tabName active" onclick="openTab(event, 'postsTab')">Posts</a>
             <a class="tabName" onclick="openTab(event, 'followersTab')">Followers</a>
             <a class="tabName" onclick="openTab(event, 'followingTab')">Following</a>
-            <?php if($_SESSION["username"] === $_GET["user"] && User::isPrivate($userId)): ?>
+            <?php if($_SESSION["userId"] === $_GET["q"] && User::isPrivate($userId)): ?>
                 <a class="tabName" onclick="openTab(event, 'requestsTab')">Requests</a>
             <?php endif; ?>   
         </div>
@@ -86,7 +86,7 @@
                 <?php endif; ?>
                 </div>
 
-                <?php if($_SESSION["username"] === $_GET["user"]): ?>
+                <?php if($_SESSION["username"] === $_GET["q"]): ?>
                     <a href="" class="deletePost "><img src="images/svg.svg" alt="svg" data-post="<?php echo $post['id']; ?>"></a>
                 <?php endif; ?>
 
@@ -103,8 +103,8 @@
             <ul>
                 <?php foreach($userFollowers as $follower): ?>
                     <li>
-                        <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><img src="<?php echo $follower['profile_picture'] ?>"></a>
-                        <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><p><?php echo(htmlspecialchars($follower['username'])); ?></p></a>
+                        <a id="profileLink" href="profilePage.php?q=<?php echo($follower['id']);?>"><img src="<?php echo $follower['profile_picture'] ?>"></a>
+                        <a id="profileLink" href="profilePage.php?q=<?php echo($follower['id']);?>"><p><?php echo(htmlspecialchars($follower['username'])); ?></p></a>
                         
                         <?php if(User::isFollowing($_SESSION['userId'] , $follower['id']) && User::isPrivate($follower['id']) && User::isRequested($_SESSION["userId"], $follower['id'])):?>
                             <a href="" class="requestButton isRequested" data-user="<?php echo($follower['id']); ?>" data-requested="true">Cancel request</a>
@@ -124,8 +124,8 @@
             <ul>
                 <?php foreach($userFollowing as $follower): ?>
                     <li>
-                        <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><img src="<?php echo $follower['profile_picture'] ?>"></a>
-                        <a id="profileLink" href="profilePage.php?user=<?php echo(htmlspecialchars($follower['username']));?>"><p><?php echo(htmlspecialchars($follower['username'])); ?></p></a>
+                        <a id="profileLink" href="profilePage.php?q=<?php echo($follower['id']);?>"><img src="<?php echo $follower['profile_picture'] ?>"></a>
+                        <a id="profileLink" href="profilePage.php?q=<?php echo($follower['id']);?>"><p><?php echo(htmlspecialchars($follower['username'])); ?></p></a>
                         
                         <?php if(User::isFollowing($_SESSION['userId'] , $follower['id']) && User::isPrivate($follower['id']) && User::isRequested($_SESSION["userId"], $follower['id'])):?>
                             <a href="" class="requestButton isRequested" data-user="<?php echo($follower['id']); ?>" data-requested="true">Cancel request</a>
@@ -141,13 +141,13 @@
             </ul>
         </div>
 
-        <?php if($_SESSION["username"] === $_GET["user"] && User::isPrivate($userId)): ?>
+        <?php if($_SESSION["userId"] == $_GET["q"] && User::isPrivate($userId)): ?>
         <div id="requestsTab" class="tab" style="display:none">
             <ul>
                 <?php foreach($requests as $request): ?>
                     <li>
-                        <a id="profileLink" href="profilePage.php?user=<?php echo htmlspecialchars(User::getUsernameById($request["requester_id"])) ;?>"><img src="<?php echo User::getPictureById($request["requester_id"]); ?>"></a>
-                        <a id="profileLink" href="profilePage.php?user=<?php echo htmlspecialchars(User::getUsernameById($request["requester_id"])) ;?>"><p><?php echo htmlspecialchars(User::getUsernameById($request["requester_id"])); ?></p></a>    
+                        <a id="profileLink" href="profilePage.php?q=<?php echo($request["requester_id"]);?>"><img src="<?php echo User::getPictureById($request["requester_id"]); ?>"></a>
+                        <a id="profileLink" href="profilePage.php?q=<?php echo($request["requester_id"]);?>"><p><?php echo htmlspecialchars(User::getUsernameById($request["requester_id"])); ?></p></a>    
                     
                         <a href="" class="acceptButton" data-requester="<?php echo $request["requester_id"]; ?>"> Accept </a>
                         <a href="" class="declineButton" data-requester="<?php echo $request["requester_id"]; ?>"> Decline </a> 

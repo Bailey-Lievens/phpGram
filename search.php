@@ -64,11 +64,12 @@
                 <header>
                     <img src="<?php echo($post["profile_picture"]) ?>"
                         <?php echo("alt='profilePicture_".htmlspecialchars($post["username"])."'")?>>
-                    <?php echo("<a href='profilePage.php?user=". htmlspecialchars($post["username"]) ."'> ". htmlspecialchars($post["username"]) ." </a>")?>
+                    <?php echo("<a href='profilePage.php?q=". $post["userId"] ."'> ". htmlspecialchars($post["username"]) ." </a>")?>
                     <?php echo("<p>". Post::timeSincePost($post["date"]) ."</p>")?>
                     <a href="#">...</a>
                 </header>
                 <div>
+
                     <?php if($post['filter'] != null):?>
                     <figure class="<?php echo($post['filter'])?>">
                         <img src="<?php echo($post['picture'])?>">
@@ -78,12 +79,15 @@
                         <img src="<?php echo($post['picture'])?>">
                     </figure>
                     <?php endif; ?>
+
                     <?php if($post['city'] != null):?>
                         <p>📍<a class="btnLocation" href="search.php?type=city&q=<?php echo($post['city']);?>"><?php echo($post['city']);?></a>, <a class="btnLocation" href="search.php?type=country&q=<?php echo($post['country']);?>"><?php echo($post['country']);?></a></p>
                     <?php endif; ?>
+
                     <?php echo("<p>". htmlspecialchars($post["description"]) ."</p>")?>
                 </div>
                 <section>
+
                     <?php if(Like::isLiked($_SESSION['userId'] , $post['id'])):?>
                     <a href="" class="btnAddLike unlike" data-postid="<?php echo $post['id'] ?>" data-liked="true"
                         data-span="<?php echo $counter; ?>">unlike</a>
@@ -91,33 +95,35 @@
                     <a href="" class="btnAddLike like" data-postid="<?php echo $post['id'] ?>" data-liked="false"
                         data-span="<?php echo $counter; ?>">like</a>
                     <?php endif; ?>
+
                     <?php if(Like::getAmountLikes($post['id']) == 1): ?>
-                    <p id="amountLikes"><span class="countLikes"><?php echo Like::getAmountLikes($post['id']) ?></span> like
-                    </p>
+                    <p id="amountLikes"><span class="countLikes"><?php echo Like::getAmountLikes($post['id']) ?></span> like</p>
                     <?php else: ?>
-                    <p id="amountLikes"><span class="countLikes"><?php echo Like::getAmountLikes($post['id']) ?></span>
-                        likes</p>
+                    <p id="amountLikes"><span class="countLikes"><?php echo Like::getAmountLikes($post['id']) ?></span> likes</p>
                     <?php endif; ?>
+
                     <div class="comment">
                         <input type="text" placeholder="Add a comment">
                         <a href="" class="commentBtn" data-postid="<?php echo $post['id'] ?>">comment</a>
                     </div>
 
-                    <ul class="listComments">
-                        <?php $comments = Post::getComments($post['id'])?>
-                        <?php if(!empty($comments)): ?>
-                        <?php foreach ($comments as $comment): ?>
-                        <ul>
-                            <li><?php echo User::getUsernameById($comment['user_id']); ?></li>
-                            <li><?php echo Post::timeSincePost($comment['date']); ?></li>
-                            <li><?php echo $comment['comment']; ?></li>
+                    <div class="scrollDiv">
+                        <ul class="listComments">
+                            <?php $comments = Comment::getComments($post['id'])?>
+                            <?php if(!empty($comments)): ?>
+                                <?php foreach ($comments as $comment): ?>
+                                        <ul>
+                                            <li><a href="profilePage.php?q=<?php echo($comment['user_id']);?>"> <?php echo(htmlspecialchars(User::getUsernameById($comment['user_id'])));?> </a></li>
+                                            <li><?php echo(Post::timeSincePost($comment['date'])); ?></li>
+                                            <li><?php echo(htmlspecialchars($comment['comment'])); ?></li>
+                                        </ul>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <ul>
+                                    <li>No comments yet</li> 
+                                </ul>                   
+                            <?php endif; ?>
                         </ul>
-                        <?php endforeach; ?>
-                        <?php else: ?>
-                        <ul>
-                            <li>No comments yet</li>
-                        </ul>
-                        <?php endif; ?>
                     </div>
                 </section>
 

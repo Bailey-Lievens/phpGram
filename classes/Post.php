@@ -75,7 +75,7 @@
         }
 
         public function getClick(){
-             return $this->click;
+            return $this->click;
         }
 
         public function setClick($click){
@@ -87,7 +87,7 @@
         public function submitPost(){
             $conn = Database::getConnection();
             $query = $conn->prepare("INSERT INTO posts (user_id, description, filter, picture, date, city, country) VALUES (:userId, :description, :filter, :picture, :date, :city, :country)");
-
+            
             $query->bindValue(":userId", $this->userId);
             $query->bindValue(":description", $this->description);
             $query->bindValue(":filter", $this->filter);
@@ -171,7 +171,7 @@
         //Returns posts based on given amount
         public static function getPostsByAmount($amount){
             $conn = Database::getConnection();
-            $query = $conn->query("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.id, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.date DESC LIMIT ".$amount."");
+            $query = $conn->query("SELECT users.id AS userId,  users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.id, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.date DESC LIMIT ".$amount."");
             $query->execute();
             $posts = $query->fetchAll();
             return $posts;
@@ -181,7 +181,7 @@
         //If no amount is specified it returns 20
         public static function getPostsByTag($tag, $amount = 20){
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.city, posts.country, posts.id FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :tag, '%') ORDER BY date DESC LIMIT ".$amount."");
+            $query = $conn->prepare("SELECT users.id AS userId, users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.city, posts.country, posts.id FROM posts INNER JOIN users ON posts.user_id = users.id WHERE description like CONCAT( '%', :tag, '%') ORDER BY date DESC LIMIT ".$amount."");
             
             $query->bindValue(":tag","#".$tag);
             $query->execute();
@@ -205,7 +205,7 @@
         //Returns all posts posted by the people the user follows
         public static function getPostsFromFollowing($userId, $amount = 20){
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.id, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id INNER JOIN followers ON users.id = followers.followingId WHERE followers.userId = :userId ORDER BY date DESC LIMIT ".$amount."");
+            $query = $conn->prepare("SELECT users.id AS userId, users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.id, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id INNER JOIN followers ON users.id = followers.followingId WHERE followers.userId = :userId ORDER BY date DESC LIMIT ".$amount."");
             
             $query->bindValue(":userId", $userId);
             $query->execute();
@@ -217,7 +217,7 @@
         //Returns posts from the given city
         public static function getPostsByCity($city, $amount = 20){
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.id, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.city = :city ORDER BY date DESC LIMIT ".$amount."");
+            $query = $conn->prepare("SELECT users.id AS userId, users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.date, posts.id, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.city = :city ORDER BY date DESC LIMIT ".$amount."");
             
             $query->bindValue(":city", $city);
             $query->execute();
@@ -229,7 +229,7 @@
         //Returns posts from the given country
         public static function getPostsByCountry($country, $amount = 20){
             $conn = Database::getConnection();
-            $query = $conn->prepare("SELECT users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.id, posts.date, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.country = :country ORDER BY date DESC LIMIT ".$amount."");
+            $query = $conn->prepare("SELECT users.id AS userId, users.username,users.profile_picture, posts.description, posts.filter, posts.picture, posts.id, posts.date, posts.city, posts.country FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.country = :country ORDER BY date DESC LIMIT ".$amount."");
             
             $query->bindValue(":country", $country);
             $query->execute();
