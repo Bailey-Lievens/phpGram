@@ -109,7 +109,7 @@
 
                     <div class="scrollDiv">
                         <ul class="listComments">
-                            <?php $comments = Comment::getComments($post['id'])?>
+                            <?php $comments = Comment::viewComments($post['id'])?>
                             <?php if(!empty($comments)): ?>
                                 <?php foreach ($comments as $comment): ?>
                                         <ul>

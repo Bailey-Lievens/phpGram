@@ -20,6 +20,7 @@
         if($result){
             $response = [
                 "user" => User::getUsernameById($_SESSION['userId']),
+                "userId" => $_SESSION['userId'],
                 "time" => Post::timeSincePost(date("Y-m-d H:i:s")),
                 "input" => $text,
                 "status" => "Success"
