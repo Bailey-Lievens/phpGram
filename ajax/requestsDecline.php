@@ -5,7 +5,12 @@
         $clickedUserId = $_POST["clickedUserId"];
 
         if ($clickedUserId) {
-            $result = User::deleteFollowRequest($clickedUserId);
+            $decline = new User();
+            $decline->setClickedUserId($clickedUserId);
+            $decline->setUserId($_SESSION['userId']);
+
+            $result = $decline->cancelFollowRequest();   
+
             $action = "declined";
         } else {}
 
