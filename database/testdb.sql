@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 07, 2021 at 07:17 AM
+-- Generation Time: May 07, 2021 at 07:44 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -194,7 +194,8 @@ CREATE TABLE `requests` (
 
 INSERT INTO `requests` (`id`, `requester_id`, `receiver_id`) VALUES
 (15, 12, 11),
-(16, 11, 6);
+(16, 11, 6),
+(17, 11, 25);
 
 -- --------------------------------------------------------
 
@@ -354,6 +355,12 @@ ALTER TABLE `likes`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+
+--
+-- AUTO_INCREMENT for table `requests`
+--
+ALTER TABLE `requests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tags`

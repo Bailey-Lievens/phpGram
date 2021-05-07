@@ -428,7 +428,7 @@
 
         public static function sendFollowRequest($clickedUserId) {
             $conn = Database::getConnection();
-            $query = $conn->prepare("INSERT INTO `requests` (`id`, `requester_id`, `receiver_id`) VALUES (NULL, :user, :clickedUserId);");
+            $query = $conn->prepare("INSERT INTO `requests` (`requester_id`, `receiver_id`) VALUES (:user, :clickedUserId);");
 
             $query->bindValue(":clickedUserId", $clickedUserId);
             $query->bindValue(":user", $_SESSION['userId']);           

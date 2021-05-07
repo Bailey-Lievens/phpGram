@@ -19,6 +19,7 @@ function request(e){
     })
         .then(response => response.json())
         .then(result => {
+            console.log(result);
             if(result != null){
                 if(result["action"] == "Decline"){
                     clickedButton.classList.remove("isRequested");

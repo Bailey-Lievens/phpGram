@@ -18,6 +18,10 @@
                 "action" => $action,
                 "status" => "Success"
             ];
+        } else {
+            $response = [
+                "status" => "Fail"
+            ];
         }
         header("Content-Type: application/json");
         echo json_encode($response);
