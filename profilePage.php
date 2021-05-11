@@ -86,7 +86,7 @@
                 <?php endif; ?>
                 </div>
 
-                <?php if($_SESSION["username"] === $_GET["q"]): ?>
+                <?php if($_SESSION["userId"] === $_GET["q"]): ?>
                     <a href="" class="deletePost "><img src="images/svg.svg" alt="svg" data-post="<?php echo $post['id']; ?>"></a>
                 <?php endif; ?>
 
