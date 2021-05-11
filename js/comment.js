@@ -6,7 +6,7 @@ function comment(e){
     var commentText = e.toElement.previousElementSibling.value; // comment text
     var ul = e.path[2].children[3].children[0]; // find ul where the comment must go
     var input = e.path[2].children[2].children[0]; // to see input
-    var noComment = e.path[2].children[3].children[0].children[0]; // to see if there are comments
+    var noComment = e.path[2].children[3].children[0].children[0].children[0]; // to see if there are comments
 
     var formData = new FormData();
 
@@ -21,7 +21,7 @@ function comment(e){
         .then(result => {
             // disappear "no comments yet"
             if (noComment.innerHTML == "No comments yet") {
-                noComment.innerHTML = "";
+                noComment.style.display = "none";
             } else {}
 
             // empty input
