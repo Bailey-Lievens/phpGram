@@ -42,7 +42,7 @@
             return $this;
         }
 
-        public function insertComment(){
+        public function save(){
             $conn = Database::getConnection();
             $query = $conn->prepare("INSERT INTO `comments` (`id`, `post_id`, `comment`, `date`, `user_id`) VALUES (NULL, :postId, :comment, :date, :userId);");
 

@@ -12,7 +12,7 @@
             $comment->setDate(date("Y-m-d H:i:s"));
             $comment->setUserId($_SESSION['userId']);
 
-            $result = $comment->insertComment();
+            $result = $comment->save();
 
             $text = $comment->getCommentText();
         }
