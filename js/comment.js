@@ -32,7 +32,7 @@ function comment(e){
 
             // for username
             var newLiUser = document.createElement('li');
-            newLiUser.innerHTML = "<a href='profilePage.php?q=" + result.userId + "'>" + htmlspecialchars(result.user) + "</a>";
+            newLiUser.innerHTML = "<a href='profilePage.php?q=" + result.userId + "'>" + result.user + "</a>";
             newUl.appendChild(newLiUser);
 
             // for time
@@ -41,7 +41,7 @@ function comment(e){
             newUl.appendChild(newLiTime);
             // for text
             var newLiText = document.createElement('li');
-            newLiText.innerHTML = htmlspecialchars(result.input);
+            newLiText.innerHTML = result.input;
             newUl.appendChild(newLiText);
         })
         .catch(error => {
@@ -52,17 +52,4 @@ function comment(e){
 
 for(i=0; i<buttonLength; i++){
     commentBtns[i].onclick = comment;
-}
-
-function htmlspecialchars(string) {
-    const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#x27;',
-        "/": '&#x2F;',
-    };
-    const reg = /[&<>"'/]/ig;
-    return string.replace(reg, (match)=>(map[match]));
 }
