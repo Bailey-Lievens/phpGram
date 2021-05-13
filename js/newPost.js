@@ -106,7 +106,7 @@ function getLocation(position){
     
     //Fetch is een meer moderne optie om hetzelfde te bereiken
     var request = new XMLHttpRequest();
-    request.open("GET", "http://api.positionstack.com/v1/reverse?access_key="+apiKey+"&query="+latitude+","+longitude+"&limit=1");
+    request.open("GET", "https://api.positionstack.com/v1/reverse?access_key="+apiKey+"&query="+latitude+","+longitude+"&limit=1");
     request.send();
     request.onload = () => {
         if(request.status == 200){
