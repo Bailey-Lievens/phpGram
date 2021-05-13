@@ -113,7 +113,7 @@
                             <?php if(!empty($comments)): ?>
                                 <?php foreach ($comments as $comment): ?>
                                         <ul>
-                                            <li><a href="profilePage.php?q=<?php echo($comment['user_id']);?>"> <?php echo(htmlspecialchars(User::getUsernameById($comment['user_id'])));?> </a></li>
+                                            <li><a href="profilePage.php?q=<?php echo($comment['user_id']);?>" id="usernameBtnComments"> <?php echo(htmlspecialchars(User::getUsernameById($comment['user_id'])));?> </a></li>
                                             <li><?php echo(Post::timeSincePost($comment['date'])); ?></li>
                                             <li><?php echo(htmlspecialchars($comment['comment'])); ?></li>
                                         </ul>

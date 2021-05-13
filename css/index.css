@@ -7,6 +7,12 @@ body {
   font-family: "Ubuntu", sans-serif;
 }
 
+#noPosts {
+  text-align: center;
+  margin: 5em;
+  color: white;
+}
+
 #locationCheck{
     display: flex;
     flex-direction: column;
@@ -148,6 +154,7 @@ body {
 }
 
 .post header img {
+  object-fit: cover;
   height: 3em;
   width: 3em;
   border-radius: 2em;

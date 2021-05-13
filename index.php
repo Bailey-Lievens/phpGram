@@ -82,6 +82,9 @@
     </form>
 
     <?php $counter = 0; ?> <!-- counter to know which span we're in -->
+    <?php if(empty($posts)): ?>
+        <h1 id="noPosts">There are no posts yet, start following people!</h1>
+    <?php endif; ?>
     <?php foreach($posts as $post):?>
         <section class="post">
             <header>
