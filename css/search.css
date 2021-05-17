@@ -54,13 +54,14 @@ body {
 
 }
 
-.post header a:nth-child(2) {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2em;
-    margin-right: 6em;
-    margin-left: -1em;
-    
+.commentBtn {
+    background-color: #8729FE;
+    padding: 10px 10px 10px 10px;
+    border: 2px solid #8729FE;  
+    border-radius: 10px;  
+    margin-left: 3px;
+    font-size: 1em;
+    cursor: pointer;
 }
 
 .post div img {
@@ -82,10 +83,6 @@ body {
 .post div p {
     margin-left: 5em;
     margin-right: 5em;
-}
-
-.post section a:nth-child(1) {
-    margin-left: 5em;
 }
 
 .post section a {

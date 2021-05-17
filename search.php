@@ -102,10 +102,11 @@
                     <p id="amountLikes"><span class="countLikes"><?php echo Like::getAmountLikes($post['id']) ?></span> likes</p>
                     <?php endif; ?>
 
-                    <div class="comment">
-                        <input type="text" placeholder="Add a comment">
-                        <a href="" class="commentBtn" data-postid="<?php echo $post['id'] ?>">comment</a>
-                    </div>
+                   
+                <form class="comment" action="#">
+                    <input type="text" placeholder="Add a comment">
+                    <button type="submit" name="commentBtn" class="commentBtn" data-postid="<?php echo $post['id'] ?>">comment</button>
+                </form>
 
                     <div class="scrollDiv">
                         <ul class="listComments">
