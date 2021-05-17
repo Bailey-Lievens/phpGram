@@ -197,13 +197,14 @@ body {
 }
 
 
-.post section a:nth-child(2) {
+.commentBtn {
     background-color: #8729FE;
     padding: 10px 10px 10px 10px;
     border: 2px solid #8729FE;  
     border-radius: 10px;  
     margin-left: 3px;
     font-size: 1em;
+    cursor: pointer;
 }
 
 .post section a {
